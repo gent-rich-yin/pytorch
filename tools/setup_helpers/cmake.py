@@ -31,7 +31,7 @@ eprint = functools.partial(print, file=sys.stderr, flush=True)
 # Ninja
 # Use ninja if it is on the PATH. Previous version of PyTorch required the
 # ninja python package, but we no longer use it, so we do not have to import it
-USE_NINJA = True
+USE_NINJA = False
 
 class CMake:
     def __init__(self, build_dir: str = "build") -> None:
@@ -40,13 +40,13 @@ class CMake:
         self._cmake_cache_file = os.path.join(self.build_dir, "CMakeCache.txt")
         self._ninja_build_file = os.path.join(self.build_dir, "build.ninja")
 
-    def run(self, args: list[str], env: dict[str, str]) -> None:
+    def run(self, args: list[str]) -> None:
         """Executes cmake with arguments and an environment."""
 
         command = [self._cmake_command] + args
         eprint(" ".join(command))
         try:
-            check_call(command, cwd=self.build_dir, env=env)
+            check_call(command, cwd=self.build_dir)
         except (CalledProcessError, KeyboardInterrupt):
             sys.exit(1)
 
@@ -56,6 +56,36 @@ class CMake:
         for key, value in sorted(kwargs.items()):
             if value is not None:
                 args.append(f"-D{key}={value}")
+
+    @staticmethod
+    def convert_cmake_value_to_python_value(
+        cmake_value: str, cmake_type: str
+    ) -> CMakeValue:
+        r"""Convert a CMake value in a string form to a Python value.
+
+        Args:
+        cmake_value (string): The CMake value in a string form (e.g., "ON", "OFF", "1").
+        cmake_type (string): The CMake type of :attr:`cmake_value`.
+
+        Returns:
+        A Python value corresponding to :attr:`cmake_value` with type :attr:`cmake_type`.
+        """
+
+        cmake_type = cmake_type.upper()
+        up_val = cmake_value.upper()
+        if cmake_type == "BOOL":
+            # https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html#genex:BOOL
+            return not (
+                up_val in ("FALSE", "OFF", "N", "NO", "0", "", "NOTFOUND")
+                or up_val.endswith("-NOTFOUND")
+            )
+        elif cmake_type == "FILEPATH":
+            if up_val.endswith("-NOTFOUND"):
+                return None
+            else:
+                return cmake_value
+        else:  # Directly return the cmake_value.
+            return cmake_value
 
     @staticmethod
     def get_cmake_cache_variables_from_file(
@@ -156,7 +186,6 @@ class CMake:
         version: str | None,
         build_python: bool,
         build_test: bool,
-        my_env: dict[str, str],
         rerun: bool,
     ) -> None:
         """Runs cmake to generate native build files."""
@@ -164,25 +193,7 @@ class CMake:
         if rerun and os.path.isfile(self._cmake_cache_file):
             os.remove(self._cmake_cache_file)
 
-        cmake_cache_file_available = os.path.exists(self._cmake_cache_file)
-        if cmake_cache_file_available:
-            cmake_cache_variables = self.get_cmake_cache_variables()
-            make_program: str | None = cmake_cache_variables.get("CMAKE_MAKE_PROGRAM")  # type: ignore[assignment]
-            if make_program and not shutil.which(make_program):
-                # CMakeCache.txt exists, but the make program (e.g., ninja) does not.
-                # See also: https://github.com/astral-sh/uv/issues/14269
-                # This can happen if building with PEP-517 build isolation, where `ninja` was
-                # installed in the isolated environment of the previous build run, but it has been
-                # removed. The `ninja` executable with an old absolute path not available anymore.
-                eprint(
-                    "!!!WARNING!!!: CMakeCache.txt exists, "
-                    f"but CMAKE_MAKE_PROGRAM ({make_program!r}) does not exist. "
-                    "Clearing CMake cache."
-                )
-                self.clear_cache()
-                cmake_cache_file_available = False
-
-        if cmake_cache_file_available and (
+        if os.path.exists(self._cmake_cache_file) and (
             not USE_NINJA or os.path.exists(self._ninja_build_file)
         ):
             eprint("Everything's in place. Do not rerun cmake generate.")
@@ -262,7 +273,7 @@ class CMake:
             "CMAKE_CUDA_COMPILER": "CUDA_NVCC_EXECUTABLE",
             "CUDACXX": "CUDA_NVCC_EXECUTABLE",
         }
-        for var, val in my_env.items():
+        for var, val in os.environ.items():
             # We currently pass over all environment variables that start with "BUILD_", "USE_", and "CMAKE_". This is
             # because we currently have no reliable way to get the list of all build options we have specified in
             # CMakeLists.txt. (`cmake -L` won't print dependent options when the dependency condition is not met.) We
@@ -352,16 +363,6 @@ class CMake:
             **build_options,
         )
 
-        for env_var_name in my_env:
-            if env_var_name.startswith("gh"):
-                # github env vars use utf-8, on windows, non-ascii code may
-                # cause problem, so encode first
-                try:
-                    my_env[env_var_name] = str(my_env[env_var_name].encode("utf-8"))
-                except UnicodeDecodeError as e:
-                    shex = ":".join(f"{ord(c):02x}" for c in my_env[env_var_name])
-                    eprint(f"Invalid ENV[{env_var_name}] = {shex}")
-                    eprint(e)
         # According to the CMake manual, we should pass the arguments first,
         # and put the directory as the last element. Otherwise, these flags
         # may not be passed correctly.
@@ -369,16 +370,18 @@ class CMake:
         # 1. https://cmake.org/cmake/help/latest/manual/cmake.1.html#synopsis
         # 2. https://stackoverflow.com/a/27169347
         args.append(base_dir)
-        self.run(args, env=my_env)
+        eprint("cmake generate args: ", args)
+        # args: '-DBUILD_PYTHON=True -DBUILD_TEST=True -DCMAKE_INSTALL_PREFIX=/home/user/pytorch/torch -DCMAKE_PREFIX_PATH=/home/user/anaconda3/lib/python3.13/site-packages;/home/user/anaconda3/envs/torch-dev: -DPython_EXECUTABLE=/home/user/anaconda3/bin/python3.13 -DPython_NumPy_INCLUDE_DIR=/home/user/anaconda3/lib/python3.13/site-packages/numpy/_core/include -DTORCH_BUILD_VERSION=2.10.0a0 -DUSE_NUMPY=True /home/user/pytorch'
+        self.run(args)
 
-    def build(self, my_env: dict[str, str]) -> None:
+    def build(self) -> None:
         """Runs cmake to build binaries."""
         build_args = "--build . --target install --config Release".split() 
 
         if not USE_NINJA:
-            max_jobs = max_jobs or str(multiprocessing.cpu_count())
+            max_jobs = str(multiprocessing.cpu_count())
             build_args += ["-j", max_jobs]
-        self.run(build_args, my_env)
+        self.run(build_args)
 
     def clear_cache(self) -> None:
         """Clears the CMake cache."""

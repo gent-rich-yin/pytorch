@@ -65,7 +65,7 @@ if BUILD_PYTHON_ONLY:
 VERBOSE_SCRIPT = True
 RUN_BUILD_DEPS = True
 RERUN_CMAKE = False
-CMAKE_ONLY = False
+CMAKE_ONLY = True
 
 def report(*args: Any, file: IO[str] = sys.stderr, flush: bool = True, **kwargs: Any) -> None:
     print(*args, file=file, flush=flush, **kwargs)
@@ -74,6 +74,8 @@ TORCH_PACKAGE_NAME = "torch"
 
 TORCH_VERSION = open(CWD / "version.txt").read().strip()
 report(f"Building wheel {TORCH_PACKAGE_NAME}-{TORCH_VERSION}")
+
+cmake = CMake()
 
 def mirror_files_into_torchgen() -> None:
     # (new_path, orig_path)
@@ -141,19 +143,16 @@ def checkout_nccl():
 def build_deps() -> None:
     report(f"-- Building version {TORCH_VERSION}")
 
-    my_env = os.environ.copy()
     checkout_nccl()
     build_test = True
-    cmake = CMake()
     cmake.generate(TORCH_VERSION, # version
                    not BUILD_LIBTORCH_WHL, # build_python
                    build_test, # build_test
-                   my_env, # my_env
                    RERUN_CMAKE # re-run
                    )
     if CMAKE_ONLY:
         return
-    cmake.build(my_env)
+    cmake.build()
 
     # Use copies instead of symbolic files.
     # Windows has very poor support for them.
@@ -637,6 +636,16 @@ def configure_extension_build() -> tuple[
 
 
 def main() -> None:
+    install_requires = [
+        "filelock",
+        "typing-extensions>=4.10.0",
+        'setuptools ; python_version >= "3.12"',
+        "sympy>=1.13.3",
+        "networkx>=2.5.1",
+        "jinja2",
+        "fsspec>=0.8.5",
+    ]
+    
     # Parse the command line and check the arguments before we proceed with
     # building deps and setup. We need to set values so `--help` works.
     dist = Distribution()
