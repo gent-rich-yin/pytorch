@@ -1,6 +1,6 @@
 CXX = g++
 
-CXXFLAGS = -Wall
+CXXFLAGS = -Wall -std=c++17 -D_GLIBCXX_USE_CXX11_ABI=1
 
 MY_TORCH_INCLUDE := -I../torch/csrc/api/include \
 					-I.. \
@@ -8,7 +8,7 @@ MY_TORCH_INCLUDE := -I../torch/csrc/api/include \
 					-I../aten/src \
 					-I../build/aten/src
 
-MY_TORCH_LIB_DIR := ../torch/lib
+MY_TORCH_LIB_DIR := ../build/lib
 MY_TEST_SRC_DIR := ./src
 MY_TEST_BUILD_DIR := ./build
 

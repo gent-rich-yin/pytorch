@@ -173,7 +173,7 @@ class CMake:
         rerun: bool,
     ) -> None:
         """Runs cmake to generate native build files."""
-
+        eprint("In generate start ****")
         if rerun and os.path.isfile(self._cmake_cache_file):
             os.remove(self._cmake_cache_file)
 
@@ -199,6 +199,7 @@ class CMake:
             not USE_NINJA or os.path.exists(self._ninja_build_file)
         ):
             # Everything's in place. Do not rerun.
+            eprint("All in place. *****")
             return
 
         args = []
@@ -419,6 +420,7 @@ class CMake:
         # 1. https://cmake.org/cmake/help/latest/manual/cmake.1.html#synopsis
         # 2. https://stackoverflow.com/a/27169347
         args.append(base_dir)
+        eprint("In generate ********: ", args, my_env)
         self.run(args, env=my_env)
 
     def build(self, my_env: dict[str, str]) -> None:
@@ -459,6 +461,7 @@ class CMake:
 
             # CMake 3.12 provides a '-j' option.
             build_args += ["-j", max_jobs]
+        eprint("In build ********: ", build_args, my_env)
         self.run(build_args, my_env)
 
     def clear_cache(self) -> None:

@@ -505,7 +505,7 @@ else:
     CMAKE_PYTHON_LIBRARY = Path(
         sysconfig.get_config_var("LIBDIR")
     ) / sysconfig.get_config_var("INSTSONAME")
-
+report("CMAKE_PYTHON_LIBRARY", CMAKE_PYTHON_LIBRARY)
 
 ################################################################################
 # Version, create_version_file, and package_name
@@ -1650,6 +1650,7 @@ def main() -> None:
     # Parse the command line and check the arguments before we proceed with
     # building deps and setup. We need to set values so `--help` works.
     dist = Distribution()
+    report("In main(), sys.argv: ", sys.argv)
     dist.script_name = os.path.basename(sys.argv[0])
     dist.script_args = sys.argv[1:]
     try:
@@ -1659,6 +1660,7 @@ def main() -> None:
         sys.exit(1)
 
     mirror_files_into_torchgen()
+    report("RUN_BUILD_DEPS ****** ", RUN_BUILD_DEPS)
     if RUN_BUILD_DEPS:
         build_deps()
 
@@ -1763,6 +1765,7 @@ def main() -> None:
         # no extensions in BUILD_LIBTORCH_WHL mode
         ext_modules = []
 
+    report("Before setup ****")
     setup(
         name=TORCH_PACKAGE_NAME,
         version=TORCH_VERSION,
@@ -1777,8 +1780,11 @@ def main() -> None:
         # explicitly control with `package_data` above.
         include_package_data=False,
     )
+    report("After setup ****")
     if EMIT_BUILD_WARNING:
+        report("print_box *****")
         print_box(build_update_message)
+    report("setup.py done *****")
 
 
 if __name__ == "__main__":

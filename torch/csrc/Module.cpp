@@ -2578,6 +2578,7 @@ Call this whenever a new thread is created in order to propagate values from
   PyObject* has_mps = Py_False;
 #endif
 
+
 #ifdef USE_XPU
   PyObject* has_xpu = Py_True;
 #else

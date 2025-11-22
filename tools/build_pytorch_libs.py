@@ -86,12 +86,16 @@ def build_pytorch(
     cmake_only: bool,
     cmake: CMake,
 ) -> None:
+    print("build_python ***: ", build_python, flush=True)
+    print("rerun_cmake ***: ", rerun_cmake, flush=True)
+    print("cmake_only ***: ", cmake_only, flush=True)
     my_env = _create_build_env()
     if (
         not check_negative_env_flag("USE_CUDA")
         and not check_negative_env_flag("USE_NCCL")
         and not check_env_flag("USE_SYSTEM_NCCL")
     ):
+        print("checkout_nccl *****", checkout_nccl, flush=True)
         checkout_nccl()
     build_test = not check_negative_env_flag("BUILD_TEST")
     cmake.generate(
