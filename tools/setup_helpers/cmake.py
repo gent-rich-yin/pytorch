@@ -3,27 +3,15 @@
 from __future__ import annotations
 
 import functools
-import json
 import multiprocessing
 import os
-import platform
+import re
 import shutil
 import sys
 import sysconfig
 from pathlib import Path
 from subprocess import CalledProcessError, check_call, check_output, DEVNULL
-from typing import cast
-
-from .cmake_utils import CMakeValue, get_cmake_cache_variables_from_file
-from .env import (
-    BUILD_DIR,
-    check_negative_env_flag,
-    CMAKE_MINIMUM_VERSION_STRING,
-    IS_64BIT,
-    IS_DARWIN,
-    IS_WINDOWS,
-)
-
+from typing import cast, IO, Optional, Union
 
 try:
     from packaging.version import Version
@@ -35,105 +23,22 @@ except ImportError:
             LooseVersion as Version,
         )
 
-
-def _mkdir_p(d: str) -> None:
-    try:
-        os.makedirs(d, exist_ok=True)
-    except OSError as e:
-        raise RuntimeError(
-            f"Failed to create folder {os.path.abspath(d)}: {e.strerror}"
-        ) from e
-
+CMakeValue = Optional[Union[bool, str]]
 
 # Print to stderr
 eprint = functools.partial(print, file=sys.stderr, flush=True)
 
-
 # Ninja
 # Use ninja if it is on the PATH. Previous version of PyTorch required the
 # ninja python package, but we no longer use it, so we do not have to import it
-USE_NINJA = bool(not check_negative_env_flag("USE_NINJA") and shutil.which("ninja"))
-if "CMAKE_GENERATOR" in os.environ:
-    USE_NINJA = os.environ["CMAKE_GENERATOR"].lower() == "ninja"
-
-
-CMAKE_MINIMUM_VERSION = Version(CMAKE_MINIMUM_VERSION_STRING)
-
+USE_NINJA = True
 
 class CMake:
-    "Manages cmake."
-
-    def __init__(self, build_dir: str = BUILD_DIR) -> None:
-        self._cmake_command = CMake._get_cmake_command()
+    def __init__(self, build_dir: str = "build") -> None:
+        self._cmake_command = "cmake"
         self.build_dir = build_dir
-
-    @property
-    def _cmake_cache_file(self) -> str:
-        r"""Returns the path to CMakeCache.txt.
-
-        Returns:
-          string: The path to CMakeCache.txt.
-        """
-        return os.path.join(self.build_dir, "CMakeCache.txt")
-
-    @property
-    def _ninja_build_file(self) -> str:
-        r"""Returns the path to build.ninja.
-
-        Returns:
-          string: The path to build.ninja.
-        """
-        return os.path.join(self.build_dir, "build.ninja")
-
-    @staticmethod
-    def _get_cmake_command() -> str:
-        """Returns cmake command."""
-
-        if IS_WINDOWS:
-            return "cmake"
-
-        cmake_versions: list[str] = []
-        valid_cmake_versions: dict[str, Version] = {}
-        for cmd in ("cmake", "cmake3"):
-            command = shutil.which(cmd)
-            ver = CMake._get_version(command)
-            if ver is not None:
-                eprint(f"Found {cmd} ({command}) version: {ver}", end="")
-                cmake_versions.append(f"{cmd}=={ver}")
-                if ver >= CMAKE_MINIMUM_VERSION:
-                    eprint(f" (>={CMAKE_MINIMUM_VERSION})")
-                    valid_cmake_versions[cmd] = ver
-                else:
-                    eprint(f" (<{CMAKE_MINIMUM_VERSION})")
-
-        if not valid_cmake_versions:
-            raise RuntimeError(
-                f"no cmake or cmake3 with version >= {CMAKE_MINIMUM_VERSION}, "
-                f"found: {cmake_versions}"
-            )
-        return max(valid_cmake_versions, key=valid_cmake_versions.get)  # type: ignore[arg-type]
-
-    @staticmethod
-    def _get_version(cmd: str | None) -> Version | None:
-        """Returns cmake version."""
-
-        if cmd is None:
-            return None
-
-        try:
-            cmake_capabilities = json.loads(
-                check_output(
-                    [cmd, "-E", "capabilities"],
-                    stderr=DEVNULL,
-                    text=True,
-                ),
-            )
-        except (OSError, CalledProcessError, json.JSONDecodeError):
-            cmake_capabilities = {}
-        cmake_version = cmake_capabilities.get("version", {}).get("string")
-        if cmake_version is not None:
-            return Version(cmake_version)
-        raise RuntimeError(f"Failed to get CMake version from command: {cmd}")
+        self._cmake_cache_file = os.path.join(self.build_dir, "CMakeCache.txt")
+        self._ninja_build_file = os.path.join(self.build_dir, "build.ninja")
 
     def run(self, args: list[str], env: dict[str, str]) -> None:
         """Executes cmake with arguments and an environment."""
@@ -143,9 +48,6 @@ class CMake:
         try:
             check_call(command, cwd=self.build_dir, env=env)
         except (CalledProcessError, KeyboardInterrupt):
-            # This error indicates that there was a problem with cmake, the
-            # Python backtrace adds no signal here so skip over it by catching
-            # the error and exiting manually
             sys.exit(1)
 
     @staticmethod
@@ -155,18 +57,103 @@ class CMake:
             if value is not None:
                 args.append(f"-D{key}={value}")
 
+    @staticmethod
+    def get_cmake_cache_variables_from_file(
+        cmake_cache_file: IO[str],
+    ) -> dict[str, CMakeValue]:
+        r"""Gets values in CMakeCache.txt into a dictionary.
+
+        Args:
+        cmake_cache_file: A CMakeCache.txt file object.
+        Returns:
+        dict: A ``dict`` containing the value of cached CMake variables.
+        """
+
+        results = {}
+        for i, line in enumerate(cmake_cache_file, 1):
+            line = line.strip()
+            if not line or line.startswith(("#", "//")):
+                # Blank or comment line, skip
+                continue
+
+            # Almost any character can be part of variable name and value. As a practical matter, we assume the type must be
+            # valid if it were a C variable name. It should match the following kinds of strings:
+            #
+            #   USE_CUDA:BOOL=ON
+            #   "USE_CUDA":BOOL=ON
+            #   USE_CUDA=ON
+            #   USE_CUDA:=ON
+            #   Intel(R) MKL-DNN_SOURCE_DIR:STATIC=/path/to/pytorch/third_party/ideep/mkl-dnn
+            #   "OpenMP_COMPILE_RESULT_CXX_openmp:experimental":INTERNAL=FALSE
+            matched = re.match(
+                r'("?)(.+?)\1(?::\s*([a-zA-Z_-][a-zA-Z0-9_-]*)?)?\s*=\s*(.*)', line
+            )
+            if matched is None:  # Illegal line
+                raise ValueError(f"Unexpected line {i} in {repr(cmake_cache_file)}: {line}")
+            _, variable, type_, value = matched.groups()
+            if type_ is None:
+                type_ = ""
+            if type_.upper() in ("INTERNAL", "STATIC"):
+                # CMake internal variable, do not touch
+                continue
+            results[variable] = CMake.convert_cmake_value_to_python_value(value, type_)
+
+        return results    
+
+    @staticmethod
+    def get_cmake_cache_variables_from_file(
+        cmake_cache_file: IO[str],
+    ) -> dict[str, CMakeValue]:
+        r"""Gets values in CMakeCache.txt into a dictionary.
+
+        Args:
+        cmake_cache_file: A CMakeCache.txt file object.
+        Returns:
+        dict: A ``dict`` containing the value of cached CMake variables.
+        """
+
+        results = {}
+        for i, line in enumerate(cmake_cache_file, 1):
+            line = line.strip()
+            if not line or line.startswith(("#", "//")):
+                # Blank or comment line, skip
+                continue
+
+            # Almost any character can be part of variable name and value. As a practical matter, we assume the type must be
+            # valid if it were a C variable name. It should match the following kinds of strings:
+            #
+            #   USE_CUDA:BOOL=ON
+            #   "USE_CUDA":BOOL=ON
+            #   USE_CUDA=ON
+            #   USE_CUDA:=ON
+            #   Intel(R) MKL-DNN_SOURCE_DIR:STATIC=/path/to/pytorch/third_party/ideep/mkl-dnn
+            #   "OpenMP_COMPILE_RESULT_CXX_openmp:experimental":INTERNAL=FALSE
+            matched = re.match(
+                r'("?)(.+?)\1(?::\s*([a-zA-Z_-][a-zA-Z0-9_-]*)?)?\s*=\s*(.*)', line
+            )
+            if matched is None:  # Illegal line
+                raise ValueError(f"Unexpected line {i} in {repr(cmake_cache_file)}: {line}")
+            _, variable, type_, value = matched.groups()
+            if type_ is None:
+                type_ = ""
+            if type_.upper() in ("INTERNAL", "STATIC"):
+                # CMake internal variable, do not touch
+                continue
+            results[variable] = CMake.convert_cmake_value_to_python_value(value, type_)
+
+        return results    
+
     def get_cmake_cache_variables(self) -> dict[str, CMakeValue]:
         r"""Gets values in CMakeCache.txt into a dictionary.
         Returns:
           dict: A ``dict`` containing the value of cached CMake variables.
         """
         with open(self._cmake_cache_file) as f:
-            return get_cmake_cache_variables_from_file(f)
+            return CMake.get_cmake_cache_variables_from_file(f)
 
     def generate(
         self,
         version: str | None,
-        cmake_python_library: str | None,
         build_python: bool,
         build_test: bool,
         my_env: dict[str, str],
@@ -198,7 +185,7 @@ class CMake:
         if cmake_cache_file_available and (
             not USE_NINJA or os.path.exists(self._ninja_build_file)
         ):
-            # Everything's in place. Do not rerun.
+            eprint("Everything's in place. Do not rerun cmake generate.")
             return
 
         args = []
@@ -206,42 +193,12 @@ class CMake:
             # Avoid conflicts in '-G' and the `CMAKE_GENERATOR`
             os.environ["CMAKE_GENERATOR"] = "Ninja"
             args.append("-GNinja")
-        elif IS_WINDOWS:
-            generator = os.getenv("CMAKE_GENERATOR", "Visual Studio 16 2019")
-            supported = ["Visual Studio 16 2019", "Visual Studio 17 2022"]
-            if generator not in supported:
-                eprint("Unsupported `CMAKE_GENERATOR`: " + generator)
-                eprint("Please set it to one of the following values: ")
-                eprint("\n".join(supported))
-                sys.exit(1)
-            args.append("-G" + generator)
-            toolset_dict = {}
-            toolset_version = os.getenv("CMAKE_GENERATOR_TOOLSET_VERSION")
-            if toolset_version is not None:
-                toolset_dict["version"] = toolset_version
-                curr_toolset = os.getenv("VCToolsVersion")
-                if curr_toolset is None:
-                    eprint(
-                        "When you specify `CMAKE_GENERATOR_TOOLSET_VERSION`, you must also "
-                        "activate the vs environment of this version. Please read the notes "
-                        "in the build steps carefully."
-                    )
-                    sys.exit(1)
-            if IS_64BIT:
-                if platform.machine() == "ARM64":
-                    args.append("-A ARM64")
-                else:
-                    args.append("-Ax64")
-                    toolset_dict["host"] = "x64"
-            if toolset_dict:
-                toolset_expr = ",".join([f"{k}={v}" for k, v in toolset_dict.items()])
-                args.append("-T" + toolset_expr)
 
         base_dir = str(Path(__file__).absolute().parents[2])
         install_dir = os.path.join(base_dir, "torch")
 
-        _mkdir_p(install_dir)
-        _mkdir_p(self.build_dir)
+        os.makedirs(install_dir, exist_ok=True)
+        os.makedirs(self.build_dir, exist_ok=True)
 
         # Store build options that are directly stored in environment variables
         build_options: dict[str, CMakeValue] = {}
@@ -338,7 +295,7 @@ class CMake:
         # future, as CMake can detect many of these libraries pretty comfortably. We have them here for now before CMake
         # integration is completed. They appear here not in the CMake.defines call below because they start with either
         # "BUILD_" or "USE_" and must be overwritten here.
-        use_numpy = not check_negative_env_flag("USE_NUMPY")
+        use_numpy = True
         build_options.update(
             {
                 # Note: Do not add new build options to this dict if it is directly read from environment variable -- you
@@ -395,13 +352,6 @@ class CMake:
             **build_options,
         )
 
-        expected_wrapper = "/usr/local/opt/ccache/libexec"
-        if IS_DARWIN and os.path.exists(expected_wrapper):
-            if "CMAKE_C_COMPILER" not in build_options and "CC" not in os.environ:
-                CMake.defines(args, CMAKE_C_COMPILER=f"{expected_wrapper}/gcc")
-            if "CMAKE_CXX_COMPILER" not in build_options and "CXX" not in os.environ:
-                CMake.defines(args, CMAKE_CXX_COMPILER=f"{expected_wrapper}/g++")
-
         for env_var_name in my_env:
             if env_var_name.startswith("gh"):
                 # github env vars use utf-8, on windows, non-ascii code may
@@ -423,41 +373,10 @@ class CMake:
 
     def build(self, my_env: dict[str, str]) -> None:
         """Runs cmake to build binaries."""
+        build_args = "--build . --target install --config Release".split() 
 
-        from .env import build_type
-
-        build_args = [
-            "--build",
-            ".",
-            "--target",
-            "install",
-            "--config",
-            build_type.build_type_string,
-        ]
-
-        # Determine the parallelism according to the following
-        # priorities:
-        # 1) MAX_JOBS environment variable
-        # 2) If using the Ninja build system, delegate decision to it.
-        # 3) Otherwise, fall back to the number of processors.
-
-        # Allow the user to set parallelism explicitly. If unset,
-        # we'll try to figure it out.
-        max_jobs = os.getenv("MAX_JOBS")
-
-        if max_jobs is not None or not USE_NINJA:
-            # Ninja is capable of figuring out the parallelism on its
-            # own: only specify it explicitly if we are not using
-            # Ninja.
-
-            # This lists the number of processors available on the
-            # machine. This may be an overestimate of the usable
-            # processors if CPU scheduling affinity limits it
-            # further. In the future, we should check for that with
-            # os.sched_getaffinity(0) on platforms that support it.
+        if not USE_NINJA:
             max_jobs = max_jobs or str(multiprocessing.cpu_count())
-
-            # CMake 3.12 provides a '-j' option.
             build_args += ["-j", max_jobs]
         self.run(build_args, my_env)
 
