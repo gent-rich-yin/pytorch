@@ -661,6 +661,14 @@ def main() -> None:
     if RUN_BUILD_DEPS:
         build_deps()
 
+    if CMAKE_ONLY:
+        report(
+            'Finished running cmake. Run "ccmake build" or '
+            '"cmake-gui build" to adjust build options and '
+            '"python -m pip install --no-build-isolation -v ." to build.'
+        )
+        return
+
     (
         ext_modules,
         cmdclass,
