@@ -1,11 +1,6 @@
 # RPATH stuff
 # see https://cmake.org/Wiki/CMake_RPATH_handling
-if(APPLE)
-  set(CMAKE_MACOSX_RPATH ON)
-  set(_rpath_portable_origin "@loader_path")
-else()
-  set(_rpath_portable_origin $ORIGIN)
-endif(APPLE)
+set(_rpath_portable_origin $ORIGIN)
 # Use separate rpaths during build and install phases
 set(CMAKE_SKIP_BUILD_RPATH  FALSE)
 # Don't use the install-rpath during the build phase

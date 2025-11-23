@@ -130,49 +130,6 @@ class CMake:
 
         return results    
 
-    @staticmethod
-    def get_cmake_cache_variables_from_file(
-        cmake_cache_file: IO[str],
-    ) -> dict[str, CMakeValue]:
-        r"""Gets values in CMakeCache.txt into a dictionary.
-
-        Args:
-        cmake_cache_file: A CMakeCache.txt file object.
-        Returns:
-        dict: A ``dict`` containing the value of cached CMake variables.
-        """
-
-        results = {}
-        for i, line in enumerate(cmake_cache_file, 1):
-            line = line.strip()
-            if not line or line.startswith(("#", "//")):
-                # Blank or comment line, skip
-                continue
-
-            # Almost any character can be part of variable name and value. As a practical matter, we assume the type must be
-            # valid if it were a C variable name. It should match the following kinds of strings:
-            #
-            #   USE_CUDA:BOOL=ON
-            #   "USE_CUDA":BOOL=ON
-            #   USE_CUDA=ON
-            #   USE_CUDA:=ON
-            #   Intel(R) MKL-DNN_SOURCE_DIR:STATIC=/path/to/pytorch/third_party/ideep/mkl-dnn
-            #   "OpenMP_COMPILE_RESULT_CXX_openmp:experimental":INTERNAL=FALSE
-            matched = re.match(
-                r'("?)(.+?)\1(?::\s*([a-zA-Z_-][a-zA-Z0-9_-]*)?)?\s*=\s*(.*)', line
-            )
-            if matched is None:  # Illegal line
-                raise ValueError(f"Unexpected line {i} in {repr(cmake_cache_file)}: {line}")
-            _, variable, type_, value = matched.groups()
-            if type_ is None:
-                type_ = ""
-            if type_.upper() in ("INTERNAL", "STATIC"):
-                # CMake internal variable, do not touch
-                continue
-            results[variable] = CMake.convert_cmake_value_to_python_value(value, type_)
-
-        return results    
-
     def get_cmake_cache_variables(self) -> dict[str, CMakeValue]:
         r"""Gets values in CMakeCache.txt into a dictionary.
         Returns:
@@ -193,12 +150,16 @@ class CMake:
         if rerun and os.path.isfile(self._cmake_cache_file):
             os.remove(self._cmake_cache_file)
 
-        if os.path.exists(self._cmake_cache_file) and (
+        cmake_cache_file_available = os.path.exists(self._cmake_cache_file)
+        if cmake_cache_file_available:
+            cmake_cache_variables = self.get_cmake_cache_variables()
+
+        if cmake_cache_file_available and (
             not USE_NINJA or os.path.exists(self._ninja_build_file)
         ):
             eprint("Everything's in place. Do not rerun cmake generate.")
             return
-
+        
         args = []
         if USE_NINJA:
             # Avoid conflicts in '-G' and the `CMAKE_GENERATOR`
@@ -372,6 +333,7 @@ class CMake:
         args.append(base_dir)
         eprint("cmake generate args: ", args)
         # args: '-DBUILD_PYTHON=True -DBUILD_TEST=True -DCMAKE_INSTALL_PREFIX=/home/user/pytorch/torch -DCMAKE_PREFIX_PATH=/home/user/anaconda3/lib/python3.13/site-packages;/home/user/anaconda3/envs/torch-dev: -DPython_EXECUTABLE=/home/user/anaconda3/bin/python3.13 -DPython_NumPy_INCLUDE_DIR=/home/user/anaconda3/lib/python3.13/site-packages/numpy/_core/include -DTORCH_BUILD_VERSION=2.10.0a0 -DUSE_NUMPY=True /home/user/pytorch'
+        eprint("cmake generate envs: ", os.environ)
         self.run(args)
 
     def build(self) -> None:
