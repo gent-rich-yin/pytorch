@@ -106,18 +106,7 @@ set(CAFFE2_CMAKE_BUILDING_WITH_MAIN_REPO ON)
 # set it at the very beginning so that the entire build is deterministic.
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 
-if(NOT DEFINED BLAS_SET_BY_USER)
-  if(DEFINED BLAS)
-    set(BLAS_SET_BY_USER TRUE)
-  else()
-    message(STATUS "Not forcing any particular BLAS to be found")
-    set(BLAS_SET_BY_USER FALSE)
-  endif()
-  set(BLAS_SET_BY_USER
-      ${BLAS_SET_BY_USER}
-      CACHE STRING
-            "Marks whether BLAS was manually set by user or auto-detected")
-endif()
+set(BLAS_SET_BY_USER FALSE)
 
 set(CPU_INTEL ON)
 set(CPU_AARCH64 OFF)
@@ -452,9 +441,7 @@ endif()
 # INTERN_BUILD_ATEN_OPS is used to control whether to build ATen/TH operators.
 set(INTERN_BUILD_ATEN_OPS ON)
 
-if(NOT DEFINED USE_BLAS)
-  set(USE_BLAS ON)
-endif()
+set(USE_BLAS ON)
 
 # ---[ Version numbers for generated libraries
 file(READ version.txt TORCH_DEFAULT_VERSION)

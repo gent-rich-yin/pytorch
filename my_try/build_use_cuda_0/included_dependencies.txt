@@ -1,0 +1,37 @@
+include(${CMAKE_CURRENT_LIST_DIR}/ProtoBuf.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/External/nnpack.cmake)
+
+include directories:
+    third_party/googletest/googletest/include
+    third_party/googletest/googlemock/include
+    ${CMAKE_CURRENT_LIST_DIR}/../third_party/eigen (no build on it)
+
+libraries:
+MKL (for BLAS)
+    MKL_LIBRARY: /home/user/anaconda3/lib/libmkl_intel_lp64.so;/home/user/anaconda3/lib/libmkl_gnu_thread.so;/home/user/anaconda3/lib/libmkl_core.so;-fopenmp;/usr/lib/x86_64-linux-gnu/libpthread.a;/usr/lib/x86_64-linux-gnu/libm.so;/usr/lib/x86_64-linux-gnu/libdl.a
+    MKL_INCLUDE_DIR: /home/user/anaconda3/include
+    MKL_OPENMP_LIBRARY: -fopenmp
+    MKL_OPENMP_TYPE: GNU
+
+third_parties:
+    from Dependencies.cmake:
+        cpuinfo
+        FP16
+        FXdiv
+        psimd
+        pthreadpool   
+
+CXX_Flags:
+    from Dependencies.cmake:
+        -DUSE_PTHREADPOOL
+
+subdirectories:
+    from Dependencies.cmake:
+        third_party/pthreadpool (build outputs to build/confu-deps/pthreadpool)
+        third_party/cpuinfo (build outputs to build/confu-deps/cpuinfo)
+        aten/src/ATen/native/quantized/cpu/qnnpack (build outputs to build/confu-deps/pytorch_qnnpack)
+        third_party/googletest (build outputs to third_party/googletest)
+        third_party/benchmark (build outputs to third_party/benchmark)
+        third_party/fbgemm (build outputs to third_party/fbgemm)
+        third_party/ittapi (build outputs to third_party/ittapi)
+        third_party/FP16 (build outputs to build/confu-deps/FP16)
