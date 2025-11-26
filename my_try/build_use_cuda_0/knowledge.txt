@@ -20,3 +20,19 @@ include(CheckTypeSize)
 CMAKE macro command:
 In CMake, the macro command is used to define a block of commands that can be invoked later as a single command. 
 It allows for code reusability and can simplify complex CMake scripts.
+
+CMAKE execute_process command:
+execute_process(COMMAND "which" "python3" RESULT_VARIABLE _exitcode OUTPUT_VARIABLE _py_exe)
+
+CMake string command:
+string(STRIP ${_py_exe} Python_EXECUTABLE)
+
+CMake Interface imported library:
+add_library(pybind::pybind11 INTERFACE IMPORTED)
+
+CMake find_package_handle_standard_args
+find_package_handle_standard_args(OpenTelemetryApi
+    FOUND_VAR OpenTelemetryApi_FOUND
+    REQUIRED_VARS OpenTelemetryApi_INCLUDE_DIRS
+)
+
