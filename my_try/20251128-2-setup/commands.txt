@@ -1,3 +1,4 @@
+unset CONDA_PREFIX
 export USE_CUDA=0
 export USE_NINJA=0
 pip install --no-build-isolation -v -e . > /tmp/build.txt 2>&1 &
