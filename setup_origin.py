@@ -1,8 +1,273 @@
+# Welcome to the PyTorch setup.py.
+# Environment variables you are probably interested in:
+#
+#   DEBUG
+#     build with -O0 and -g (debug symbols)
+#
+#   REL_WITH_DEB_INFO
+#     build with optimizations and -g (debug symbols)
+#
+#   USE_CUSTOM_DEBINFO="path/to/file1.cpp;path/to/file2.cpp"
+#     build with debug info only for specified files
+#
+#   MAX_JOBS
+#     maximum number of compile jobs we should use to compile your code
+#
+#   USE_CUDA=0
+#     disables CUDA build
+#
+#   CFLAGS
+#     flags to apply to both C and C++ files to be compiled (a quirk of setup.py
+#     which we have faithfully adhered to in our build system is that CFLAGS
+#     also applies to C++ files (unless CXXFLAGS is set), in contrast to the
+#     default behavior of autogoo and cmake build systems.)
+#
+#     A specific flag that can be used is
+#     -DHAS_TORCH_SHOW_DISPATCH_TRACE
+#       build with dispatch trace that can be enabled with
+#       TORCH_SHOW_DISPATCH_TRACE=1 at runtime.
+#
+#   CC
+#     the C/C++ compiler to use
+#
+#   CMAKE_FRESH=1
+#     force a fresh cmake configuration run, ignoring the existing cmake cache
+#
+#   CMAKE_ONLY=1
+#     run cmake and stop; do not build the project
+#
+# Environment variables for feature toggles:
+#
+#   DEBUG_CUDA=1
+#     if used in conjunction with DEBUG or REL_WITH_DEB_INFO, will also
+#     build CUDA kernels with -lineinfo --source-in-ptx.  Note that
+#     on CUDA 12 this may cause nvcc to OOM, so this is disabled by default.
+#
+#   USE_CUDNN=0
+#     disables the cuDNN build
+#
+#   USE_CUSPARSELT=0
+#     disables the cuSPARSELt build
+#
+#   USE_CUDSS=0
+#     disables the cuDSS build
+#
+#   USE_CUFILE=0
+#     disables the cuFile build
+#
+#   USE_FBGEMM=0
+#     disables the FBGEMM build
+#
+#   USE_FBGEMM_GENAI=0
+#     disables the FBGEMM GenAI build
+#
+#   USE_KINETO=0
+#     disables usage of libkineto library for profiling
+#
+#   USE_NUMPY=0
+#     disables the NumPy build
+#
+#   BUILD_TEST=0
+#     disables the test build
+#
+#   USE_MKLDNN=0
+#     disables use of MKLDNN
+#
+#   USE_MKLDNN_ACL
+#     enables use of Compute Library backend for MKLDNN on Arm;
+#     USE_MKLDNN must be explicitly enabled.
+#
+#   MKLDNN_CPU_RUNTIME
+#     MKL-DNN threading mode: TBB or OMP (default)
+#
+#   USE_STATIC_MKL
+#     Prefer to link with MKL statically - Unix only
+#   USE_ITT=0
+#     disable use of Intel(R) VTune Profiler's ITT functionality
+#
+#   USE_NNPACK=0
+#     disables NNPACK build
+#
+#   USE_DISTRIBUTED=0
+#     disables distributed (c10d, gloo, mpi, etc.) build
+#
+#   USE_TENSORPIPE=0
+#     disables distributed Tensorpipe backend build
+#
+#   USE_GLOO=0
+#     disables distributed gloo backend build
+#
+#   USE_MPI=0
+#     disables distributed MPI backend build
+#
+#   USE_SYSTEM_NCCL=0
+#     disables use of system-wide nccl (we will use our submoduled
+#     copy in third_party/nccl)
+#
+#   USE_OPENMP=0
+#     disables use of OpenMP for parallelization
+#
+#   USE_FLASH_ATTENTION=0
+#     disables building flash attention for scaled dot product attention
+#
+#   USE_MEM_EFF_ATTENTION=0
+#    disables building memory efficient attention for scaled dot product attention
+#
+#   BUILD_BINARY
+#     enables the additional binaries/ build
+#
+#   ATEN_AVX512_256=TRUE
+#     ATen AVX2 kernels can use 32 ymm registers, instead of the default 16.
+#     This option can be used if AVX512 doesn't perform well on a machine.
+#     The FBGEMM library also uses AVX512_256 kernels on Xeon D processors,
+#     but it also has some (optimized) assembly code.
+#
+#   PYTORCH_BUILD_VERSION
+#   PYTORCH_BUILD_NUMBER
+#     specify the version of PyTorch, rather than the hard-coded version
+#     in this file; used when we're building binaries for distribution
+#
+#   TORCH_CUDA_ARCH_LIST
+#     specify which CUDA architectures to build for.
+#     ie `TORCH_CUDA_ARCH_LIST="6.0;7.0"`
+#     These are not CUDA versions, instead, they specify what
+#     classes of NVIDIA hardware we should generate PTX for.
+#
+#   TORCH_XPU_ARCH_LIST
+#     specify which XPU architectures to build for.
+#     ie `TORCH_XPU_ARCH_LIST="ats-m150,lnl-m"`
+#
+#   PYTORCH_ROCM_ARCH
+#     specify which AMD GPU targets to build for.
+#     ie `PYTORCH_ROCM_ARCH="gfx900;gfx906"`
+#
+#   ONNX_NAMESPACE
+#     specify a namespace for ONNX built here rather than the hard-coded
+#     one in this file; needed to build with other frameworks that share ONNX.
+#
+#   BLAS
+#     BLAS to be used by Caffe2. Can be MKL, Eigen, ATLAS, FlexiBLAS, or OpenBLAS. If set
+#     then the build will fail if the requested BLAS is not found, otherwise
+#     the BLAS will be chosen based on what is found on your system.
+#
+#   MKL_THREADING
+#     MKL threading mode: SEQ, TBB or OMP (default)
+#
+#   USE_ROCM_KERNEL_ASSERT=1
+#     Enable kernel assert in ROCm platform
+#
+#   USE_ROCM_CK_GEMM=1
+#     Enable building CK GEMM backend in ROCm platform
+#
+#   USE_ROCM_CK_SDPA=1
+#     Enable building CK SDPA backend in ROCm platform
+#
+# Environment variables we respect (these environment variables are
+# conventional and are often understood/set by other software.)
+#
+#   CUDA_HOME (Linux/OS X)
+#   CUDA_PATH (Windows)
+#     specify where CUDA is installed; usually /usr/local/cuda or
+#     /usr/local/cuda-x.y
+#   CUDAHOSTCXX
+#     specify a different compiler than the system one to use as the CUDA
+#     host compiler for nvcc.
+#
+#   CUDA_NVCC_EXECUTABLE
+#     Specify a NVCC to use. This is used in our CI to point to a cached nvcc
+#
+#   CUDNN_LIB_DIR
+#   CUDNN_INCLUDE_DIR
+#   CUDNN_LIBRARY
+#     specify where cuDNN is installed
+#
+#   MIOPEN_LIB_DIR
+#   MIOPEN_INCLUDE_DIR
+#   MIOPEN_LIBRARY
+#     specify where MIOpen is installed
+#
+#   NCCL_ROOT
+#   NCCL_LIB_DIR
+#   NCCL_INCLUDE_DIR
+#     specify where nccl is installed
+#
+#   ACL_ROOT_DIR
+#     specify where Compute Library is installed
+#
+#   LIBRARY_PATH
+#   LD_LIBRARY_PATH
+#     we will search for libraries in these paths
+#
+#   ATEN_THREADING
+#     ATen parallel backend to use for intra- and inter-op parallelism
+#     possible values:
+#       OMP - use OpenMP for intra-op and native backend for inter-op tasks
+#       NATIVE - use native thread pool for both intra- and inter-op tasks
+#
+#   USE_SYSTEM_LIBS (work in progress)
+#      Use system-provided libraries to satisfy the build dependencies.
+#      When turned on, the following cmake variables will be toggled as well:
+#        USE_SYSTEM_CPUINFO=ON
+#        USE_SYSTEM_SLEEF=ON
+#        USE_SYSTEM_GLOO=ON
+#        BUILD_CUSTOM_PROTOBUF=OFF
+#        USE_SYSTEM_EIGEN_INSTALL=ON
+#        USE_SYSTEM_FP16=ON
+#        USE_SYSTEM_PTHREADPOOL=ON
+#        USE_SYSTEM_PSIMD=ON
+#        USE_SYSTEM_FXDIV=ON
+#        USE_SYSTEM_BENCHMARK=ON
+#        USE_SYSTEM_ONNX=ON
+#        USE_SYSTEM_XNNPACK=ON
+#        USE_SYSTEM_PYBIND11=ON
+#        USE_SYSTEM_NCCL=ON
+#        USE_SYSTEM_NVTX=ON
+#
+#   USE_MIMALLOC
+#      Static link mimalloc into C10, and use mimalloc in alloc_cpu & alloc_free.
+#      By default, It is only enabled on Windows.
+#
+#   USE_PRIORITIZED_TEXT_FOR_LD
+#      Uses prioritized text form cmake/prioritized_text.txt for LD
+#
+#   BUILD_LIBTORCH_WHL
+#      Builds libtorch.so and its dependencies as a wheel
+#
+#   BUILD_PYTHON_ONLY
+#      Builds pytorch as a wheel using libtorch.so from a separate wheel
+#
+#   USE_NIGHTLY=VERSION
+#      Skip cmake build and instead download and extract nightly PyTorch wheel
+#      matching the specified version (e.g., USE_NIGHTLY="2.8.0.dev20250608+cpu")
+#      into the local directory for development use
+
 from __future__ import annotations
 
 import os
 import sys
+
+
+if sys.platform == "win32" and sys.maxsize.bit_length() == 31:
+    print(
+        "32-bit Windows Python runtime is not supported. "
+        "Please switch to 64-bit Python.",
+        file=sys.stderr,
+    )
+    sys.exit(-1)
+
 import platform
+
+
+# Also update `project.requires-python` in pyproject.toml when changing this
+python_min_version = (3, 9, 0)
+python_min_version_str = ".".join(map(str, python_min_version))
+if sys.version_info < python_min_version:
+    print(
+        f"You are using Python {platform.python_version()}. "
+        f"Python >={python_min_version_str} is required.",
+        file=sys.stderr,
+    )
+    sys.exit(-1)
 
 import filecmp
 import glob
@@ -27,13 +292,18 @@ import setuptools.errors
 from setuptools import Command, Extension, find_packages, setup
 from setuptools.dist import Distribution
 
-# Settings assumed
-# BUILD_LIBTORCH_WHL = Flase
-# BUILD_PYTHON_ONLY = False
-
 
 CWD = Path(__file__).absolute().parent
 
+# Add the current directory to the Python path so that we can import `tools`.
+# This is required when running this script with a PEP-517-enabled build backend.
+#
+# From the PEP-517 documentation: https://peps.python.org/pep-0517
+#
+# > When importing the module path, we do *not* look in the directory containing
+# > the source tree, unless that would be on `sys.path` anyway (e.g. because it
+# > is specified in `PYTHONPATH`).
+#
 sys.path.insert(0, str(CWD))  # this only affects the current process
 # Add the current directory to PYTHONPATH so that we can import `tools` in subprocesses
 os.environ["PYTHONPATH"] = os.pathsep.join(
@@ -112,6 +382,19 @@ def _get_package_path(package_name: str) -> Path:
             pass
     return CWD / package_name
 
+
+BUILD_LIBTORCH_WHL = str2bool(os.getenv("BUILD_LIBTORCH_WHL"))
+BUILD_PYTHON_ONLY = str2bool(os.getenv("BUILD_PYTHON_ONLY"))
+
+# set up appropriate env variables
+if BUILD_LIBTORCH_WHL:
+    # Set up environment variables for ONLY building libtorch.so and not libtorch_python.so
+    # functorch is not supported without python
+    os.environ["BUILD_FUNCTORCH"] = "OFF"
+
+if BUILD_PYTHON_ONLY:
+    os.environ["BUILD_LIBTORCHLESS"] = "ON"
+    os.environ["LIBTORCH_LIB_PATH"] = (_get_package_path("torch") / "lib").as_posix()
 
 ################################################################################
 # Parameters parsed from environment
@@ -230,6 +513,8 @@ else:
 
 TORCH_PACKAGE_NAME = os.getenv("TORCH_PACKAGE_NAME", "torch")
 LIBTORCH_PKG_NAME = os.getenv("LIBTORCH_PACKAGE_NAME", "torch_no_python")
+if BUILD_LIBTORCH_WHL:
+    TORCH_PACKAGE_NAME = LIBTORCH_PKG_NAME
 
 TORCH_VERSION = get_torch_version()
 report(f"Building wheel {TORCH_PACKAGE_NAME}-{TORCH_VERSION}")
@@ -722,7 +1007,7 @@ def build_deps() -> None:
     build_pytorch(
         version=TORCH_VERSION,
         cmake_python_library=CMAKE_PYTHON_LIBRARY.as_posix(),
-        build_python=True,
+        build_python=not BUILD_LIBTORCH_WHL,
         rerun_cmake=RERUN_CMAKE,
         cmake_only=CMAKE_ONLY,
         cmake=cmake,
@@ -1070,6 +1355,21 @@ class bdist_wheel(setuptools.command.bdist_wheel.bdist_wheel):
     def write_wheelfile(self, *args: Any, **kwargs: Any) -> None:
         super().write_wheelfile(*args, **kwargs)
 
+        if BUILD_LIBTORCH_WHL:
+            assert self.bdist_dir is not None
+            bdist_dir = Path(self.bdist_dir)
+            # Remove extraneneous files in the libtorch wheel
+            for file in itertools.chain(
+                bdist_dir.rglob("*.a"),
+                bdist_dir.rglob("*.so"),
+            ):
+                if (bdist_dir / file.name).is_file():
+                    file.unlink()
+            for file in bdist_dir.rglob("*.py"):
+                file.unlink()
+            # need an __init__.py file otherwise we wouldn't have a package
+            (bdist_dir / "torch" / "__init__.py").touch()
+
 
 class clean(Command):
     user_options: ClassVar[list[tuple[str, str | None, str]]] = []
@@ -1164,6 +1464,10 @@ def configure_extension_build() -> tuple[
 
     main_link_args: list[str] = []
     main_sources: list[str] = ["torch/csrc/stub.c"]
+
+    if BUILD_LIBTORCH_WHL:
+        main_libraries = ["torch"]
+        main_sources = []
 
     if build_type.is_debug():
         if IS_WINDOWS:
@@ -1305,6 +1609,12 @@ def print_box(msg: str) -> None:
 
 
 def main() -> None:
+    if BUILD_LIBTORCH_WHL and BUILD_PYTHON_ONLY:
+        raise RuntimeError(
+            "Conflict: 'BUILD_LIBTORCH_WHL' and 'BUILD_PYTHON_ONLY' can't both be 1. "
+            "Set one to 0 and rerun."
+        )
+
     install_requires = [
         "filelock",
         "typing-extensions>=4.10.0",
@@ -1314,6 +1624,8 @@ def main() -> None:
         "jinja2",
         "fsspec>=0.8.5",
     ]
+    if BUILD_PYTHON_ONLY:
+        install_requires += [f"{LIBTORCH_PKG_NAME}=={TORCH_VERSION}"]
 
     if str2bool(os.getenv("USE_PRIORITIZED_TEXT_FOR_LD")):
         gen_linker_script(
@@ -1404,25 +1716,27 @@ def main() -> None:
         "tools/dynamo/gb_id_mapping.py",
     ]
 
-    torch_package_data += [
-        "lib/libtorch_python.so",
-        "lib/libtorch_python.dylib",
-        "lib/libtorch_python.dll",
-    ]
-    torch_package_data += [
-        "lib/*.so*",
-        "lib/*.dylib*",
-        "lib/*.dll",
-        "lib/*.lib",
-    ]
-    # XXX: Why not use wildcards ["lib/aotriton.images/*", "lib/aotriton.images/**/*"] here?
-    aotriton_image_path = TORCH_DIR / "lib" / "aotriton.images"
-    aks2_files = [
-        file.relative_to(TORCH_DIR).as_posix()
-        for file in aotriton_image_path.rglob("*")
-        if file.is_file()
-    ]
-    torch_package_data += aks2_files
+    if not BUILD_LIBTORCH_WHL:
+        torch_package_data += [
+            "lib/libtorch_python.so",
+            "lib/libtorch_python.dylib",
+            "lib/libtorch_python.dll",
+        ]
+    if not BUILD_PYTHON_ONLY:
+        torch_package_data += [
+            "lib/*.so*",
+            "lib/*.dylib*",
+            "lib/*.dll",
+            "lib/*.lib",
+        ]
+        # XXX: Why not use wildcards ["lib/aotriton.images/*", "lib/aotriton.images/**/*"] here?
+        aotriton_image_path = TORCH_DIR / "lib" / "aotriton.images"
+        aks2_files = [
+            file.relative_to(TORCH_DIR).as_posix()
+            for file in aotriton_image_path.rglob("*")
+            if file.is_file()
+        ]
+        torch_package_data += aks2_files
     if get_cmake_cache_vars()["USE_TENSORPIPE"]:
         torch_package_data += [
             "include/tensorpipe/*.h",
@@ -1442,8 +1756,12 @@ def main() -> None:
     }
     exclude_package_data = {}
 
-    package_data["torchgen"] = torchgen_package_data
-    exclude_package_data["torchgen"] = ["*.py[co]"]
+    if not BUILD_LIBTORCH_WHL:
+        package_data["torchgen"] = torchgen_package_data
+        exclude_package_data["torchgen"] = ["*.py[co]"]
+    else:
+        # no extensions in BUILD_LIBTORCH_WHL mode
+        ext_modules = []
 
     setup(
         name=TORCH_PACKAGE_NAME,

@@ -1,0 +1,3 @@
+export USE_CUDA=0
+export USE_NINJA=0
+pip install --no-build-isolation -v -e .
