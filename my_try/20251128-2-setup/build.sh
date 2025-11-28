@@ -1,8 +1,7 @@
 export USE_CUDA=0
 export USE_NINJA=0
-pip install --no-build-isolation -v -e . > /tmp/build.txt 2>&1
-tail -f /tmp/build.txt
 
+cd ~/pytorch
 mkdir build
 cd build
 cmake -DBUILD_PYTHON=True -DBUILD_TEST=True \
@@ -12,5 +11,6 @@ cmake -DBUILD_PYTHON=True -DBUILD_TEST=True \
     -DPython_NumPy_INCLUDE_DIR=/home/user/anaconda3/lib/python3.13/site-packages/numpy/_core/include \
     -DTORCH_BUILD_VERSION=2.10.0a0 -DUSE_NUMPY=True -DUSE_CUDA=0 \
     /home/user/pytorch
+
 export CPU_COUNTS=`cat /proc/cpuinfo | grep "processor" | wc -l`    
 cmake --build . --target install --config Release -j $CPU_COUNTS

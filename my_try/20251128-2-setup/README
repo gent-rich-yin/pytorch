@@ -1,0 +1,3 @@
+In this branch, we are able to build with 2 cmake commands, like most other projects.
+
+Still need to understand after cmake build, how setup.py installs pytorch.

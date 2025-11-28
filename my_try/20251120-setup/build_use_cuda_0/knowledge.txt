@@ -1,0 +1,38 @@
+UBSan:
+The gcc -fsanitize=undefined flag enables the UndefinedBehaviorSanitizer (UBSan) in GCC. 
+UBSan is a runtime error detection tool that instruments your code during compilation to detect various types of undefined behavior as your program executes.
+
+PIC:
+Position Independent Code
+
+CMake find_package:
+The find_package command in CMake is used to locate and load settings from an external project or library. 
+It's a fundamental command for managing dependencies in CMake-based projects.
+
+CMake case-sensitivity:
+variable is, command is not
+
+CMAKE heck_type_size:
+The check_type_size command in CMake is used to determine the size of a C/C++ type or expression during the configure step. 
+This is crucial for ensuring code portability across different platforms and compilers, as the size of certain types (like int) can vary.
+include(CheckTypeSize)
+
+CMAKE macro command:
+In CMake, the macro command is used to define a block of commands that can be invoked later as a single command. 
+It allows for code reusability and can simplify complex CMake scripts.
+
+CMAKE execute_process command:
+execute_process(COMMAND "which" "python3" RESULT_VARIABLE _exitcode OUTPUT_VARIABLE _py_exe)
+
+CMake string command:
+string(STRIP ${_py_exe} Python_EXECUTABLE)
+
+CMake Interface imported library:
+add_library(pybind::pybind11 INTERFACE IMPORTED)
+
+CMake find_package_handle_standard_args
+find_package_handle_standard_args(OpenTelemetryApi
+    FOUND_VAR OpenTelemetryApi_FOUND
+    REQUIRED_VARS OpenTelemetryApi_INCLUDE_DIRS
+)
+

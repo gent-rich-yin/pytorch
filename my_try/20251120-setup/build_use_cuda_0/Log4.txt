@@ -1,0 +1,3724 @@
+  -- Before include(cmake/Dependencies.cmake) command
+  -- --- CMake Variables ---
+  -- ARGC=0
+  -- ARGN=
+  -- ARGV=
+  -- ARM_BF16_CODE=
+        #include <arm_neon.h>
+        int main()
+        {
+          float32x4_t a = vdupq_n_f32(0);
+          bfloat16x8_t b = vreinterpretq_bf16_f32(a);
+          return 0;
+        }
+
+  -- ASIMD_FOUND=false
+  -- ASIMD_THERE=processor      : 0
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 0
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 0
+  initial apicid        : 0
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 1
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 1
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 1
+  initial apicid        : 1
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 2
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 2
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 2
+  initial apicid        : 2
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 3
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 3
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 3
+  initial apicid        : 3
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 4
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 4
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 4
+  initial apicid        : 4
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 5
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 5
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 5
+  initial apicid        : 5
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 6
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 6
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 6
+  initial apicid        : 6
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+
+  -- ASIMD_TRUE=0
+  -- ATEN_NO_TEST=OFF
+  -- AVX2_CODE=
+    #include <immintrin.h>
+
+    int main()
+    {
+      __m256i a = {0};
+      a = _mm256_abs_epi16(a);
+      __m256i x;
+      _mm256_extract_epi64(x, 0); // we rely on this in our AVX2 code
+      return 0;
+    }
+
+  -- AVX512_CODE=
+    #include <immintrin.h>
+
+    int main()
+    {
+      __m512i a = _mm512_set_epi8(0, 0, 0, 0, 0, 0, 0, 0,
+                                  0, 0, 0, 0, 0, 0, 0, 0,
+                                  0, 0, 0, 0, 0, 0, 0, 0,
+                                  0, 0, 0, 0, 0, 0, 0, 0,
+                                  0, 0, 0, 0, 0, 0, 0, 0,
+                                  0, 0, 0, 0, 0, 0, 0, 0,
+                                  0, 0, 0, 0, 0, 0, 0, 0,
+                                  0, 0, 0, 0, 0, 0, 0, 0);
+      __m512i b = a;
+      __mmask64 equality_mask = _mm512_cmp_epi8_mask(a, b, _MM_CMPINT_EQ);
+      return 0;
+    }
+
+  -- AVX_CODE=
+    #include <immintrin.h>
+
+    int main()
+    {
+      __m256 a;
+      a = _mm256_set1_ps(0);
+      return 0;
+    }
+
+  -- BLAS_SET_BY_USER=FALSE
+  -- BUILD_AOT_INDUCTOR_TEST=OFF
+  -- BUILD_BINARY=OFF
+  -- BUILD_BUNDLE_PTXAS=OFF
+  -- BUILD_BUNDLE_PTXAS_AVAILABLE=0
+  -- BUILD_CUSTOM_PROTOBUF=ON
+  -- BUILD_FUNCTORCH=ON
+  -- BUILD_FUNCTORCH_AVAILABLE=1
+  -- BUILD_JNI=OFF
+  -- BUILD_LAZY_CUDA_LINALG=OFF
+  -- BUILD_LAZY_CUDA_LINALG_AVAILABLE=0
+  -- BUILD_LAZY_TS_BACKEND=ON
+  -- BUILD_LAZY_TS_BACKEND_AVAILABLE=1
+  -- BUILD_LIBTORCH_CPU_WITH_DEBUG=OFF
+  -- BUILD_LITE_INTERPRETER=OFF
+  -- BUILD_MOBILE_AUTOGRAD=OFF
+  -- BUILD_MOBILE_BENCHMARK=OFF
+  -- BUILD_MOBILE_TEST=OFF
+  -- BUILD_ONEDNN_GRAPH=OFF
+  -- BUILD_PYTHON=True
+  -- BUILD_SHARED_LIBS=ON
+  -- BUILD_STATIC_RUNTIME_BENCHMARK=OFF
+  -- BUILD_TEST=True
+  -- CAFFE2_ALLOWLIST=
+  -- CAFFE2_BUILD_SHARED_LIBS=ON
+  -- CAFFE2_CMAKE_BUILDING_WITH_MAIN_REPO=ON
+  -- CAFFE2_LINK_LOCAL_PROTOBUF=ON
+  -- CAFFE2_LINK_LOCAL_PROTOBUF_AVAILABLE=1
+  -- CAFFE2_PERF_WITH_AVX=1
+  -- CAFFE2_PERF_WITH_AVX2=1
+  -- CAFFE2_STATIC_LINK_CUDA=OFF
+  -- CAFFE2_USE_MSVC_STATIC_RUNTIME=OFF
+  -- CAFFE2_USE_MSVC_STATIC_RUNTIME_AVAILABLE=0
+  -- CAFFE2_VISIBILITY_FLAG=-fvisibility-inlines-hidden
+  -- CCACHE_PROGRAM=CCACHE_PROGRAM-NOTFOUND
+  -- CMAKE_ADDR2LINE=/usr/bin/addr2line
+  -- CMAKE_AR=/usr/bin/ar
+  -- CMAKE_AR=/usr/bin/ar
+  -- CMAKE_ARCHIVE_OUTPUT_DIRECTORY=/home/user/pytorch/build/lib
+  -- CMAKE_AUTOGEN_ORIGIN_DEPENDS=ON
+  -- CMAKE_AUTOMOC_COMPILER_PREDEFINES=ON
+  -- CMAKE_AUTOMOC_MACRO_NAMES=Q_OBJECT;Q_GADGET;Q_NAMESPACE;Q_NAMESPACE_EXPORT
+  -- CMAKE_AUTOMOC_PATH_PREFIX=OFF
+  -- CMAKE_BASE_NAME=gcc
+  -- CMAKE_BINARY_DIR=/home/user/pytorch/build
+  -- CMAKE_BUILD_TOOL=/usr/bin/gmake
+  -- CMAKE_BUILD_TYPE=Release
+  -- CMAKE_C11_COMPILE_FEATURES=c_std_11;c_static_assert
+  -- CMAKE_C11_EXTENSION_COMPILE_OPTION=-std=gnu11
+  -- CMAKE_C11_STANDARD_COMPILE_OPTION=-std=c11
+  -- CMAKE_C11_STANDARD__HAS_FULL_SUPPORT=ON
+  -- CMAKE_C17_COMPILE_FEATURES=c_std_17
+  -- CMAKE_C17_EXTENSION_COMPILE_OPTION=-std=gnu17
+  -- CMAKE_C17_STANDARD_COMPILE_OPTION=-std=c17
+  -- CMAKE_C23_COMPILE_FEATURES=c_std_23
+  -- CMAKE_C23_EXTENSION_COMPILE_OPTION=-std=gnu2x
+  -- CMAKE_C23_STANDARD_COMPILE_OPTION=-std=c2x
+  -- CMAKE_C90_COMPILE_FEATURES=c_std_90;c_function_prototypes
+  -- CMAKE_C90_EXTENSION_COMPILE_OPTION=-std=gnu90
+  -- CMAKE_C90_STANDARD_COMPILE_OPTION=-std=c90
+  -- CMAKE_C90_STANDARD__HAS_FULL_SUPPORT=ON
+  -- CMAKE_C99_COMPILE_FEATURES=c_std_99;c_restrict;c_variadic_macros
+  -- CMAKE_C99_EXTENSION_COMPILE_OPTION=-std=gnu99
+  -- CMAKE_C99_STANDARD_COMPILE_OPTION=-std=c99
+  -- CMAKE_C99_STANDARD__HAS_FULL_SUPPORT=ON
+  -- CMAKE_CFG_INTDIR=.
+  -- CMAKE_COLOR_MAKEFILE=ON
+  -- CMAKE_COMMAND=/home/user/anaconda3/lib/python3.13/site-packages/cmake/data/bin/cmake
+  -- CMAKE_COMPILER_IS_GNUCC=1
+  -- CMAKE_COMPILER_IS_GNUCXX=1
+  -- CMAKE_CPACK_COMMAND=/home/user/anaconda3/lib/python3.13/site-packages/cmake/data/bin/cpack
+  -- CMAKE_CROSSCOMPILING=FALSE
+  -- CMAKE_CTEST_COMMAND=/home/user/anaconda3/lib/python3.13/site-packages/cmake/data/bin/ctest
+  -- CMAKE_CUDA_FLAGS= -DLIBCUDACXX_ENABLE_SIMPLIFIED_COMPLEX_OPERATIONS -Xfatbin -compress-all
+  -- CMAKE_CURRENT_BINARY_DIR=/home/user/pytorch/build
+  -- CMAKE_CURRENT_FUNCTION=print_all_variables
+  -- CMAKE_CURRENT_FUNCTION_LIST_DIR=/home/user/pytorch
+  -- CMAKE_CURRENT_FUNCTION_LIST_FILE=/home/user/pytorch/CMakeLists.txt
+  -- CMAKE_CURRENT_FUNCTION_LIST_LINE=23
+  -- CMAKE_CURRENT_LIST_DIR=/home/user/pytorch
+  -- CMAKE_CURRENT_LIST_FILE=/home/user/pytorch/CMakeLists.txt
+  -- CMAKE_CURRENT_SOURCE_DIR=/home/user/pytorch
+  -- CMAKE_CXX11_COMPILE_FEATURES=cxx_std_11;cxx_alias_templates;cxx_alignas;cxx_alignof;cxx_attributes;cxx_auto_type;cxx_constexpr;cxx_decltype;cxx_decltype_incomplete_return_types;cxx_default_function_template_args;cxx_defaulted_functions;cxx_defaulted_move_initializers;cxx_delegating_constructors;cxx_deleted_functions;cxx_enum_forward_declarations;cxx_explicit_conversions;cxx_extended_friend_declarations;cxx_extern_templates;cxx_final;cxx_func_identifier;cxx_generalized_initializers;cxx_inheriting_constructors;cxx_inline_namespaces;cxx_lambdas;cxx_local_type_template_args;cxx_long_long_type;cxx_noexcept;cxx_nonstatic_member_init;cxx_nullptr;cxx_override;cxx_range_for;cxx_raw_string_literals;cxx_reference_qualified_functions;cxx_right_angle_brackets;cxx_rvalue_references;cxx_sizeof_member;cxx_static_assert;cxx_strong_enums;cxx_thread_local;cxx_trailing_return_types;cxx_unicode_literals;cxx_uniform_initialization;cxx_unrestricted_unions;cxx_user_literals;cxx_variadic_macros;cxx_variadic_templates
+  -- CMAKE_CXX11_EXTENSION_COMPILE_OPTION=-std=gnu++11
+  -- CMAKE_CXX11_STANDARD_COMPILE_OPTION=-std=c++11
+  -- CMAKE_CXX11_STANDARD__HAS_FULL_SUPPORT=ON
+  -- CMAKE_CXX14_COMPILE_FEATURES=cxx_std_14;cxx_aggregate_default_initializers;cxx_attribute_deprecated;cxx_binary_literals;cxx_contextual_conversions;cxx_decltype_auto;cxx_digit_separators;cxx_generic_lambdas;cxx_lambda_init_captures;cxx_relaxed_constexpr;cxx_return_type_deduction;cxx_variable_templates
+  -- CMAKE_CXX14_EXTENSION_COMPILE_OPTION=-std=gnu++14
+  -- CMAKE_CXX14_STANDARD_COMPILE_OPTION=-std=c++14
+  -- CMAKE_CXX14_STANDARD__HAS_FULL_SUPPORT=ON
+  -- CMAKE_CXX17_COMPILE_FEATURES=cxx_std_17
+  -- CMAKE_CXX17_EXTENSION_COMPILE_OPTION=-std=gnu++17
+  -- CMAKE_CXX17_STANDARD_COMPILE_OPTION=-std=c++17
+  -- CMAKE_CXX20_COMPILE_FEATURES=cxx_std_20
+  -- CMAKE_CXX20_EXTENSION_COMPILE_OPTION=-std=gnu++20
+  -- CMAKE_CXX20_STANDARD_COMPILE_OPTION=-std=c++20
+  -- CMAKE_CXX23_COMPILER_IMPORT_STD_NOT_FOUND_MESSAGE=Unsupported generator: Unix Makefiles
+  -- CMAKE_CXX23_COMPILE_FEATURES=cxx_std_23
+  -- CMAKE_CXX23_EXTENSION_COMPILE_OPTION=-std=gnu++23
+  -- CMAKE_CXX23_STANDARD_COMPILE_OPTION=-std=c++23
+  -- CMAKE_CXX26_COMPILE_FEATURES=
+  -- CMAKE_CXX98_COMPILE_FEATURES=cxx_std_98;cxx_template_template_parameters
+  -- CMAKE_CXX98_EXTENSION_COMPILE_OPTION=-std=gnu++98
+  -- CMAKE_CXX98_STANDARD_COMPILE_OPTION=-std=c++98
+  -- CMAKE_CXX98_STANDARD__HAS_FULL_SUPPORT=ON
+  -- CMAKE_CXX_ABI_COMPILED=TRUE
+  -- CMAKE_CXX_ARCHIVE_APPEND=<CMAKE_AR> q <TARGET> <LINK_FLAGS> <OBJECTS>
+  -- CMAKE_CXX_ARCHIVE_APPEND_IPO="/usr/bin/gcc-ar-11" q <TARGET> <LINK_FLAGS> <OBJECTS>
+  -- CMAKE_CXX_ARCHIVE_CREATE=<CMAKE_AR> qc <TARGET> <LINK_FLAGS> <OBJECTS>
+  -- CMAKE_CXX_ARCHIVE_CREATE_IPO="/usr/bin/gcc-ar-11" qc <TARGET> <LINK_FLAGS> <OBJECTS>
+  -- CMAKE_CXX_ARCHIVE_FINISH=<CMAKE_RANLIB> <TARGET>
+  -- CMAKE_CXX_ARCHIVE_FINISH_IPO="/usr/bin/gcc-ranlib-11" <TARGET>
+  -- CMAKE_CXX_BYTE_ORDER=LITTLE_ENDIAN
+  -- CMAKE_CXX_CL_SHOWINCLUDES_PREFIX=
+  -- CMAKE_CXX_COMPILER=/usr/bin/c++
+  -- CMAKE_CXX_COMPILER=/usr/bin/c++
+  -- CMAKE_CXX_COMPILER_ABI=ELF
+  -- CMAKE_CXX_COMPILER_APPLE_SYSROOT=
+  -- CMAKE_CXX_COMPILER_AR=/usr/bin/gcc-ar-11
+  -- CMAKE_CXX_COMPILER_AR=/usr/bin/gcc-ar-11
+  -- CMAKE_CXX_COMPILER_ARCHITECTURE_ID=x86_64
+  -- CMAKE_CXX_COMPILER_ARG1=
+  -- CMAKE_CXX_COMPILER_CLANG_RESOURCE_DIR=
+  -- CMAKE_CXX_COMPILER_ENV_VAR=CXX
+  -- CMAKE_CXX_COMPILER_FRONTEND_VARIANT=GNU
+  -- CMAKE_CXX_COMPILER_ID=GNU
+  -- CMAKE_CXX_COMPILER_ID_PLATFORM_CONTENT=#define STRINGIFY_HELPER(X) #X
+  #define STRINGIFY(X) STRINGIFY_HELPER(X)
+
+  /* Identify known platforms by name.  */
+  #if defined(__linux) || defined(__linux__) || defined(linux)
+  # define PLATFORM_ID "Linux"
+
+  #elif defined(__MSYS__)
+  # define PLATFORM_ID "MSYS"
+
+  #elif defined(__CYGWIN__)
+  # define PLATFORM_ID "Cygwin"
+
+  #elif defined(__MINGW32__)
+  # define PLATFORM_ID "MinGW"
+
+  #elif defined(__APPLE__)
+  # define PLATFORM_ID "Darwin"
+
+  #elif defined(_WIN32) || defined(__WIN32__) || defined(WIN32)
+  # define PLATFORM_ID "Windows"
+
+  #elif defined(__FreeBSD__) || defined(__FreeBSD)
+  # define PLATFORM_ID "FreeBSD"
+
+  #elif defined(__NetBSD__) || defined(__NetBSD)
+  # define PLATFORM_ID "NetBSD"
+
+  #elif defined(__OpenBSD__) || defined(__OPENBSD)
+  # define PLATFORM_ID "OpenBSD"
+
+  #elif defined(__sun) || defined(sun)
+  # define PLATFORM_ID "SunOS"
+
+  #elif defined(_AIX) || defined(__AIX) || defined(__AIX__) || defined(__aix) || defined(__aix__)
+  # define PLATFORM_ID "AIX"
+
+  #elif defined(__hpux) || defined(__hpux__)
+  # define PLATFORM_ID "HP-UX"
+
+  #elif defined(__HAIKU__)
+  # define PLATFORM_ID "Haiku"
+
+  #elif defined(__BeOS) || defined(__BEOS__) || defined(_BEOS)
+  # define PLATFORM_ID "BeOS"
+
+  #elif defined(__QNX__) || defined(__QNXNTO__)
+  # define PLATFORM_ID "QNX"
+
+  #elif defined(__tru64) || defined(_tru64) || defined(__TRU64__)
+  # define PLATFORM_ID "Tru64"
+
+  #elif defined(__riscos) || defined(__riscos__)
+  # define PLATFORM_ID "RISCos"
+
+  #elif defined(__sinix) || defined(__sinix__) || defined(__SINIX__)
+  # define PLATFORM_ID "SINIX"
+
+  #elif defined(__UNIX_SV__)
+  # define PLATFORM_ID "UNIX_SV"
+
+  #elif defined(__bsdos__)
+  # define PLATFORM_ID "BSDOS"
+
+  #elif defined(_MPRAS) || defined(MPRAS)
+  # define PLATFORM_ID "MP-RAS"
+
+  #elif defined(__osf) || defined(__osf__)
+  # define PLATFORM_ID "OSF1"
+
+  #elif defined(_SCO_SV) || defined(SCO_SV) || defined(sco_sv)
+  # define PLATFORM_ID "SCO_SV"
+
+  #elif defined(__ultrix) || defined(__ultrix__) || defined(_ULTRIX)
+  # define PLATFORM_ID "ULTRIX"
+
+  #elif defined(__XENIX__) || defined(_XENIX) || defined(XENIX)
+  # define PLATFORM_ID "Xenix"
+
+  #elif defined(__WATCOMC__)
+  # if defined(__LINUX__)
+  #  define PLATFORM_ID "Linux"
+
+  # elif defined(__DOS__)
+  #  define PLATFORM_ID "DOS"
+
+  # elif defined(__OS2__)
+  #  define PLATFORM_ID "OS2"
+
+  # elif defined(__WINDOWS__)
+  #  define PLATFORM_ID "Windows3x"
+
+  # elif defined(__VXWORKS__)
+  #  define PLATFORM_ID "VxWorks"
+
+  # else /* unknown platform */
+  #  define PLATFORM_ID
+  # endif
+
+  #elif defined(__INTEGRITY)
+  # if defined(INT_178B)
+  #  define PLATFORM_ID "Integrity178"
+
+  # else /* regular Integrity */
+  #  define PLATFORM_ID "Integrity"
+  # endif
+
+  # elif defined(_ADI_COMPILER)
+  #  define PLATFORM_ID "ADSP"
+
+  #else /* unknown platform */
+  # define PLATFORM_ID
+
+  #endif
+
+  /* For windows compilers MSVC and Intel we can determine
+     the architecture of the compiler being used.  This is because
+     the compilers do not have flags that can change the architecture,
+     but rather depend on which compiler is being used
+  */
+  #if defined(_WIN32) && defined(_MSC_VER)
+  # if defined(_M_IA64)
+  #  define ARCHITECTURE_ID "IA64"
+
+  # elif defined(_M_ARM64EC)
+  #  define ARCHITECTURE_ID "ARM64EC"
+
+  # elif defined(_M_X64) || defined(_M_AMD64)
+  #  define ARCHITECTURE_ID "x64"
+
+  # elif defined(_M_IX86)
+  #  define ARCHITECTURE_ID "X86"
+
+  # elif defined(_M_ARM64)
+  #  define ARCHITECTURE_ID "ARM64"
+
+  # elif defined(_M_ARM)
+  #  if _M_ARM == 4
+  #   define ARCHITECTURE_ID "ARMV4I"
+  #  elif _M_ARM == 5
+  #   define ARCHITECTURE_ID "ARMV5I"
+  #  else
+  #   define ARCHITECTURE_ID "ARMV" STRINGIFY(_M_ARM)
+  #  endif
+
+  # elif defined(_M_MIPS)
+  #  define ARCHITECTURE_ID "MIPS"
+
+  # elif defined(_M_SH)
+  #  define ARCHITECTURE_ID "SHx"
+
+  # else /* unknown architecture */
+  #  define ARCHITECTURE_ID ""
+  # endif
+
+  #elif defined(__WATCOMC__)
+  # if defined(_M_I86)
+  #  define ARCHITECTURE_ID "I86"
+
+  # elif defined(_M_IX86)
+  #  define ARCHITECTURE_ID "X86"
+
+  # else /* unknown architecture */
+  #  define ARCHITECTURE_ID ""
+  # endif
+
+  #elif defined(__IAR_SYSTEMS_ICC__) || defined(__IAR_SYSTEMS_ICC)
+  # if defined(__ICCARM__)
+  #  define ARCHITECTURE_ID "ARM"
+
+  # elif defined(__ICCRX__)
+  #  define ARCHITECTURE_ID "RX"
+
+  # elif defined(__ICCRH850__)
+  #  define ARCHITECTURE_ID "RH850"
+
+  # elif defined(__ICCRL78__)
+  #  define ARCHITECTURE_ID "RL78"
+
+  # elif defined(__ICCRISCV__)
+  #  define ARCHITECTURE_ID "RISCV"
+
+  # elif defined(__ICCAVR__)
+  #  define ARCHITECTURE_ID "AVR"
+
+  # elif defined(__ICC430__)
+  #  define ARCHITECTURE_ID "MSP430"
+
+  # elif defined(__ICCV850__)
+  #  define ARCHITECTURE_ID "V850"
+
+  # elif defined(__ICC8051__)
+  #  define ARCHITECTURE_ID "8051"
+
+  # elif defined(__ICCSTM8__)
+  #  define ARCHITECTURE_ID "STM8"
+
+  # else /* unknown architecture */
+  #  define ARCHITECTURE_ID ""
+  # endif
+
+  #elif defined(__ghs__)
+  # if defined(__PPC64__)
+  #  define ARCHITECTURE_ID "PPC64"
+
+  # elif defined(__ppc__)
+  #  define ARCHITECTURE_ID "PPC"
+
+  # elif defined(__ARM__)
+  #  define ARCHITECTURE_ID "ARM"
+
+  # elif defined(__x86_64__)
+  #  define ARCHITECTURE_ID "x64"
+
+  # elif defined(__i386__)
+  #  define ARCHITECTURE_ID "X86"
+
+  # else /* unknown architecture */
+  #  define ARCHITECTURE_ID ""
+  # endif
+
+  #elif defined(__clang__) && defined(__ti__)
+  # if defined(__ARM_ARCH)
+  #  define ARCHITECTURE_ID "ARM"
+
+  # else /* unknown architecture */
+  #  define ARCHITECTURE_ID ""
+  # endif
+
+  #elif defined(__TI_COMPILER_VERSION__)
+  # if defined(__TI_ARM__)
+  #  define ARCHITECTURE_ID "ARM"
+
+  # elif defined(__MSP430__)
+  #  define ARCHITECTURE_ID "MSP430"
+
+  # elif defined(__TMS320C28XX__)
+  #  define ARCHITECTURE_ID "TMS320C28x"
+
+  # elif defined(__TMS320C6X__) || defined(_TMS320C6X)
+  #  define ARCHITECTURE_ID "TMS320C6x"
+
+  # else /* unknown architecture */
+  #  define ARCHITECTURE_ID ""
+  # endif
+
+  # elif defined(__ADSPSHARC__)
+  #  define ARCHITECTURE_ID "SHARC"
+
+  # elif defined(__ADSPBLACKFIN__)
+  #  define ARCHITECTURE_ID "Blackfin"
+
+  #elif defined(__TASKING__)
+
+  # if defined(__CTC__) || defined(__CPTC__)
+  #  define ARCHITECTURE_ID "TriCore"
+
+  # elif defined(__CMCS__)
+  #  define ARCHITECTURE_ID "MCS"
+
+  # elif defined(__CARM__) || defined(__CPARM__)
+  #  define ARCHITECTURE_ID "ARM"
+
+  # elif defined(__CARC__)
+  #  define ARCHITECTURE_ID "ARC"
+
+  # elif defined(__C51__)
+  #  define ARCHITECTURE_ID "8051"
+
+  # elif defined(__CPCP__)
+  #  define ARCHITECTURE_ID "PCP"
+
+  # else
+  #  define ARCHITECTURE_ID ""
+  # endif
+
+  #elif defined(__RENESAS__)
+  # if defined(__CCRX__)
+  #  define ARCHITECTURE_ID "RX"
+
+  # elif defined(__CCRL__)
+  #  define ARCHITECTURE_ID "RL78"
+
+  # elif defined(__CCRH__)
+  #  define ARCHITECTURE_ID "RH850"
+
+  # else
+  #  define ARCHITECTURE_ID ""
+  # endif
+
+  #else
+  #  define ARCHITECTURE_ID
+  #endif
+
+  /* Convert integer to decimal digit literals.  */
+  #define DEC(n)                   \
+    ('0' + (((n) / 10000000)%10)), \
+    ('0' + (((n) / 1000000)%10)),  \
+    ('0' + (((n) / 100000)%10)),   \
+    ('0' + (((n) / 10000)%10)),    \
+    ('0' + (((n) / 1000)%10)),     \
+    ('0' + (((n) / 100)%10)),      \
+    ('0' + (((n) / 10)%10)),       \
+    ('0' +  ((n) % 10))
+
+  /* Convert integer to hex digit literals.  */
+  #define HEX(n)             \
+    ('0' + ((n)>>28 & 0xF)), \
+    ('0' + ((n)>>24 & 0xF)), \
+    ('0' + ((n)>>20 & 0xF)), \
+    ('0' + ((n)>>16 & 0xF)), \
+    ('0' + ((n)>>12 & 0xF)), \
+    ('0' + ((n)>>8  & 0xF)), \
+    ('0' + ((n)>>4  & 0xF)), \
+    ('0' + ((n)     & 0xF))
+
+  /* Construct a string literal encoding the version number. */
+  #ifdef COMPILER_VERSION
+  char const* info_version = "INFO" ":" "compiler_version[" COMPILER_VERSION "]";
+
+  /* Construct a string literal encoding the version number components. */
+  #elif defined(COMPILER_VERSION_MAJOR)
+  char const info_version[] = {
+    'I', 'N', 'F', 'O', ':',
+    'c','o','m','p','i','l','e','r','_','v','e','r','s','i','o','n','[',
+    COMPILER_VERSION_MAJOR,
+  # ifdef COMPILER_VERSION_MINOR
+    '.', COMPILER_VERSION_MINOR,
+  #  ifdef COMPILER_VERSION_PATCH
+     '.', COMPILER_VERSION_PATCH,
+  #   ifdef COMPILER_VERSION_TWEAK
+      '.', COMPILER_VERSION_TWEAK,
+  #   endif
+  #  endif
+  # endif
+    ']','\0'};
+  #endif
+
+  /* Construct a string literal encoding the internal version number. */
+  #ifdef COMPILER_VERSION_INTERNAL
+  char const info_version_internal[] = {
+    'I', 'N', 'F', 'O', ':',
+    'c','o','m','p','i','l','e','r','_','v','e','r','s','i','o','n','_',
+    'i','n','t','e','r','n','a','l','[',
+    COMPILER_VERSION_INTERNAL,']','\0'};
+  #elif defined(COMPILER_VERSION_INTERNAL_STR)
+  char const* info_version_internal = "INFO" ":" "compiler_version_internal[" COMPILER_VERSION_INTERNAL_STR "]";
+  #endif
+
+  /* Construct a string literal encoding the version number components. */
+  #ifdef SIMULATE_VERSION_MAJOR
+  char const info_simulate_version[] = {
+    'I', 'N', 'F', 'O', ':',
+    's','i','m','u','l','a','t','e','_','v','e','r','s','i','o','n','[',
+    SIMULATE_VERSION_MAJOR,
+  # ifdef SIMULATE_VERSION_MINOR
+    '.', SIMULATE_VERSION_MINOR,
+  #  ifdef SIMULATE_VERSION_PATCH
+     '.', SIMULATE_VERSION_PATCH,
+  #   ifdef SIMULATE_VERSION_TWEAK
+      '.', SIMULATE_VERSION_TWEAK,
+  #   endif
+  #  endif
+  # endif
+    ']','\0'};
+  #endif
+
+  /* Construct the string literal in pieces to prevent the source from
+     getting matched.  Store it in a pointer rather than an array
+     because some compilers will just produce instructions to fill the
+     array rather than assigning a pointer to a static array.  */
+  char const* info_platform = "INFO" ":" "platform[" PLATFORM_ID "]";
+  char const* info_arch = "INFO" ":" "arch[" ARCHITECTURE_ID "]";
+
+  -- CMAKE_CXX_COMPILER_ID_RUN=1
+  -- CMAKE_CXX_COMPILER_ID_TEST_FLAGS=-c;--c++;--ec++;--target=arm-arm-none-eabi -mcpu=cortex-m3;-c -I__does_not_exist__
+  -- CMAKE_CXX_COMPILER_ID_TOOL_MATCH_INDEX=2
+  -- CMAKE_CXX_COMPILER_ID_TOOL_MATCH_REGEX=
+  Ld[^
+  ]*(
+  [     ]+[^
+  ]*)*
+  [     ]+([^
+  ]+)[^
+  ]*-o[^
+  ]*CompilerIdCXX/(\./)?(CompilerIdCXX.(framework|xctest|build/[^
+  ]+)/)?CompilerIdCXX[
+  \"]
+  -- CMAKE_CXX_COMPILER_ID_VENDORS=IAR
+  -- CMAKE_CXX_COMPILER_ID_VENDOR_REGEX_IAR=IAR .+ Compiler
+  -- CMAKE_CXX_COMPILER_IMPORT_STD=
+  -- CMAKE_CXX_COMPILER_INIT=NOTFOUND
+  -- CMAKE_CXX_COMPILER_LINKER=/usr/bin/ld
+  -- CMAKE_CXX_COMPILER_LINKER_FRONTEND_VARIANT=GNU
+  -- CMAKE_CXX_COMPILER_LINKER_ID=GNU
+  -- CMAKE_CXX_COMPILER_LINKER_VERSION=2.38
+  -- CMAKE_CXX_COMPILER_LIST=c++;CC;g++;aCC;cl;bcc;xlC;icpx;icx;clang++
+  -- CMAKE_CXX_COMPILER_LOADED=1
+  -- CMAKE_CXX_COMPILER_NAMES=c++
+  -- CMAKE_CXX_COMPILER_PREDEFINES_COMMAND=/usr/bin/c++;-w;-dM;-E;/home/user/anaconda3/lib/python3.13/site-packages/cmake/data/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp
+  -- CMAKE_CXX_COMPILER_PRODUCED_FILES=a.out
+  -- CMAKE_CXX_COMPILER_PRODUCED_OUTPUT=
+  -- CMAKE_CXX_COMPILER_RANLIB=/usr/bin/gcc-ranlib-11
+  -- CMAKE_CXX_COMPILER_RANLIB=/usr/bin/gcc-ranlib-11
+  -- CMAKE_CXX_COMPILER_SYSROOT=
+  -- CMAKE_CXX_COMPILER_VERSION=11.4.0
+  -- CMAKE_CXX_COMPILER_VERSION_INTERNAL=
+  -- CMAKE_CXX_COMPILER_WORKS=TRUE
+  -- CMAKE_CXX_COMPILER_WRAPPER=
+  -- CMAKE_CXX_COMPILE_FEATURES=cxx_std_98;cxx_template_template_parameters;cxx_std_11;cxx_alias_templates;cxx_alignas;cxx_alignof;cxx_attributes;cxx_auto_type;cxx_constexpr;cxx_decltype;cxx_decltype_incomplete_return_types;cxx_default_function_template_args;cxx_defaulted_functions;cxx_defaulted_move_initializers;cxx_delegating_constructors;cxx_deleted_functions;cxx_enum_forward_declarations;cxx_explicit_conversions;cxx_extended_friend_declarations;cxx_extern_templates;cxx_final;cxx_func_identifier;cxx_generalized_initializers;cxx_inheriting_constructors;cxx_inline_namespaces;cxx_lambdas;cxx_local_type_template_args;cxx_long_long_type;cxx_noexcept;cxx_nonstatic_member_init;cxx_nullptr;cxx_override;cxx_range_for;cxx_raw_string_literals;cxx_reference_qualified_functions;cxx_right_angle_brackets;cxx_rvalue_references;cxx_sizeof_member;cxx_static_assert;cxx_strong_enums;cxx_thread_local;cxx_trailing_return_types;cxx_unicode_literals;cxx_uniform_initialization;cxx_unrestricted_unions;cxx_user_literals;cxx_variadic_macros;cxx_variadic_templates;cxx_std_14;cxx_aggregate_default_initializers;cxx_attribute_deprecated;cxx_binary_literals;cxx_contextual_conversions;cxx_decltype_auto;cxx_digit_separators;cxx_generic_lambdas;cxx_lambda_init_captures;cxx_relaxed_constexpr;cxx_return_type_deduction;cxx_variable_templates;cxx_std_17;cxx_std_20;cxx_std_23
+  -- CMAKE_CXX_COMPILE_OBJECT=<CMAKE_CXX_COMPILER> <DEFINES> <INCLUDES> <FLAGS> -o <OBJECT> -c <SOURCE>
+  -- CMAKE_CXX_COMPILE_OPTIONS_COLOR_DIAGNOSTICS=-fdiagnostics-color=always
+  -- CMAKE_CXX_COMPILE_OPTIONS_COLOR_DIAGNOSTICS_OFF=-fno-diagnostics-color
+  -- CMAKE_CXX_COMPILE_OPTIONS_CREATE_PCH=-x;c++-header;-include;<PCH_HEADER>
+  -- CMAKE_CXX_COMPILE_OPTIONS_EXPLICIT_LANGUAGE=-x;c++
+  -- CMAKE_CXX_COMPILE_OPTIONS_INVALID_PCH=-Winvalid-pch
+  -- CMAKE_CXX_COMPILE_OPTIONS_IPO=-flto=auto;-fno-fat-lto-objects
+  -- CMAKE_CXX_COMPILE_OPTIONS_PIC=-fPIC
+  -- CMAKE_CXX_COMPILE_OPTIONS_PIE=-fPIE
+  -- CMAKE_CXX_COMPILE_OPTIONS_SYSROOT=--sysroot=
+  -- CMAKE_CXX_COMPILE_OPTIONS_USE_PCH=-include;<PCH_HEADER>
+  -- CMAKE_CXX_COMPILE_OPTIONS_VISIBILITY=-fvisibility=
+  -- CMAKE_CXX_COMPILE_OPTIONS_VISIBILITY_INLINES_HIDDEN=-fvisibility-inlines-hidden
+  -- CMAKE_CXX_COMPILE_OPTIONS_WARNING_AS_ERROR=-Werror
+  -- CMAKE_CXX_CREATE_ASSEMBLY_SOURCE=<CMAKE_CXX_COMPILER> <DEFINES> <INCLUDES> <FLAGS> -S <SOURCE> -o <ASSEMBLY_SOURCE>
+  -- CMAKE_CXX_CREATE_PREPROCESSED_SOURCE=<CMAKE_CXX_COMPILER> <DEFINES> <INCLUDES> <FLAGS> -E <SOURCE> > <PREPROCESSED_SOURCE>
+  -- CMAKE_CXX_CREATE_SHARED_LIBRARY=<CMAKE_CXX_COMPILER> <CMAKE_SHARED_LIBRARY_CXX_FLAGS> <LANGUAGE_COMPILE_FLAGS> <LINK_FLAGS> <SONAME_FLAG><TARGET_SONAME> -o <TARGET> <OBJECTS> <LINK_LIBRARIES>
+  -- CMAKE_CXX_CREATE_SHARED_MODULE=<CMAKE_CXX_COMPILER> <CMAKE_SHARED_LIBRARY_CXX_FLAGS> <LANGUAGE_COMPILE_FLAGS> <LINK_FLAGS> <SONAME_FLAG><TARGET_SONAME> -o <TARGET> <OBJECTS> <LINK_LIBRARIES>
+  -- CMAKE_CXX_DEPENDS_USE_COMPILER=TRUE
+  -- CMAKE_CXX_DEPFILE_FORMAT=gcc
+  -- CMAKE_CXX_EXTENSIONS_COMPUTED_DEFAULT=ON
+  -- CMAKE_CXX_EXTENSIONS_DEFAULT=ON
+  -- CMAKE_CXX_FLAGS= -fvisibility-inlines-hidden
+  -- CMAKE_CXX_FLAGS= -fvisibility-inlines-hidden
+  -- CMAKE_CXX_FLAGS_DEBUG=-g
+  -- CMAKE_CXX_FLAGS_DEBUG_INIT= -g
+  -- CMAKE_CXX_FLAGS_INIT=
+  -- CMAKE_CXX_FLAGS_MINSIZEREL=-Os -DNDEBUG
+  -- CMAKE_CXX_FLAGS_MINSIZEREL_INIT= -Os -DNDEBUG
+  -- CMAKE_CXX_FLAGS_RELEASE=-O3 -DNDEBUG
+  -- CMAKE_CXX_FLAGS_RELEASE_INIT= -O3 -DNDEBUG
+  -- CMAKE_CXX_FLAGS_RELWITHDEBINFO=-O2 -g -DNDEBUG
+  -- CMAKE_CXX_FLAGS_RELWITHDEBINFO_INIT= -O2 -g -DNDEBUG
+  -- CMAKE_CXX_HOST_COMPILER_ID=
+  -- CMAKE_CXX_HOST_COMPILER_VERSION=
+  -- CMAKE_CXX_IGNORE_EXTENSIONS=inl;h;hpp;HPP;H;o;O;obj;OBJ;def;DEF;rc;RC
+  -- CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES=/usr/include/c++/11;/usr/include/x86_64-linux-gnu/c++/11;/usr/include/c++/11/backward;/usr/lib/gcc/x86_64-linux-gnu/11/include;/usr/local/include;/usr/include/x86_64-linux-gnu;/usr/include
+  -- CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES=/usr/lib/gcc/x86_64-linux-gnu/11;/usr/lib/x86_64-linux-gnu;/usr/lib;/lib/x86_64-linux-gnu;/lib
+  -- CMAKE_CXX_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES=
+  -- CMAKE_CXX_IMPLICIT_LINK_LIBRARIES=stdc++;m;gcc_s;gcc;c;gcc_s;gcc
+  -- CMAKE_CXX_IMPORT_STD=### Imported target for C++23 standard library
+  set(CMAKE_CXX23_COMPILER_IMPORT_STD_NOT_FOUND_MESSAGE "Unsupported generator: Unix Makefiles")
+
+
+
+  -- CMAKE_CXX_INFORMATION_LOADED=1
+  -- CMAKE_CXX_LIBRARY_ARCHITECTURE=x86_64-linux-gnu
+  -- CMAKE_CXX_LINKER_DEPFILE_FLAGS=LINKER:--dependency-file=<DEP_FILE>
+  -- CMAKE_CXX_LINKER_DEPFILE_FORMAT=gcc
+  -- CMAKE_CXX_LINKER_DEPFILE_SUPPORTED=TRUE
+  -- CMAKE_CXX_LINKER_INFORMATION_LOADED=1
+  -- CMAKE_CXX_LINKER_PREFERENCE=30
+  -- CMAKE_CXX_LINKER_PREFERENCE_PROPAGATES=1
+  -- CMAKE_CXX_LINKER_PUSHPOP_STATE_SUPPORTED=TRUE
+  -- CMAKE_CXX_LINKER_WRAPPER_FLAG=-Wl,
+  -- CMAKE_CXX_LINKER_WRAPPER_FLAG_SEP=,
+  -- CMAKE_CXX_LINK_DEPENDS_USE_LINKER=FALSE
+  -- CMAKE_CXX_LINK_EXECUTABLE=<CMAKE_CXX_COMPILER> <FLAGS> <LINK_FLAGS> <OBJECTS> -o <TARGET> <LINK_LIBRARIES>
+  -- CMAKE_CXX_LINK_LIBRARY_USING_WHOLE_ARCHIVE=LINKER:--push-state,--whole-archive;<LINK_ITEM>;LINKER:--pop-state
+  -- CMAKE_CXX_LINK_LIBRARY_USING_WHOLE_ARCHIVE_SUPPORTED=TRUE
+  -- CMAKE_CXX_LINK_LIBRARY_WHOLE_ARCHIVE_ATTRIBUTES=LIBRARY_TYPE=STATIC;DEDUPLICATION=YES;OVERRIDE=DEFAULT
+  -- CMAKE_CXX_LINK_MODE=DRIVER
+  -- CMAKE_CXX_LINK_OPTIONS_NO_PIE=-no-pie
+  -- CMAKE_CXX_LINK_OPTIONS_PIE=-fPIE;-pie
+  -- CMAKE_CXX_LINK_OPTIONS_WARNING_AS_ERROR=LINKER:--fatal-warnings
+  -- CMAKE_CXX_LINK_WHAT_YOU_USE_FLAG=LINKER:--no-as-needed
+  -- CMAKE_CXX_OUTPUT_EXTENSION=.o
+  -- CMAKE_CXX_PLATFORM_ID=Linux
+  -- CMAKE_CXX_PLATFORM_LINKER_ID=GNU
+  -- CMAKE_CXX_SIMULATE_ID=
+  -- CMAKE_CXX_SIMULATE_VERSION=
+  -- CMAKE_CXX_SIZEOF_DATA_PTR=8
+  -- CMAKE_CXX_SOURCE_FILE_EXTENSIONS=C;M;c++;cc;cpp;cxx;mm;mpp;CPP;ixx;cppm;ccm;cxxm;c++m
+  -- CMAKE_CXX_STANDARD=17
+  -- CMAKE_CXX_STANDARD_COMPUTED_DEFAULT=17
+  -- CMAKE_CXX_STANDARD_DEFAULT=17
+  -- CMAKE_CXX_STANDARD_LATEST=23
+  -- CMAKE_CXX_STANDARD_LIBRARY=libstdc++
+  -- CMAKE_CXX_USE_LINKER_INFORMATION=TRUE
+  -- CMAKE_CXX_USING_LINKER_BFD=-fuse-ld=bfd
+  -- CMAKE_CXX_USING_LINKER_GOLD=-fuse-ld=gold
+  -- CMAKE_CXX_USING_LINKER_LLD=-fuse-ld=lld
+  -- CMAKE_CXX_USING_LINKER_SYSTEM=
+  -- CMAKE_CXX_VERBOSE_FLAG=-v
+  -- CMAKE_CXX_VERBOSE_LINK_FLAG=-Wl,-v
+  -- CMAKE_CXX_XCODE_ARCHS=
+  -- CMAKE_C_ABI_COMPILED=TRUE
+  -- CMAKE_C_ARCHIVE_APPEND=<CMAKE_AR> q <TARGET> <LINK_FLAGS> <OBJECTS>
+  -- CMAKE_C_ARCHIVE_APPEND_IPO="/usr/bin/gcc-ar-11" q <TARGET> <LINK_FLAGS> <OBJECTS>
+  -- CMAKE_C_ARCHIVE_CREATE=<CMAKE_AR> qc <TARGET> <LINK_FLAGS> <OBJECTS>
+  -- CMAKE_C_ARCHIVE_CREATE_IPO="/usr/bin/gcc-ar-11" qc <TARGET> <LINK_FLAGS> <OBJECTS>
+  -- CMAKE_C_ARCHIVE_FINISH=<CMAKE_RANLIB> <TARGET>
+  -- CMAKE_C_ARCHIVE_FINISH_IPO="/usr/bin/gcc-ranlib-11" <TARGET>
+  -- CMAKE_C_BYTE_ORDER=LITTLE_ENDIAN
+  -- CMAKE_C_CL_SHOWINCLUDES_PREFIX=
+  -- CMAKE_C_COMPILER=/usr/bin/cc
+  -- CMAKE_C_COMPILER=/usr/bin/cc
+  -- CMAKE_C_COMPILER_ABI=ELF
+  -- CMAKE_C_COMPILER_APPLE_SYSROOT=
+  -- CMAKE_C_COMPILER_AR=/usr/bin/gcc-ar-11
+  -- CMAKE_C_COMPILER_AR=/usr/bin/gcc-ar-11
+  -- CMAKE_C_COMPILER_ARCHITECTURE_ID=x86_64
+  -- CMAKE_C_COMPILER_ARG1=
+  -- CMAKE_C_COMPILER_CLANG_RESOURCE_DIR=
+  -- CMAKE_C_COMPILER_ENV_VAR=CC
+  -- CMAKE_C_COMPILER_FRONTEND_VARIANT=GNU
+  -- CMAKE_C_COMPILER_ID=GNU
+  -- CMAKE_C_COMPILER_ID_PLATFORM_CONTENT=#define STRINGIFY_HELPER(X) #X
+  #define STRINGIFY(X) STRINGIFY_HELPER(X)
+
+  /* Identify known platforms by name.  */
+  #if defined(__linux) || defined(__linux__) || defined(linux)
+  # define PLATFORM_ID "Linux"
+
+  #elif defined(__MSYS__)
+  # define PLATFORM_ID "MSYS"
+
+  #elif defined(__CYGWIN__)
+  # define PLATFORM_ID "Cygwin"
+
+  #elif defined(__MINGW32__)
+  # define PLATFORM_ID "MinGW"
+
+  #elif defined(__APPLE__)
+  # define PLATFORM_ID "Darwin"
+
+  #elif defined(_WIN32) || defined(__WIN32__) || defined(WIN32)
+  # define PLATFORM_ID "Windows"
+
+  #elif defined(__FreeBSD__) || defined(__FreeBSD)
+  # define PLATFORM_ID "FreeBSD"
+
+  #elif defined(__NetBSD__) || defined(__NetBSD)
+  # define PLATFORM_ID "NetBSD"
+
+  #elif defined(__OpenBSD__) || defined(__OPENBSD)
+  # define PLATFORM_ID "OpenBSD"
+
+  #elif defined(__sun) || defined(sun)
+  # define PLATFORM_ID "SunOS"
+
+  #elif defined(_AIX) || defined(__AIX) || defined(__AIX__) || defined(__aix) || defined(__aix__)
+  # define PLATFORM_ID "AIX"
+
+  #elif defined(__hpux) || defined(__hpux__)
+  # define PLATFORM_ID "HP-UX"
+
+  #elif defined(__HAIKU__)
+  # define PLATFORM_ID "Haiku"
+
+  #elif defined(__BeOS) || defined(__BEOS__) || defined(_BEOS)
+  # define PLATFORM_ID "BeOS"
+
+  #elif defined(__QNX__) || defined(__QNXNTO__)
+  # define PLATFORM_ID "QNX"
+
+  #elif defined(__tru64) || defined(_tru64) || defined(__TRU64__)
+  # define PLATFORM_ID "Tru64"
+
+  #elif defined(__riscos) || defined(__riscos__)
+  # define PLATFORM_ID "RISCos"
+
+  #elif defined(__sinix) || defined(__sinix__) || defined(__SINIX__)
+  # define PLATFORM_ID "SINIX"
+
+  #elif defined(__UNIX_SV__)
+  # define PLATFORM_ID "UNIX_SV"
+
+  #elif defined(__bsdos__)
+  # define PLATFORM_ID "BSDOS"
+
+  #elif defined(_MPRAS) || defined(MPRAS)
+  # define PLATFORM_ID "MP-RAS"
+
+  #elif defined(__osf) || defined(__osf__)
+  # define PLATFORM_ID "OSF1"
+
+  #elif defined(_SCO_SV) || defined(SCO_SV) || defined(sco_sv)
+  # define PLATFORM_ID "SCO_SV"
+
+  #elif defined(__ultrix) || defined(__ultrix__) || defined(_ULTRIX)
+  # define PLATFORM_ID "ULTRIX"
+
+  #elif defined(__XENIX__) || defined(_XENIX) || defined(XENIX)
+  # define PLATFORM_ID "Xenix"
+
+  #elif defined(__WATCOMC__)
+  # if defined(__LINUX__)
+  #  define PLATFORM_ID "Linux"
+
+  # elif defined(__DOS__)
+  #  define PLATFORM_ID "DOS"
+
+  # elif defined(__OS2__)
+  #  define PLATFORM_ID "OS2"
+
+  # elif defined(__WINDOWS__)
+  #  define PLATFORM_ID "Windows3x"
+
+  # elif defined(__VXWORKS__)
+  #  define PLATFORM_ID "VxWorks"
+
+  # else /* unknown platform */
+  #  define PLATFORM_ID
+  # endif
+
+  #elif defined(__INTEGRITY)
+  # if defined(INT_178B)
+  #  define PLATFORM_ID "Integrity178"
+
+  # else /* regular Integrity */
+  #  define PLATFORM_ID "Integrity"
+  # endif
+
+  # elif defined(_ADI_COMPILER)
+  #  define PLATFORM_ID "ADSP"
+
+  #else /* unknown platform */
+  # define PLATFORM_ID
+
+  #endif
+
+  /* For windows compilers MSVC and Intel we can determine
+     the architecture of the compiler being used.  This is because
+     the compilers do not have flags that can change the architecture,
+     but rather depend on which compiler is being used
+  */
+  #if defined(_WIN32) && defined(_MSC_VER)
+  # if defined(_M_IA64)
+  #  define ARCHITECTURE_ID "IA64"
+
+  # elif defined(_M_ARM64EC)
+  #  define ARCHITECTURE_ID "ARM64EC"
+
+  # elif defined(_M_X64) || defined(_M_AMD64)
+  #  define ARCHITECTURE_ID "x64"
+
+  # elif defined(_M_IX86)
+  #  define ARCHITECTURE_ID "X86"
+
+  # elif defined(_M_ARM64)
+  #  define ARCHITECTURE_ID "ARM64"
+
+  # elif defined(_M_ARM)
+  #  if _M_ARM == 4
+  #   define ARCHITECTURE_ID "ARMV4I"
+  #  elif _M_ARM == 5
+  #   define ARCHITECTURE_ID "ARMV5I"
+  #  else
+  #   define ARCHITECTURE_ID "ARMV" STRINGIFY(_M_ARM)
+  #  endif
+
+  # elif defined(_M_MIPS)
+  #  define ARCHITECTURE_ID "MIPS"
+
+  # elif defined(_M_SH)
+  #  define ARCHITECTURE_ID "SHx"
+
+  # else /* unknown architecture */
+  #  define ARCHITECTURE_ID ""
+  # endif
+
+  #elif defined(__WATCOMC__)
+  # if defined(_M_I86)
+  #  define ARCHITECTURE_ID "I86"
+
+  # elif defined(_M_IX86)
+  #  define ARCHITECTURE_ID "X86"
+
+  # else /* unknown architecture */
+  #  define ARCHITECTURE_ID ""
+  # endif
+
+  #elif defined(__IAR_SYSTEMS_ICC__) || defined(__IAR_SYSTEMS_ICC)
+  # if defined(__ICCARM__)
+  #  define ARCHITECTURE_ID "ARM"
+
+  # elif defined(__ICCRX__)
+  #  define ARCHITECTURE_ID "RX"
+
+  # elif defined(__ICCRH850__)
+  #  define ARCHITECTURE_ID "RH850"
+
+  # elif defined(__ICCRL78__)
+  #  define ARCHITECTURE_ID "RL78"
+
+  # elif defined(__ICCRISCV__)
+  #  define ARCHITECTURE_ID "RISCV"
+
+  # elif defined(__ICCAVR__)
+  #  define ARCHITECTURE_ID "AVR"
+
+  # elif defined(__ICC430__)
+  #  define ARCHITECTURE_ID "MSP430"
+
+  # elif defined(__ICCV850__)
+  #  define ARCHITECTURE_ID "V850"
+
+  # elif defined(__ICC8051__)
+  #  define ARCHITECTURE_ID "8051"
+
+  # elif defined(__ICCSTM8__)
+  #  define ARCHITECTURE_ID "STM8"
+
+  # else /* unknown architecture */
+  #  define ARCHITECTURE_ID ""
+  # endif
+
+  #elif defined(__ghs__)
+  # if defined(__PPC64__)
+  #  define ARCHITECTURE_ID "PPC64"
+
+  # elif defined(__ppc__)
+  #  define ARCHITECTURE_ID "PPC"
+
+  # elif defined(__ARM__)
+  #  define ARCHITECTURE_ID "ARM"
+
+  # elif defined(__x86_64__)
+  #  define ARCHITECTURE_ID "x64"
+
+  # elif defined(__i386__)
+  #  define ARCHITECTURE_ID "X86"
+
+  # else /* unknown architecture */
+  #  define ARCHITECTURE_ID ""
+  # endif
+
+  #elif defined(__clang__) && defined(__ti__)
+  # if defined(__ARM_ARCH)
+  #  define ARCHITECTURE_ID "ARM"
+
+  # else /* unknown architecture */
+  #  define ARCHITECTURE_ID ""
+  # endif
+
+  #elif defined(__TI_COMPILER_VERSION__)
+  # if defined(__TI_ARM__)
+  #  define ARCHITECTURE_ID "ARM"
+
+  # elif defined(__MSP430__)
+  #  define ARCHITECTURE_ID "MSP430"
+
+  # elif defined(__TMS320C28XX__)
+  #  define ARCHITECTURE_ID "TMS320C28x"
+
+  # elif defined(__TMS320C6X__) || defined(_TMS320C6X)
+  #  define ARCHITECTURE_ID "TMS320C6x"
+
+  # else /* unknown architecture */
+  #  define ARCHITECTURE_ID ""
+  # endif
+
+  # elif defined(__ADSPSHARC__)
+  #  define ARCHITECTURE_ID "SHARC"
+
+  # elif defined(__ADSPBLACKFIN__)
+  #  define ARCHITECTURE_ID "Blackfin"
+
+  #elif defined(__TASKING__)
+
+  # if defined(__CTC__) || defined(__CPTC__)
+  #  define ARCHITECTURE_ID "TriCore"
+
+  # elif defined(__CMCS__)
+  #  define ARCHITECTURE_ID "MCS"
+
+  # elif defined(__CARM__) || defined(__CPARM__)
+  #  define ARCHITECTURE_ID "ARM"
+
+  # elif defined(__CARC__)
+  #  define ARCHITECTURE_ID "ARC"
+
+  # elif defined(__C51__)
+  #  define ARCHITECTURE_ID "8051"
+
+  # elif defined(__CPCP__)
+  #  define ARCHITECTURE_ID "PCP"
+
+  # else
+  #  define ARCHITECTURE_ID ""
+  # endif
+
+  #elif defined(__RENESAS__)
+  # if defined(__CCRX__)
+  #  define ARCHITECTURE_ID "RX"
+
+  # elif defined(__CCRL__)
+  #  define ARCHITECTURE_ID "RL78"
+
+  # elif defined(__CCRH__)
+  #  define ARCHITECTURE_ID "RH850"
+
+  # else
+  #  define ARCHITECTURE_ID ""
+  # endif
+
+  #else
+  #  define ARCHITECTURE_ID
+  #endif
+
+  /* Convert integer to decimal digit literals.  */
+  #define DEC(n)                   \
+    ('0' + (((n) / 10000000)%10)), \
+    ('0' + (((n) / 1000000)%10)),  \
+    ('0' + (((n) / 100000)%10)),   \
+    ('0' + (((n) / 10000)%10)),    \
+    ('0' + (((n) / 1000)%10)),     \
+    ('0' + (((n) / 100)%10)),      \
+    ('0' + (((n) / 10)%10)),       \
+    ('0' +  ((n) % 10))
+
+  /* Convert integer to hex digit literals.  */
+  #define HEX(n)             \
+    ('0' + ((n)>>28 & 0xF)), \
+    ('0' + ((n)>>24 & 0xF)), \
+    ('0' + ((n)>>20 & 0xF)), \
+    ('0' + ((n)>>16 & 0xF)), \
+    ('0' + ((n)>>12 & 0xF)), \
+    ('0' + ((n)>>8  & 0xF)), \
+    ('0' + ((n)>>4  & 0xF)), \
+    ('0' + ((n)     & 0xF))
+
+  /* Construct a string literal encoding the version number. */
+  #ifdef COMPILER_VERSION
+  char const* info_version = "INFO" ":" "compiler_version[" COMPILER_VERSION "]";
+
+  /* Construct a string literal encoding the version number components. */
+  #elif defined(COMPILER_VERSION_MAJOR)
+  char const info_version[] = {
+    'I', 'N', 'F', 'O', ':',
+    'c','o','m','p','i','l','e','r','_','v','e','r','s','i','o','n','[',
+    COMPILER_VERSION_MAJOR,
+  # ifdef COMPILER_VERSION_MINOR
+    '.', COMPILER_VERSION_MINOR,
+  #  ifdef COMPILER_VERSION_PATCH
+     '.', COMPILER_VERSION_PATCH,
+  #   ifdef COMPILER_VERSION_TWEAK
+      '.', COMPILER_VERSION_TWEAK,
+  #   endif
+  #  endif
+  # endif
+    ']','\0'};
+  #endif
+
+  /* Construct a string literal encoding the internal version number. */
+  #ifdef COMPILER_VERSION_INTERNAL
+  char const info_version_internal[] = {
+    'I', 'N', 'F', 'O', ':',
+    'c','o','m','p','i','l','e','r','_','v','e','r','s','i','o','n','_',
+    'i','n','t','e','r','n','a','l','[',
+    COMPILER_VERSION_INTERNAL,']','\0'};
+  #elif defined(COMPILER_VERSION_INTERNAL_STR)
+  char const* info_version_internal = "INFO" ":" "compiler_version_internal[" COMPILER_VERSION_INTERNAL_STR "]";
+  #endif
+
+  /* Construct a string literal encoding the version number components. */
+  #ifdef SIMULATE_VERSION_MAJOR
+  char const info_simulate_version[] = {
+    'I', 'N', 'F', 'O', ':',
+    's','i','m','u','l','a','t','e','_','v','e','r','s','i','o','n','[',
+    SIMULATE_VERSION_MAJOR,
+  # ifdef SIMULATE_VERSION_MINOR
+    '.', SIMULATE_VERSION_MINOR,
+  #  ifdef SIMULATE_VERSION_PATCH
+     '.', SIMULATE_VERSION_PATCH,
+  #   ifdef SIMULATE_VERSION_TWEAK
+      '.', SIMULATE_VERSION_TWEAK,
+  #   endif
+  #  endif
+  # endif
+    ']','\0'};
+  #endif
+
+  /* Construct the string literal in pieces to prevent the source from
+     getting matched.  Store it in a pointer rather than an array
+     because some compilers will just produce instructions to fill the
+     array rather than assigning a pointer to a static array.  */
+  char const* info_platform = "INFO" ":" "platform[" PLATFORM_ID "]";
+  char const* info_arch = "INFO" ":" "arch[" ARCHITECTURE_ID "]";
+
+  -- CMAKE_C_COMPILER_ID_RUN=1
+  -- CMAKE_C_COMPILER_ID_TEST_FLAGS=-c;-Aa;-D__CLASSIC_C__;--target=arm-arm-none-eabi -mcpu=cortex-m3;-c -I__does_not_exist__
+  -- CMAKE_C_COMPILER_ID_TOOL_MATCH_INDEX=2
+  -- CMAKE_C_COMPILER_ID_TOOL_MATCH_REGEX=
+  Ld[^
+  ]*(
+  [     ]+[^
+  ]*)*
+  [     ]+([^
+  ]+)[^
+  ]*-o[^
+  ]*CompilerIdC/(\./)?(CompilerIdC.(framework|xctest|build/[^
+  ]+)/)?CompilerIdC[
+  \"]
+  -- CMAKE_C_COMPILER_ID_VENDORS=IAR
+  -- CMAKE_C_COMPILER_ID_VENDOR_REGEX_IAR=IAR .+ Compiler
+  -- CMAKE_C_COMPILER_INIT=NOTFOUND
+  -- CMAKE_C_COMPILER_LINKER=/usr/bin/ld
+  -- CMAKE_C_COMPILER_LINKER_FRONTEND_VARIANT=GNU
+  -- CMAKE_C_COMPILER_LINKER_ID=GNU
+  -- CMAKE_C_COMPILER_LINKER_VERSION=2.38
+  -- CMAKE_C_COMPILER_LIST=cc;gcc;cl;bcc;xlc;icx;clang
+  -- CMAKE_C_COMPILER_LOADED=1
+  -- CMAKE_C_COMPILER_NAMES=cc
+  -- CMAKE_C_COMPILER_PRODUCED_FILES=a.out
+  -- CMAKE_C_COMPILER_PRODUCED_OUTPUT=
+  -- CMAKE_C_COMPILER_RANLIB=/usr/bin/gcc-ranlib-11
+  -- CMAKE_C_COMPILER_RANLIB=/usr/bin/gcc-ranlib-11
+  -- CMAKE_C_COMPILER_SYSROOT=
+  -- CMAKE_C_COMPILER_VERSION=11.4.0
+  -- CMAKE_C_COMPILER_VERSION_INTERNAL=
+  -- CMAKE_C_COMPILER_WORKS=TRUE
+  -- CMAKE_C_COMPILER_WRAPPER=
+  -- CMAKE_C_COMPILE_FEATURES=c_std_90;c_function_prototypes;c_std_99;c_restrict;c_variadic_macros;c_std_11;c_static_assert;c_std_17;c_std_23
+  -- CMAKE_C_COMPILE_OBJECT=<CMAKE_C_COMPILER> <DEFINES> <INCLUDES> <FLAGS> -o <OBJECT> -c <SOURCE>
+  -- CMAKE_C_COMPILE_OPTIONS_COLOR_DIAGNOSTICS=-fdiagnostics-color=always
+  -- CMAKE_C_COMPILE_OPTIONS_COLOR_DIAGNOSTICS_OFF=-fno-diagnostics-color
+  -- CMAKE_C_COMPILE_OPTIONS_CREATE_PCH=-x;c-header;-include;<PCH_HEADER>
+  -- CMAKE_C_COMPILE_OPTIONS_EXPLICIT_LANGUAGE=-x;c
+  -- CMAKE_C_COMPILE_OPTIONS_INVALID_PCH=-Winvalid-pch
+  -- CMAKE_C_COMPILE_OPTIONS_IPO=-flto=auto;-fno-fat-lto-objects
+  -- CMAKE_C_COMPILE_OPTIONS_PIC=-fPIC
+  -- CMAKE_C_COMPILE_OPTIONS_PIE=-fPIE
+  -- CMAKE_C_COMPILE_OPTIONS_SYSROOT=--sysroot=
+  -- CMAKE_C_COMPILE_OPTIONS_USE_PCH=-include;<PCH_HEADER>
+  -- CMAKE_C_COMPILE_OPTIONS_VISIBILITY=-fvisibility=
+  -- CMAKE_C_COMPILE_OPTIONS_WARNING_AS_ERROR=-Werror
+  -- CMAKE_C_CREATE_ASSEMBLY_SOURCE=<CMAKE_C_COMPILER> <DEFINES> <INCLUDES> <FLAGS> -S <SOURCE> -o <ASSEMBLY_SOURCE>
+  -- CMAKE_C_CREATE_PREPROCESSED_SOURCE=<CMAKE_C_COMPILER> <DEFINES> <INCLUDES> <FLAGS> -E <SOURCE> > <PREPROCESSED_SOURCE>
+  -- CMAKE_C_CREATE_SHARED_LIBRARY=<CMAKE_C_COMPILER> <CMAKE_SHARED_LIBRARY_C_FLAGS> <LANGUAGE_COMPILE_FLAGS> <LINK_FLAGS> <SONAME_FLAG><TARGET_SONAME> -o <TARGET> <OBJECTS> <LINK_LIBRARIES>
+  -- CMAKE_C_CREATE_SHARED_MODULE=<CMAKE_C_COMPILER> <CMAKE_SHARED_LIBRARY_C_FLAGS> <LANGUAGE_COMPILE_FLAGS> <LINK_FLAGS> <SONAME_FLAG><TARGET_SONAME> -o <TARGET> <OBJECTS> <LINK_LIBRARIES>
+  -- CMAKE_C_DEPENDS_USE_COMPILER=TRUE
+  -- CMAKE_C_DEPFILE_FORMAT=gcc
+  -- CMAKE_C_EXTENSIONS_COMPUTED_DEFAULT=ON
+  -- CMAKE_C_EXTENSIONS_DEFAULT=ON
+  -- CMAKE_C_FLAGS=
+  -- CMAKE_C_FLAGS_DEBUG=-g
+  -- CMAKE_C_FLAGS_DEBUG_INIT= -g
+  -- CMAKE_C_FLAGS_INIT=
+  -- CMAKE_C_FLAGS_MINSIZEREL=-Os -DNDEBUG
+  -- CMAKE_C_FLAGS_MINSIZEREL_INIT= -Os -DNDEBUG
+  -- CMAKE_C_FLAGS_RELEASE=-O3 -DNDEBUG
+  -- CMAKE_C_FLAGS_RELEASE_INIT= -O3 -DNDEBUG
+  -- CMAKE_C_FLAGS_RELWITHDEBINFO=-O2 -g -DNDEBUG
+  -- CMAKE_C_FLAGS_RELWITHDEBINFO_INIT= -O2 -g -DNDEBUG
+  -- CMAKE_C_HOST_COMPILER_ID=
+  -- CMAKE_C_HOST_COMPILER_VERSION=
+  -- CMAKE_C_IGNORE_EXTENSIONS=h;H;o;O;obj;OBJ;def;DEF;rc;RC
+  -- CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES=/usr/lib/gcc/x86_64-linux-gnu/11/include;/usr/local/include;/usr/include/x86_64-linux-gnu;/usr/include
+  -- CMAKE_C_IMPLICIT_LINK_DIRECTORIES=/usr/lib/gcc/x86_64-linux-gnu/11;/usr/lib/x86_64-linux-gnu;/usr/lib;/lib/x86_64-linux-gnu;/lib
+  -- CMAKE_C_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES=
+  -- CMAKE_C_IMPLICIT_LINK_LIBRARIES=gcc;gcc_s;c;gcc;gcc_s
+  -- CMAKE_C_INFORMATION_LOADED=1
+  -- CMAKE_C_LIBRARY_ARCHITECTURE=x86_64-linux-gnu
+  -- CMAKE_C_LINKER_DEPFILE_FLAGS=LINKER:--dependency-file=<DEP_FILE>
+  -- CMAKE_C_LINKER_DEPFILE_FORMAT=gcc
+  -- CMAKE_C_LINKER_DEPFILE_SUPPORTED=TRUE
+  -- CMAKE_C_LINKER_INFORMATION_LOADED=1
+  -- CMAKE_C_LINKER_PREFERENCE=10
+  -- CMAKE_C_LINKER_PUSHPOP_STATE_SUPPORTED=TRUE
+  -- CMAKE_C_LINKER_WRAPPER_FLAG=-Wl,
+  -- CMAKE_C_LINKER_WRAPPER_FLAG_SEP=,
+  -- CMAKE_C_LINK_DEPENDS_USE_LINKER=FALSE
+  -- CMAKE_C_LINK_EXECUTABLE=<CMAKE_C_COMPILER> <FLAGS> <LINK_FLAGS> <OBJECTS> -o <TARGET> <LINK_LIBRARIES>
+  -- CMAKE_C_LINK_LIBRARY_USING_WHOLE_ARCHIVE=LINKER:--push-state,--whole-archive;<LINK_ITEM>;LINKER:--pop-state
+  -- CMAKE_C_LINK_LIBRARY_USING_WHOLE_ARCHIVE_SUPPORTED=TRUE
+  -- CMAKE_C_LINK_LIBRARY_WHOLE_ARCHIVE_ATTRIBUTES=LIBRARY_TYPE=STATIC;DEDUPLICATION=YES;OVERRIDE=DEFAULT
+  -- CMAKE_C_LINK_MODE=DRIVER
+  -- CMAKE_C_LINK_OPTIONS_NO_PIE=-no-pie
+  -- CMAKE_C_LINK_OPTIONS_PIE=-fPIE;-pie
+  -- CMAKE_C_LINK_OPTIONS_WARNING_AS_ERROR=LINKER:--fatal-warnings
+  -- CMAKE_C_LINK_WHAT_YOU_USE_FLAG=LINKER:--no-as-needed
+  -- CMAKE_C_OUTPUT_EXTENSION=.o
+  -- CMAKE_C_PLATFORM_ID=Linux
+  -- CMAKE_C_PLATFORM_LINKER_ID=GNU
+  -- CMAKE_C_SIMULATE_ID=
+  -- CMAKE_C_SIMULATE_VERSION=
+  -- CMAKE_C_SIZEOF_DATA_PTR=8
+  -- CMAKE_C_SOURCE_FILE_EXTENSIONS=c;m
+  -- CMAKE_C_STANDARD=11
+  -- CMAKE_C_STANDARD_COMPUTED_DEFAULT=17
+  -- CMAKE_C_STANDARD_DEFAULT=17
+  -- CMAKE_C_STANDARD_LATEST=23
+  -- CMAKE_C_STANDARD_LIBRARY=
+  -- CMAKE_C_USE_LINKER_INFORMATION=TRUE
+  -- CMAKE_C_USING_LINKER_BFD=-fuse-ld=bfd
+  -- CMAKE_C_USING_LINKER_GOLD=-fuse-ld=gold
+  -- CMAKE_C_USING_LINKER_LLD=-fuse-ld=lld
+  -- CMAKE_C_USING_LINKER_SYSTEM=
+  -- CMAKE_C_VERBOSE_FLAG=-v
+  -- CMAKE_C_VERBOSE_LINK_FLAG=-Wl,-v
+  -- CMAKE_C_XCODE_ARCHS=
+  -- CMAKE_DEPFILE_FLAGS_C=-MD -MT <DEP_TARGET> -MF <DEP_FILE>
+  -- CMAKE_DEPFILE_FLAGS_CXX=-MD -MT <DEP_TARGET> -MF <DEP_FILE>
+  -- CMAKE_DLLTOOL=CMAKE_DLLTOOL-NOTFOUND
+  -- CMAKE_DL_LIBS=dl
+  -- CMAKE_EFFECTIVE_SYSTEM_NAME=Linux
+  -- CMAKE_EXECUTABLE_FORMAT=ELF
+  -- CMAKE_EXECUTABLE_RPATH_LINK_CXX_FLAG=-Wl,-rpath-link,
+  -- CMAKE_EXECUTABLE_RPATH_LINK_C_FLAG=-Wl,-rpath-link,
+  -- CMAKE_EXECUTABLE_RUNTIME_CXX_FLAG=-Wl,-rpath,
+  -- CMAKE_EXECUTABLE_RUNTIME_CXX_FLAG_SEP=:
+  -- CMAKE_EXECUTABLE_RUNTIME_C_FLAG=-Wl,-rpath,
+  -- CMAKE_EXECUTABLE_RUNTIME_C_FLAG_SEP=:
+  -- CMAKE_EXECUTABLE_SUFFIX=
+  -- CMAKE_EXE_EXPORTS_CXX_FLAG=-Wl,--export-dynamic
+  -- CMAKE_EXE_EXPORTS_C_FLAG=-Wl,--export-dynamic
+  -- CMAKE_EXE_LINKER_FLAGS= -rdynamic
+  -- CMAKE_EXE_LINKER_FLAGS= -rdynamic
+  -- CMAKE_EXE_LINKER_FLAGS_DEBUG=
+  -- CMAKE_EXE_LINKER_FLAGS_INIT=
+  -- CMAKE_EXE_LINKER_FLAGS_MINSIZEREL=
+  -- CMAKE_EXE_LINKER_FLAGS_RELEASE=
+  -- CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO=
+  -- CMAKE_EXE_LINK_DYNAMIC_CXX_FLAGS=-Wl,-Bdynamic
+  -- CMAKE_EXE_LINK_DYNAMIC_C_FLAGS=-Wl,-Bdynamic
+  -- CMAKE_EXE_LINK_STATIC_CXX_FLAGS=-Wl,-Bstatic
+  -- CMAKE_EXE_LINK_STATIC_C_FLAGS=-Wl,-Bstatic
+  -- CMAKE_EXPORT_COMPILE_COMMANDS=ON
+  -- CMAKE_EXPORT_COMPILE_COMMANDS=ON
+  -- CMAKE_EXTRA_GENERATOR=
+  -- CMAKE_FILES_DIRECTORY=/CMakeFiles
+  -- CMAKE_FIND_LIBRARY_PREFIXES=lib
+  -- CMAKE_FIND_LIBRARY_SUFFIXES=.so;.a
+  -- CMAKE_FIND_PACKAGE_REDIRECTS_DIR=/home/user/pytorch/build/CMakeFiles/pkgRedirects
+  -- CMAKE_GENERATOR=Unix Makefiles
+  -- CMAKE_GENERATOR_INSTANCE=
+  -- CMAKE_GENERATOR_PLATFORM=
+  -- CMAKE_GENERATOR_TOOLSET=
+  -- CMAKE_HOME_DIRECTORY=/home/user/pytorch
+  -- CMAKE_HOST_EXECUTABLE_SUFFIX=
+  -- CMAKE_HOST_LINUX=1
+  -- CMAKE_HOST_SYSTEM=Linux-6.8.0-59-generic
+  -- CMAKE_HOST_SYSTEM_NAME=Linux
+  -- CMAKE_HOST_SYSTEM_PROCESSOR=x86_64
+  -- CMAKE_HOST_SYSTEM_VERSION=6.8.0-59-generic
+  -- CMAKE_HOST_UNIX=1
+  -- CMAKE_INCLUDE_FLAG_C=-I
+  -- CMAKE_INCLUDE_FLAG_CXX=-I
+  -- CMAKE_INCLUDE_SYSTEM_FLAG_C=-isystem
+  -- CMAKE_INCLUDE_SYSTEM_FLAG_CXX=-isystem
+  -- CMAKE_INSTALL_DEFAULT_COMPONENT_NAME=Unspecified
+  -- CMAKE_INSTALL_MESSAGE=NEVER
+  -- CMAKE_INSTALL_PREFIX=/home/user/pytorch/torch
+  -- CMAKE_INSTALL_SO_NO_EXE=1
+  -- CMAKE_INTERNAL_PLATFORM_ABI=ELF
+  -- CMAKE_LIBRARY_ARCHITECTURE=x86_64-linux-gnu
+  -- CMAKE_LIBRARY_ARCHITECTURE_REGEX=[a-z0-9_]+(-[a-z0-9_]+)?-linux-[a-z0-9_]*
+  -- CMAKE_LIBRARY_OUTPUT_DIRECTORY=/home/user/pytorch/build/lib
+  -- CMAKE_LIBRARY_PATH_FLAG=-L
+  -- CMAKE_LIBRARY_PATH_TERMINATOR=
+  -- CMAKE_LINKER=/usr/bin/ld
+  -- CMAKE_LINKER=/usr/bin/ld
+  -- CMAKE_LINKER_LINK=
+  -- CMAKE_LINKER_LLD=
+  -- CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED=TRUE
+  -- CMAKE_LINK_GROUP_USING_RESCAN=LINKER:--start-group;LINKER:--end-group
+  -- CMAKE_LINK_GROUP_USING_RESCAN_SUPPORTED=TRUE
+  -- CMAKE_LINK_LIBRARY_FLAG=-l
+  -- CMAKE_LINK_LIBRARY_SUFFIX=
+  -- CMAKE_LINK_LIBRARY_USING_DEFAULT_SUPPORTED=TRUE
+  -- CMAKE_LINK_LIBRARY_USING_WHOLE_ARCHIVE=LINKER:--push-state,--whole-archive;<LINK_ITEM>;LINKER:--pop-state
+  -- CMAKE_LINK_LIBRARY_USING_WHOLE_ARCHIVE_SUPPORTED=TRUE
+  -- CMAKE_LINK_LIBRARY_WHOLE_ARCHIVE_ATTRIBUTES=LIBRARY_TYPE=STATIC;DEDUPLICATION=YES;OVERRIDE=DEFAULT
+  -- CMAKE_LINK_WHAT_YOU_USE=TRUE
+  -- CMAKE_LINK_WHAT_YOU_USE_CHECK=ldd;-u;-r
+  -- CMAKE_LIST_FILE_NAME=CMakeLists.txt
+  -- CMAKE_MAJOR_VERSION=4
+  -- CMAKE_MAKE_PROGRAM=/usr/bin/gmake
+  -- CMAKE_MATCH_0=Linux
+  -- CMAKE_MATCH_1=
+  -- CMAKE_MATCH_2=
+  -- CMAKE_MATCH_COUNT=0
+  -- CMAKE_MINIMUM_REQUIRED_VERSION=3.27
+  -- CMAKE_MINOR_VERSION=2
+  -- CMAKE_MODULE_LINKER_FLAGS=
+  -- CMAKE_MODULE_LINKER_FLAGS_DEBUG=
+  -- CMAKE_MODULE_LINKER_FLAGS_INIT=
+  -- CMAKE_MODULE_LINKER_FLAGS_MINSIZEREL=
+  -- CMAKE_MODULE_LINKER_FLAGS_RELEASE=
+  -- CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO=
+  -- CMAKE_MODULE_PATH=/home/user/pytorch/cmake/Modules
+  -- CMAKE_MT=
+  -- CMAKE_NM=/usr/bin/nm
+  -- CMAKE_OBJCOPY=/usr/bin/objcopy
+  -- CMAKE_OBJDUMP=/usr/bin/objdump
+  -- CMAKE_PARENT_LIST_FILE=/home/user/pytorch/CMakeLists.txt
+  -- CMAKE_PATCH_VERSION=0
+  -- CMAKE_PCH_EXTENSION=.gch
+  -- CMAKE_PCH_PROLOGUE=#pragma GCC system_header
+  -- CMAKE_PLATFORM_IMPLICIT_LINK_DIRECTORIES=/lib;/lib32;/lib64;/usr/lib;/usr/lib32;/usr/lib64
+  -- CMAKE_PLATFORM_INFO_DIR=/home/user/pytorch/build/CMakeFiles/4.2.0
+  -- CMAKE_PLATFORM_INFO_INITIALIZED=1
+  -- CMAKE_PLATFORM_USES_PATH_WHEN_NO_SONAME=1
+  -- CMAKE_PREFIX_PATH=/home/user/anaconda3/lib/python3.13/site-packages;/home/user/anaconda3/envs/torch-dev:/home/user/anaconda3:
+  -- CMAKE_PROJECT_COMPAT_VERSION=
+  -- CMAKE_PROJECT_DESCRIPTION=
+  -- CMAKE_PROJECT_HOMEPAGE_URL=
+  -- CMAKE_PROJECT_NAME=Torch
+  -- CMAKE_PROJECT_SPDX_LICENSE=
+  -- CMAKE_RANLIB=/usr/bin/ranlib
+  -- CMAKE_RANLIB=/usr/bin/ranlib
+  -- CMAKE_READELF=/usr/bin/readelf
+  -- CMAKE_ROOT=/home/user/anaconda3/lib/python3.13/site-packages/cmake/data/share/cmake-4.2
+  -- CMAKE_RUNTIME_OUTPUT_DIRECTORY=/home/user/pytorch/build/bin
+  -- CMAKE_SHARED_LIBRARY_CREATE_CXX_FLAGS=-shared
+  -- CMAKE_SHARED_LIBRARY_CREATE_C_FLAGS=-shared
+  -- CMAKE_SHARED_LIBRARY_CXX_FLAGS=-fPIC
+  -- CMAKE_SHARED_LIBRARY_C_FLAGS=-fPIC
+  -- CMAKE_SHARED_LIBRARY_LINK_CXX_FLAGS=-rdynamic
+  -- CMAKE_SHARED_LIBRARY_LINK_C_FLAGS=-rdynamic
+  -- CMAKE_SHARED_LIBRARY_LINK_DYNAMIC_CXX_FLAGS=-Wl,-Bdynamic
+  -- CMAKE_SHARED_LIBRARY_LINK_DYNAMIC_C_FLAGS=-Wl,-Bdynamic
+  -- CMAKE_SHARED_LIBRARY_LINK_STATIC_CXX_FLAGS=-Wl,-Bstatic
+  -- CMAKE_SHARED_LIBRARY_LINK_STATIC_C_FLAGS=-Wl,-Bstatic
+  -- CMAKE_SHARED_LIBRARY_PREFIX=lib
+  -- CMAKE_SHARED_LIBRARY_RPATH_LINK_CXX_FLAG=-Wl,-rpath-link,
+  -- CMAKE_SHARED_LIBRARY_RPATH_LINK_C_FLAG=-Wl,-rpath-link,
+  -- CMAKE_SHARED_LIBRARY_RPATH_ORIGIN_TOKEN=$ORIGIN
+  -- CMAKE_SHARED_LIBRARY_RUNTIME_CXX_FLAG=-Wl,-rpath,
+  -- CMAKE_SHARED_LIBRARY_RUNTIME_CXX_FLAG_SEP=:
+  -- CMAKE_SHARED_LIBRARY_RUNTIME_C_FLAG=-Wl,-rpath,
+  -- CMAKE_SHARED_LIBRARY_RUNTIME_C_FLAG_SEP=:
+  -- CMAKE_SHARED_LIBRARY_SONAME_CXX_FLAG=-Wl,-soname,
+  -- CMAKE_SHARED_LIBRARY_SONAME_C_FLAG=-Wl,-soname,
+  -- CMAKE_SHARED_LIBRARY_SUFFIX=.so
+  -- CMAKE_SHARED_LINKER_FLAGS= -Wl,--no-as-needed -rdynamic
+  -- CMAKE_SHARED_LINKER_FLAGS= -Wl,--no-as-needed -rdynamic
+  -- CMAKE_SHARED_LINKER_FLAGS_DEBUG=
+  -- CMAKE_SHARED_LINKER_FLAGS_INIT=
+  -- CMAKE_SHARED_LINKER_FLAGS_MINSIZEREL=
+  -- CMAKE_SHARED_LINKER_FLAGS_RELEASE=
+  -- CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO=
+  -- CMAKE_SHARED_MODULE_CREATE_CXX_FLAGS=-shared
+  -- CMAKE_SHARED_MODULE_CREATE_C_FLAGS=-shared
+  -- CMAKE_SHARED_MODULE_CXX_FLAGS=-fPIC
+  -- CMAKE_SHARED_MODULE_C_FLAGS=-fPIC
+  -- CMAKE_SHARED_MODULE_LINK_DYNAMIC_CXX_FLAGS=-Wl,-Bdynamic
+  -- CMAKE_SHARED_MODULE_LINK_DYNAMIC_C_FLAGS=-Wl,-Bdynamic
+  -- CMAKE_SHARED_MODULE_LINK_STATIC_CXX_FLAGS=-Wl,-Bstatic
+  -- CMAKE_SHARED_MODULE_LINK_STATIC_C_FLAGS=-Wl,-Bstatic
+  -- CMAKE_SHARED_MODULE_PREFIX=lib
+  -- CMAKE_SHARED_MODULE_SUFFIX=.so
+  -- CMAKE_SIZEOF_VOID_P=8
+  -- CMAKE_SKIP_INSTALL_RPATH=NO
+  -- CMAKE_SKIP_RPATH=NO
+  -- CMAKE_SOURCE_DIR=/home/user/pytorch
+  -- CMAKE_STATIC_LIBRARY_PREFIX=lib
+  -- CMAKE_STATIC_LIBRARY_SUFFIX=.a
+  -- CMAKE_STATIC_LINKER_FLAGS=
+  -- CMAKE_STATIC_LINKER_FLAGS_DEBUG=
+  -- CMAKE_STATIC_LINKER_FLAGS_MINSIZEREL=
+  -- CMAKE_STATIC_LINKER_FLAGS_RELEASE=
+  -- CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO=
+  -- CMAKE_STRIP=/usr/bin/strip
+  -- CMAKE_SYSTEM=Linux-6.8.0-59-generic
+  -- CMAKE_SYSTEM_INCLUDE_PATH=/usr/include/X11
+  -- CMAKE_SYSTEM_INFO_FILE=Platform/Linux
+  -- CMAKE_SYSTEM_LIBRARY_PATH=/usr/lib/X11
+  -- CMAKE_SYSTEM_LOADED=1
+  -- CMAKE_SYSTEM_NAME=Linux
+  -- CMAKE_SYSTEM_PREFIX_PATH=/usr/local;/usr;/;/home/user/anaconda3/lib/python3.13/site-packages/cmake/data;/home/user/pytorch/torch;/usr/X11R6;/usr/pkg;/opt
+  -- CMAKE_SYSTEM_PROCESSOR=x86_64
+  -- CMAKE_SYSTEM_SPECIFIC_INFORMATION_LOADED=1
+  -- CMAKE_SYSTEM_SPECIFIC_INITIALIZE_LOADED=1
+  -- CMAKE_SYSTEM_VERSION=6.8.0-59-generic
+  -- CMAKE_TAPI=CMAKE_TAPI-NOTFOUND
+  -- CMAKE_TAPI=CMAKE_TAPI-NOTFOUND
+  -- CMAKE_TESTING_ENABLED=1
+  -- CMAKE_TWEAK_VERSION=0
+  -- CMAKE_UNAME=/usr/bin/uname
+  -- CMAKE_VERBOSE_MAKEFILE=FALSE
+  -- CMAKE_VERSION=4.2.0
+  -- COMPILER_BASENAME=cc
+  -- COMPILER_SUPPORTS_HIDDEN_INLINE_VISIBILITY=1
+  -- COMPILER_SUPPORTS_HIDDEN_VISIBILITY=1
+  -- COMPILER_SUPPORTS_RDYNAMIC=1
+  -- CORTEXA8_FOUND=false
+  -- CORTEXA9_FOUND=false
+  -- CPUINFO=processor  : 0
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 0
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 0
+  initial apicid        : 0
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 1
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 1
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 1
+  initial apicid        : 1
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 2
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 2
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 2
+  initial apicid        : 2
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 3
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 3
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 3
+  initial apicid        : 3
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 4
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 4
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 4
+  initial apicid        : 4
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 5
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 5
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 5
+  initial apicid        : 5
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 6
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 6
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 6
+  initial apicid        : 6
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+
+  -- CPU_AARCH64=OFF
+  -- CPU_INTEL=ON
+  -- CPU_POWER=OFF
+  -- CXX_ARM_BF16_FLAGS=
+  -- CXX_ARM_BF16_FOUND=FALSE
+  -- CXX_AVX2_FLAGS=-mavx2 -mfma -mf16c
+  -- CXX_AVX2_FOUND=TRUE
+  -- CXX_AVX512_FLAGS=-mavx512f -mavx512dq -mavx512vl -mavx512bw -mfma
+  -- CXX_AVX512_FOUND=TRUE
+  -- CXX_AVX_FLAGS=-mavx
+  -- CXX_AVX_FOUND=TRUE
+  -- CXX_HAS_ARM_BF16=
+  -- CXX_HAS_AVX2_1=
+  -- CXX_HAS_AVX2_2=1
+  -- CXX_HAS_AVX512_1=
+  -- CXX_HAS_AVX512_2=1
+  -- CXX_HAS_AVX_1=
+  -- CXX_HAS_AVX_2=1
+  -- CXX_HAS_SVE256=
+  -- CXX_STANDARD_REQUIRED=ON
+  -- CXX_SVE256_FLAGS=
+  -- CXX_SVE256_FOUND=FALSE
+  -- CXX_SVE_FOUND=FALSE
+  -- C_AVX2_FLAGS=-mavx2 -mfma -mf16c
+  -- C_AVX2_FOUND=TRUE
+  -- C_AVX512_FLAGS=-mavx512f -mavx512dq -mavx512vl -mavx512bw -mfma
+  -- C_AVX512_FOUND=TRUE
+  -- C_AVX_FLAGS=-mavx
+  -- C_AVX_FOUND=TRUE
+  -- C_HAS_AVX2_1=
+  -- C_HAS_AVX2_2=1
+  -- C_HAS_AVX512_1=
+  -- C_HAS_AVX512_2=1
+  -- C_HAS_AVX_1=
+  -- C_HAS_AVX_2=1
+  -- Caffe2_CUDA_DEPENDENCY_LIBS=
+  -- Caffe2_DEPENDENCY_LIBS=
+  -- Caffe2_DEPENDENCY_WHOLE_LINK_LIBS=
+  -- Caffe2_MODULES=
+  -- Caffe2_PUBLIC_CUDA_DEPENDENCY_LIBS=
+  -- Caffe2_PUBLIC_DEPENDENCY_LIBS=
+  -- DEBUG_CUDA=OFF
+  -- ENV_LDFLAGS=
+  -- HAVE_SOVERSION=OFF
+  -- INSTALL_TEST=ON
+  -- INSTALL_TEST_AVAILABLE=1
+  -- INTERN_BUILD_ATEN_OPS=ON
+  -- LINUX=TRUE
+  -- MKLDNN_ENABLE_CONCURRENT_EXEC=ON
+  -- MSVC_CXX_ARCHITECTURE_ID=
+  -- MSVC_C_ARCHITECTURE_ID=
+  -- MSVC_Z7_OVERRIDE=OFF
+  -- MSVC_Z7_OVERRIDE_AVAILABLE=0
+  -- NEON_FOUND=false
+  -- NEON_THERE=processor       : 0
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 0
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 0
+  initial apicid        : 0
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 1
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 1
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 1
+  initial apicid        : 1
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 2
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 2
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 2
+  initial apicid        : 2
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 3
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 3
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 3
+  initial apicid        : 3
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 4
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 4
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 4
+  initial apicid        : 4
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 5
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 5
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 5
+  initial apicid        : 5
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 6
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 6
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 6
+  initial apicid        : 6
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+
+  -- NEON_TRUE=0
+  -- OMAP3_THERE=processor      : 0
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 0
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 0
+  initial apicid        : 0
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 1
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 1
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 1
+  initial apicid        : 1
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 2
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 2
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 2
+  initial apicid        : 2
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 3
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 3
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 3
+  initial apicid        : 3
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 4
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 4
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 4
+  initial apicid        : 4
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 5
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 5
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 5
+  initial apicid        : 5
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 6
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 6
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 6
+  initial apicid        : 6
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+
+  -- OMAP3_TRUE=0
+  -- OMAP4_THERE=processor      : 0
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 0
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 0
+  initial apicid        : 0
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 1
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 1
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 1
+  initial apicid        : 1
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 2
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 2
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 2
+  initial apicid        : 2
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 3
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 3
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 3
+  initial apicid        : 3
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 4
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 4
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 4
+  initial apicid        : 4
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 5
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 5
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 5
+  initial apicid        : 5
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 6
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 6
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 6
+  initial apicid        : 6
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+
+  -- OMAP4_TRUE=0
+  -- ONNX_ML=ON
+  -- ONNX_NAMESPACE=onnx_torch
+  -- PROJECT_BINARY_DIR=/home/user/pytorch/build
+  -- PROJECT_COMPAT_VERSION=
+  -- PROJECT_DESCRIPTION=
+  -- PROJECT_HOMEPAGE_URL=
+  -- PROJECT_IS_TOP_LEVEL=ON
+  -- PROJECT_NAME=Torch
+  -- PROJECT_SOURCE_DIR=/home/user/pytorch
+  -- PROJECT_SPDX_LICENSE=
+  -- Python_EXECUTABLE=/home/user/anaconda3/bin/python3.13
+  -- Python_NumPy_INCLUDE_DIR=/home/user/anaconda3/lib/python3.13/site-packages/numpy/_core/include
+  -- RUN_CONFIGURE=ON
+  -- SELECTED_OP_LIST=
+  -- STATIC_DISPATCH_BACKEND=OFF
+  -- SVE_CODE=
+        #include <arm_sve.h>
+        int main()
+        {
+          svfloat64_t a;
+          a = svdup_n_f64(0);
+          return 0;
+        }
+
+  -- SVE_FOUND=false
+  -- SVE_THERE=processor        : 0
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 0
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 0
+  initial apicid        : 0
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 1
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 1
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 1
+  initial apicid        : 1
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 2
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 2
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 2
+  initial apicid        : 2
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 3
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 3
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 3
+  initial apicid        : 3
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 4
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 4
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 4
+  initial apicid        : 4
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 5
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 5
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 5
+  initial apicid        : 5
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+  processor     : 6
+  vendor_id     : GenuineIntel
+  cpu family    : 6
+  model         : 45
+  model name    : Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+  stepping      : 7
+  microcode     : 0x71a
+  cpu MHz               : 2893.028
+  cache size    : 16384 KB
+  physical id   : 6
+  siblings      : 1
+  core id               : 0
+  cpu cores     : 1
+  apicid                : 6
+  initial apicid        : 6
+  fpu           : yes
+  fpu_exception : yes
+  cpuid level   : 13
+  wp            : yes
+  flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 cx16 pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx hypervisor lahf_lm cpuid_fault pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid tsc_adjust xsaveopt arat vnmi umip md_clear arch_capabilities
+  vmx flags     : vnmi preemption_timer invvpid ept_x_only ept_1gb flexpriority tsc_offset vtpr mtf vapic ept vpid unrestricted_guest shadow_vmcs
+  bugs          : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs mmio_unknown bhi ibpb_no_ret
+  bogomips      : 5786.05
+  clflush size  : 64
+  cache_alignment       : 64
+  address sizes : 46 bits physical, 48 bits virtual
+  power management:
+
+
+  -- SVE_TRUE=0
+  -- THREADS_PREFER_PTHREAD_FLAG=ON
+  -- TORCH_BUILD_VERSION=2.10.0a0
+  -- TORCH_DEFAULT_VERSION=2.10.0a0
+  -- TORCH_SOVERSION=2.10
+  -- TORCH_VERSION=2.10.0
+  -- TORCH_VERSION_MAJOR=2
+  -- TORCH_VERSION_MINOR=10
+  -- TORCH_VERSION_PATCH=0
+  -- TRACING_BASED=OFF
+  -- Torch_BINARY_DIR=/home/user/pytorch/build
+  -- Torch_COMPAT_VERSION=
+  -- Torch_DESCRIPTION=
+  -- Torch_HOMEPAGE_URL=
+  -- Torch_IS_TOP_LEVEL=ON
+  -- Torch_SOURCE_DIR=/home/user/pytorch
+  -- Torch_SPDX_LICENSE=
+  -- UNIX=1
+  -- USE_ASAN=OFF
+  -- USE_BLAS=ON
+  -- USE_C10D_GLOO=ON
+  -- USE_C10D_GLOO_AVAILABLE=1
+  -- USE_C10D_MPI=ON
+  -- USE_C10D_MPI_AVAILABLE=1
+  -- USE_C10D_NCCL=ON
+  -- USE_C10D_NCCL_AVAILABLE=1
+  -- USE_C10D_UCC=OFF
+  -- USE_C10D_UCC_AVAILABLE=0
+  -- USE_C10D_XCCL=ON
+  -- USE_C10D_XCCL_AVAILABLE=1
+  -- USE_CCACHE=ON
+  -- USE_CCACHE_AVAILABLE=1
+  -- USE_COLORIZE_OUTPUT=ON
+  -- USE_COREML_DELEGATE=OFF
+  -- USE_CPP_CODE_COVERAGE=OFF
+  -- USE_CUDA=0
+  -- USE_CUDNN=OFF
+  -- USE_CUDNN_AVAILABLE=0
+  -- USE_CUDSS=OFF
+  -- USE_CUDSS_AVAILABLE=0
+  -- USE_CUFILE=OFF
+  -- USE_CUFILE_AVAILABLE=0
+  -- USE_CUPTI_SO=ON
+  -- USE_CUSPARSELT=OFF
+  -- USE_CUSPARSELT_AVAILABLE=0
+  -- USE_DISTRIBUTED=ON
+  -- USE_EIGEN_SPARSE=OFF
+  -- USE_FBGEMM=ON
+  -- USE_GFLAGS=OFF
+  -- USE_GLOG=OFF
+  -- USE_GLOO=ON
+  -- USE_GLOO_AVAILABLE=1
+  -- USE_GLOO_IBVERBS=OFF
+  -- USE_GLOO_IBVERBS_AVAILABLE=1
+  -- USE_GLOO_WITH_OPENSSL=OFF
+  -- USE_GLOO_WITH_OPENSSL_AVAILABLE=1
+  -- USE_GOLD_LINKER=OFF
+  -- USE_ITT=ON
+  -- USE_ITT_AVAILABLE=1
+  -- USE_KINETO=ON
+  -- USE_KLEIDIAI=OFF
+  -- USE_KLEIDIAI_AVAILABLE=0
+  -- USE_LIGHTWEIGHT_DISPATCH=OFF
+  -- USE_LITE_AOTI=OFF
+  -- USE_LITE_AOTI_AVAILABLE=0
+  -- USE_LITE_INTERPRETER_PROFILER=ON
+  -- USE_LITE_PROTO=OFF
+  -- USE_LSAN=OFF
+  -- USE_MAGMA=ON
+  -- USE_MIMALLOC=OFF
+  -- USE_MIMALLOC_ON_MKL=OFF
+  -- USE_MKLDNN=ON
+  -- USE_MKLDNN_ACL=OFF
+  -- USE_MKLDNN_ACL_AVAILABLE=0
+  -- USE_MKLDNN_AVAILABLE=1
+  -- USE_MKLDNN_CBLAS=OFF
+  -- USE_MKLDNN_CBLAS_AVAILABLE=1
+  -- USE_MPI=ON
+  -- USE_MPI_AVAILABLE=1
+  -- USE_MPS=OFF
+  -- USE_MPS_AVAILABLE=0
+  -- USE_NATIVE_ARCH=OFF
+  -- USE_NCCL=ON
+  -- USE_NCCL_AVAILABLE=1
+  -- USE_NNAPI=OFF
+  -- USE_NNPACK=ON
+  -- USE_NUMA=ON
+  -- USE_NUMA_AVAILABLE=1
+  -- USE_NUMPY=True
+  -- USE_NVRTC=OFF
+  -- USE_NVRTC_AVAILABLE=0
+  -- USE_NVSHMEM=ON
+  -- USE_NVSHMEM_AVAILABLE=1
+  -- USE_OBSERVERS=OFF
+  -- USE_OPENCL=OFF
+  -- USE_OPENMP=ON
+  -- USE_PER_OPERATOR_HEADERS=ON
+  -- USE_PRECOMPILED_HEADERS=OFF
+  -- USE_PROF=OFF
+  -- USE_PYTORCH_METAL=OFF
+  -- USE_PYTORCH_METAL_EXPORT=OFF
+  -- USE_PYTORCH_QNNPACK=ON
+  -- USE_RCCL=ON
+  -- USE_RCCL_AVAILABLE=1
+  -- USE_ROCM=ON
+  -- USE_ROCM_AVAILABLE=1
+  -- USE_ROCM_CK_GEMM=ON
+  -- USE_ROCM_CK_GEMM_AVAILABLE=1
+  -- USE_ROCM_CK_SDPA=OFF
+  -- USE_ROCM_KERNEL_ASSERT=OFF
+  -- USE_SNPE=OFF
+  -- USE_SOURCE_DEBUG_ON_MOBILE=ON
+  -- USE_STATIC_CUDNN=OFF
+  -- USE_STATIC_CUDNN_AVAILABLE=0
+  -- USE_STATIC_MKL=OFF
+  -- USE_STATIC_NCCL=OFF
+  -- USE_STATIC_NCCL_AVAILABLE=1
+  -- USE_SYSTEM_BENCHMARK=OFF
+  -- USE_SYSTEM_CPUINFO=OFF
+  -- USE_SYSTEM_EIGEN_INSTALL=OFF
+  -- USE_SYSTEM_FP16=OFF
+  -- USE_SYSTEM_FXDIV=OFF
+  -- USE_SYSTEM_GLOO=OFF
+  -- USE_SYSTEM_LIBS=OFF
+  -- USE_SYSTEM_NCCL=OFF
+  -- USE_SYSTEM_NCCL_AVAILABLE=1
+  -- USE_SYSTEM_NVTX=OFF
+  -- USE_SYSTEM_ONNX=OFF
+  -- USE_SYSTEM_PSIMD=OFF
+  -- USE_SYSTEM_PTHREADPOOL=OFF
+  -- USE_SYSTEM_PYBIND11=OFF
+  -- USE_SYSTEM_SLEEF=OFF
+  -- USE_SYSTEM_UCC=OFF
+  -- USE_SYSTEM_UCC_AVAILABLE=0
+  -- USE_SYSTEM_XNNPACK=OFF
+  -- USE_TENSORPIPE=ON
+  -- USE_TENSORPIPE_AVAILABLE=1
+  -- USE_TSAN=OFF
+  -- USE_UCC=OFF
+  -- USE_UCC_AVAILABLE=1
+  -- USE_VALGRIND=ON
+  -- USE_VALGRIND_AVAILABLE=1
+  -- USE_VULKAN=OFF
+  -- USE_VULKAN_AVAILABLE=0
+  -- USE_VULKAN_FP16_INFERENCE=OFF
+  -- USE_VULKAN_RELAXED_PRECISION=OFF
+  -- USE_XCCL=ON
+  -- USE_XCCL_AVAILABLE=1
+  -- USE_XNNPACK=ON
+  -- USE_XPU=ON
+  -- WERROR=OFF
+  -- _CMAKE_CUDA_IMPLICIT_INCLUDE_DIRECTORIES_INIT=/usr/include
+  -- _CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES_INIT=/usr/include
+  -- _CMAKE_CXX_IPO_MAY_BE_SUPPORTED_BY_COMPILER=YES
+  -- _CMAKE_CXX_IPO_SUPPORTED_BY_CMAKE=YES
+  -- _CMAKE_CXX_PIE_MAY_BE_SUPPORTED_BY_LINKER=YES
+  -- _CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES_INIT=/usr/include
+  -- _CMAKE_C_IPO_MAY_BE_SUPPORTED_BY_COMPILER=YES
+  -- _CMAKE_C_IPO_SUPPORTED_BY_CMAKE=YES
+  -- _CMAKE_C_PIE_MAY_BE_SUPPORTED_BY_LINKER=YES
+  -- _CMAKE_INSTALL_DIR=/home/user/anaconda3/lib/python3.13/site-packages/cmake/data
+  -- _CMAKE_SYSTEM_PREFIX_PATH_INSTALL_PREFIX_COUNT=1
+  -- _CMAKE_SYSTEM_PREFIX_PATH_INSTALL_PREFIX_VALUE=/home/user/pytorch/torch
+  -- _CMAKE_SYSTEM_PREFIX_PATH_STAGING_PREFIX_COUNT=0
+  -- _CMAKE_SYSTEM_PREFIX_PATH_STAGING_PREFIX_VALUE=
+  -- _CMAKE_TOOLCHAIN_LOCATION=/usr/bin
+  -- _INCLUDED_FILE=/home/user/anaconda3/lib/python3.13/site-packages/cmake/data/share/cmake-4.2/Modules/Platform/Linker/Linux-GNU-C.cmake
+  -- _INCLUDED_SYSTEM_INFO_FILE=/home/user/anaconda3/lib/python3.13/site-packages/cmake/data/share/cmake-4.2/Modules/Platform/Linux.cmake
+  -- _IN_TC=0
+  -- _SET_CMAKE_CXX_COMPILER_SYSROOT=
+  -- _SET_CMAKE_C_COMPILER_SYSROOT=
+  -- __COMPILER_CMAKE_COMMON_COMPILER_MACROS=1
+  -- __COMPILER_GNU=1
+  -- __FLAG_I=3
+  -- __INCGUARD_52656cce39b0a7c8dcd4ec8b54f86c02__=ON
+  -- __INCGUARD_cb3764dcee12fd37cd44bbb62854a91b__=ON
+  -- __INCGUARD_d03e5db37569b57d9c06772e9f8ea35c__=ON
+  -- __LINUX_COMPILER_GNU=1
+  -- __UNIX_PATHS_INCLUDED=1
+  -- __gcc_hints=/usr/bin
+  -- __lto_flags=-flto=auto;-fno-fat-lto-objects
+  -- __pch_header_C=c-header
+  -- __pch_header_CXX=c++-header
+  -- __pch_header_OBJC=objective-c-header
+  -- __pch_header_OBJCXX=objective-c++-header
+  -- __version_x=11
+  -- __version_x_y=11.4
+  -- env_cxx_standard=-1
+  -- val=0
+  -- -----------------------
+  --
+  CMake Warning at cmake/Dependencies.cmake:90 (message):
+    Not compiling with XPU.  Could NOT find SYCL.  Suppress this warning with
+    -DUSE_XPU=OFF.
+  Call Stack (most recent call first):
+    CMakeLists.txt:524 (include)
+
+
+  -- Building using own protobuf under third_party per request.
+  -- Use custom protobuf build.
+  CMake Warning at cmake/ProtoBuf.cmake:37 (message):
+    Ancient protobuf forces CMake compatibility
+  Call Stack (most recent call first):
+    cmake/ProtoBuf.cmake:87 (custom_protobuf_find)
+    cmake/Dependencies.cmake:102 (include)
+    CMakeLists.txt:524 (include)
+
+
+  CMake Deprecation Warning at third_party/protobuf/cmake/CMakeLists.txt:2 (cmake_minimum_required):
+    Compatibility with CMake < 3.10 will be removed from a future version of
+    CMake.
+
+    Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+    to tell CMake that the project requires at least <min> but has been updated
+    to work with policies introduced by <max> or earlier.
+
+
+  --
+  -- 3.13.0.0
+  -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+  -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+  -- Found Threads: TRUE
+  -- Performing Test protobuf_HAVE_BUILTIN_ATOMICS
+  -- Performing Test protobuf_HAVE_BUILTIN_ATOMICS - Success
+  -- Caffe2 protobuf include directory: $<BUILD_INTERFACE:/home/user/pytorch/third_party/protobuf/src>$<INSTALL_INTERFACE:include>
+  -- Trying to find preferred BLAS backend of choice: MKL
+  -- MKL_THREADING = OMP
+  -- Looking for sys/types.h
+  -- Looking for sys/types.h - found
+  -- Looking for stdint.h
+  -- Looking for stdint.h - found
+  -- Looking for stddef.h
+  -- Looking for stddef.h - found
+  -- Check size of void*
+  -- Check size of void* - done
+  -- MKL_THREADING = OMP
+  -- Check OMP with lib /home/user/anaconda3/envs/torch-dev/lib/libgomp.so and flags -fopenmp -v
+  -- Check OMP with lib /home/user/anaconda3/envs/torch-dev/lib/libgomp.so and flags -fopenmp -v
+  CMake Warning (dev) at /home/user/anaconda3/lib/python3.13/site-packages/cmake/data/share/cmake-4.2/Modules/FindPackageHandleStandardArgs.cmake:493 (message):
+    The package name passed to find_package_handle_standard_args() (OpenMP_C)
+    does not match the name of the calling package (OpenMP).  This can lead to
+    problems in calling code that expects find_package() result variables
+    (e.g., `_FOUND`) to follow a certain pattern.
+  Call Stack (most recent call first):
+    cmake/Modules/FindOpenMP.cmake:635 (find_package_handle_standard_args)
+    cmake/Modules/FindMKL.cmake:257 (FIND_PACKAGE)
+    cmake/Modules/FindMKL.cmake:359 (CHECK_ALL_LIBRARIES)
+    cmake/Modules/FindOpenMP.cmake:259 (find_package)
+    cmake/Modules/FindOpenMP.cmake:551 (_OPENMP_GET_FLAGS)
+    cmake/Modules/FindMKL.cmake:257 (FIND_PACKAGE)
+    cmake/Modules/FindMKL.cmake:359 (CHECK_ALL_LIBRARIES)
+    cmake/Dependencies.cmake:201 (find_package)
+    CMakeLists.txt:524 (include)
+  This warning is for project developers.  Use -Wno-dev to suppress it.
+
+  CMake Warning (dev) at /home/user/anaconda3/lib/python3.13/site-packages/cmake/data/share/cmake-4.2/Modules/FindPackageHandleStandardArgs.cmake:493 (message):
+    The package name passed to find_package_handle_standard_args() (OpenMP_CXX)
+    does not match the name of the calling package (OpenMP).  This can lead to
+    problems in calling code that expects find_package() result variables
+    (e.g., `_FOUND`) to follow a certain pattern.
+  Call Stack (most recent call first):
+    cmake/Modules/FindOpenMP.cmake:635 (find_package_handle_standard_args)
+    cmake/Modules/FindMKL.cmake:257 (FIND_PACKAGE)
+    cmake/Modules/FindMKL.cmake:359 (CHECK_ALL_LIBRARIES)
+    cmake/Modules/FindOpenMP.cmake:259 (find_package)
+    cmake/Modules/FindOpenMP.cmake:551 (_OPENMP_GET_FLAGS)
+    cmake/Modules/FindMKL.cmake:257 (FIND_PACKAGE)
+    cmake/Modules/FindMKL.cmake:359 (CHECK_ALL_LIBRARIES)
+    cmake/Dependencies.cmake:201 (find_package)
+    CMakeLists.txt:524 (include)
+  This warning is for project developers.  Use -Wno-dev to suppress it.
+
+  -- Looking for cblas_sgemm
+  -- Looking for cblas_sgemm - found
+  -- Looking for cblas_gemm_bf16bf16f32
+  -- Looking for cblas_gemm_bf16bf16f32 - found
+  -- Looking for cblas_gemm_f16f16f32
+  -- Looking for cblas_gemm_f16f16f32 - not found
+  -- Check OMP with lib /home/user/anaconda3/envs/torch-dev/lib/libgomp.so and flags -fopenmp -v
+  CMake Warning (dev) at /home/user/anaconda3/lib/python3.13/site-packages/cmake/data/share/cmake-4.2/Modules/FindPackageHandleStandardArgs.cmake:493 (message):
+    The package name passed to find_package_handle_standard_args() (OpenMP_C)
+    does not match the name of the calling package (OpenMP).  This can lead to
+    problems in calling code that expects find_package() result variables
+    (e.g., `_FOUND`) to follow a certain pattern.
+  Call Stack (most recent call first):
+    cmake/Modules/FindOpenMP.cmake:635 (find_package_handle_standard_args)
+    cmake/Modules/FindMKL.cmake:257 (FIND_PACKAGE)
+    cmake/Modules/FindMKL.cmake:359 (CHECK_ALL_LIBRARIES)
+    cmake/Dependencies.cmake:201 (find_package)
+    CMakeLists.txt:524 (include)
+  This warning is for project developers.  Use -Wno-dev to suppress it.
+
+  CMake Warning (dev) at /home/user/anaconda3/lib/python3.13/site-packages/cmake/data/share/cmake-4.2/Modules/FindPackageHandleStandardArgs.cmake:493 (message):
+    The package name passed to find_package_handle_standard_args() (OpenMP_CXX)
+    does not match the name of the calling package (OpenMP).  This can lead to
+    problems in calling code that expects find_package() result variables
+    (e.g., `_FOUND`) to follow a certain pattern.
+  Call Stack (most recent call first):
+    cmake/Modules/FindOpenMP.cmake:635 (find_package_handle_standard_args)
+    cmake/Modules/FindMKL.cmake:257 (FIND_PACKAGE)
+    cmake/Modules/FindMKL.cmake:359 (CHECK_ALL_LIBRARIES)
+    cmake/Dependencies.cmake:201 (find_package)
+    CMakeLists.txt:524 (include)
+  This warning is for project developers.  Use -Wno-dev to suppress it.
+
+  -- MKL libraries: /home/user/anaconda3/lib/libmkl_intel_lp64.so;/home/user/anaconda3/lib/libmkl_gnu_thread.so;/home/user/anaconda3/lib/libmkl_core.so;-fopenmp;/usr/lib/x86_64-linux-gnu/libpthread.a;/usr/lib/x86_64-linux-gnu/libm.so;/usr/lib/x86_64-linux-gnu/libdl.a
+  -- MKL include directory: /home/user/anaconda3/include
+  -- MKL OpenMP type: GNU
+  -- MKL OpenMP library: -fopenmp
+  CMake Deprecation Warning at third_party/pthreadpool/CMakeLists.txt:1 (CMAKE_MINIMUM_REQUIRED):
+    Compatibility with CMake < 3.10 will be removed from a future version of
+    CMake.
+
+    Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+    to tell CMake that the project requires at least <min> but has been updated
+    to work with policies introduced by <max> or earlier.
+
+
+  CMake Deprecation Warning at third_party/FXdiv/CMakeLists.txt:1 (CMAKE_MINIMUM_REQUIRED):
+    Compatibility with CMake < 3.10 will be removed from a future version of
+    CMake.
+
+    Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+    to tell CMake that the project requires at least <min> but has been updated
+    to work with policies introduced by <max> or earlier.
+
+
+  CMake Deprecation Warning at third_party/cpuinfo/CMakeLists.txt:1 (CMAKE_MINIMUM_REQUIRED):
+    Compatibility with CMake < 3.10 will be removed from a future version of
+    CMake.
+
+    Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+    to tell CMake that the project requires at least <min> but has been updated
+    to work with policies introduced by <max> or earlier.
+
+
+  CMake Deprecation Warning at aten/src/ATen/native/quantized/cpu/qnnpack/CMakeLists.txt:7 (cmake_minimum_required):
+    Compatibility with CMake < 3.10 will be removed from a future version of
+    CMake.
+
+    Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+    to tell CMake that the project requires at least <min> but has been updated
+    to work with policies introduced by <max> or earlier.
+
+
+  -- The ASM compiler identification is GNU
+  -- Found assembler: /usr/bin/cc
+  CMake Warning at aten/src/ATen/native/quantized/cpu/qnnpack/CMakeLists.txt:399 (message):
+    Ancient psimd/FP16 forces CMake compatibility
+
+
+  CMake Deprecation Warning at third_party/psimd/CMakeLists.txt:1 (CMAKE_MINIMUM_REQUIRED):
+    Compatibility with CMake < 3.10 will be removed from a future version of
+    CMake.
+
+    Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+    to tell CMake that the project requires at least <min> but has been updated
+    to work with policies introduced by <max> or earlier.
+
+
+  CMake Deprecation Warning at third_party/FP16/CMakeLists.txt:1 (CMAKE_MINIMUM_REQUIRED):
+    Compatibility with CMake < 3.10 will be removed from a future version of
+    CMake.
+
+    Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+    to tell CMake that the project requires at least <min> but has been updated
+    to work with policies introduced by <max> or earlier.
+
+
+  -- Brace yourself, we are building NNPACK
+  CMake Warning at cmake/External/nnpack.cmake:66 (message):
+    Ancient nnpack forces CMake compatibility
+  Call Stack (most recent call first):
+    cmake/Dependencies.cmake:505 (include)
+    CMakeLists.txt:524 (include)
+
+
+  CMake Deprecation Warning at third_party/NNPACK/CMakeLists.txt:1 (CMAKE_MINIMUM_REQUIRED):
+    Compatibility with CMake < 3.10 will be removed from a future version of
+    CMake.
+
+    Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+    to tell CMake that the project requires at least <min> but has been updated
+    to work with policies introduced by <max> or earlier.
+
+
+  -- Performing Test NNPACK_ARCH_IS_X86_32
+  -- Performing Test NNPACK_ARCH_IS_X86_32 - Failed
+  CMake Warning (dev) at third_party/NNPACK/CMakeLists.txt:110 (FIND_PACKAGE):
+    Policy CMP0148 is not set: The FindPythonInterp and FindPythonLibs modules
+    are removed.  Run "cmake --help-policy CMP0148" for policy details.  Use
+    the cmake_policy command to set the policy and suppress this warning.
+
+  This warning is for project developers.  Use -Wno-dev to suppress it.
+
+  -- Found PythonInterp: /home/user/anaconda3/bin/python (found version "3.13.5")
+  -- NNPACK backend is x86-64
+  -- Downloading six (Python package) to /home/user/pytorch/build/confu-srcs/six (define PYTHON_SIX_SOURCE_DIR to avoid it)
+  CMake Error at CMakeLists.txt:1 (CMAKE_MINIMUM_REQUIRED):
+    Compatibility with CMake < 3.5 has been removed from CMake.
+
+    Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+    to tell CMake that the project requires at least <min> but has been updated
+    to work with policies introduced by <max> or earlier.
+
+    Or, add -DCMAKE_POLICY_VERSION_MINIMUM=3.5 to try configuring anyway.
+
+
+  -- Configuring incomplete, errors occurred!
+  Error: could not find CMAKE_PROJECT_NAME in Cache
+  -- Building for XNNPACK_TARGET_PROCESSOR: x86_64
+  -- Generating microkernels.cmake
+  No microkernel found in src/reference/unary-elementwise.cc
+  No microkernel found in src/reference/binary-elementwise.cc
+  No microkernel found in src/reference/packing.cc
+  Duplicate microkernel definition: src/qs8-qc4w-packw/gen/qs8-qc4w-packw-x8c8-gemm-goi-avxvnni.c and src/qs8-qc4w-packw/gen/qs8-qc4w-packw-x8c8-gemm-goi-scalar.c
+  Duplicate microkernel definition: src/qs8-qc4w-packw/gen/qs8-qc4w-packw-x8c8-gemm-goi-avxvnni.c and src/qs8-qc4w-packw/gen/qs8-qc4w-packw-x8c8-gemm-goi-avx256vnni.c (1th function)
+  -- Failed to find LLVM FileCheck
+  -- Found Git: /usr/bin/git (found version "2.34.1")
+  -- Google Benchmark version: v1.9.3, normalized to 1.9.3
+  -- Looking for shm_open in rt
+  -- Looking for shm_open in rt - found
+  -- Performing Test HAVE_CXX_FLAG_WALL
+  -- Performing Test HAVE_CXX_FLAG_WALL - Success
+  -- Performing Test HAVE_CXX_FLAG_WEXTRA
+  -- Performing Test HAVE_CXX_FLAG_WEXTRA - Success
+  -- Performing Test HAVE_CXX_FLAG_WSHADOW
+  -- Performing Test HAVE_CXX_FLAG_WSHADOW - Success
+  -- Performing Test HAVE_CXX_FLAG_WFLOAT_EQUAL
+  -- Performing Test HAVE_CXX_FLAG_WFLOAT_EQUAL - Success
+  -- Performing Test HAVE_CXX_FLAG_WOLD_STYLE_CAST
+  -- Performing Test HAVE_CXX_FLAG_WOLD_STYLE_CAST - Success
+  -- Performing Test HAVE_CXX_FLAG_WCONVERSION
+  -- Performing Test HAVE_CXX_FLAG_WCONVERSION - Success
+  -- Performing Test HAVE_CXX_FLAG_WERROR
+  -- Performing Test HAVE_CXX_FLAG_WERROR - Success
+  -- Performing Test HAVE_CXX_FLAG_WSUGGEST_OVERRIDE
+  -- Performing Test HAVE_CXX_FLAG_WSUGGEST_OVERRIDE - Success
+  -- Performing Test HAVE_CXX_FLAG_PEDANTIC
+  -- Performing Test HAVE_CXX_FLAG_PEDANTIC - Success
+  -- Performing Test HAVE_CXX_FLAG_PEDANTIC_ERRORS
+  -- Performing Test HAVE_CXX_FLAG_PEDANTIC_ERRORS - Success
+  -- Performing Test HAVE_CXX_FLAG_WSHORTEN_64_TO_32
+  -- Performing Test HAVE_CXX_FLAG_WSHORTEN_64_TO_32 - Failed
+  -- Performing Test HAVE_CXX_FLAG_FSTRICT_ALIASING
+  -- Performing Test HAVE_CXX_FLAG_FSTRICT_ALIASING - Success
+  -- Performing Test HAVE_CXX_FLAG_WNO_DEPRECATED_DECLARATIONS
+  -- Performing Test HAVE_CXX_FLAG_WNO_DEPRECATED_DECLARATIONS - Success
+  -- Performing Test HAVE_CXX_FLAG_WNO_DEPRECATED
+  -- Performing Test HAVE_CXX_FLAG_WNO_DEPRECATED - Success
+  -- Performing Test HAVE_CXX_FLAG_WSTRICT_ALIASING
+  -- Performing Test HAVE_CXX_FLAG_WSTRICT_ALIASING - Success
+  -- Performing Test HAVE_CXX_FLAG_WD654
+  -- Performing Test HAVE_CXX_FLAG_WD654 - Failed
+  -- Performing Test HAVE_CXX_FLAG_WTHREAD_SAFETY
+  -- Performing Test HAVE_CXX_FLAG_WTHREAD_SAFETY - Failed
+  -- Performing Test HAVE_CXX_FLAG_COVERAGE
+  -- Performing Test HAVE_CXX_FLAG_COVERAGE - Success
+  -- Compiling and running to test HAVE_STD_REGEX
+  -- Performing Test HAVE_STD_REGEX -- success
+  -- Compiling and running to test HAVE_GNU_POSIX_REGEX
+  -- Performing Test HAVE_GNU_POSIX_REGEX -- failed to compile
+  -- Compiling and running to test HAVE_POSIX_REGEX
+  -- Performing Test HAVE_POSIX_REGEX -- success
+  -- Compiling and running to test HAVE_STEADY_CLOCK
+  -- Performing Test HAVE_STEADY_CLOCK -- success
+  -- Compiling and running to test HAVE_PTHREAD_AFFINITY
+  -- Performing Test HAVE_PTHREAD_AFFINITY -- success
+
+
+  ================================================================================
+  Default C++ compiler flags
+  (values may be overridden by CMAKE_CXX_STANDARD and CXX_STANDARD):
+
+  CMAKE_CXX_FLAGS:  -fvisibility-inlines-hidden -DUSE_PTHREADPOOL
+
+  CMAKE_CXX_FLAGS_DEBUG: -g
+
+  CMAKE_CXX_FLAGS_RELEASE: -O3 -DNDEBUG
+  ================================================================================
+
+
+
+  ================================================================================
+  AVX2_FLAGS:
+
+  -mavx2
+  -mf16c
+  -mfma
+  -fopenmp
+  ================================================================================
+
+
+
+  ================================================================================
+  AVX512_FLAGS:
+
+  -mavx2
+  -mf16c
+  -mfma
+  -mavx512f
+  -mavx512bw
+  -mavx512dq
+  -mavx512vl
+  -fopenmp
+  ================================================================================
+
+  -- CXX_AVX_FLAGS: -mavx
+  -- CXX_AVX2_FLAGS: -mavx2 -mfma -mf16c
+  -- CXX_AVX512_FLAGS: -mavx512f -mavx512dq -mavx512vl -mavx512bw -mfma
+  -- Found Python: /home/user/anaconda3/bin/python3.13 (found version "3.13.5") found components: Interpreter
+  -- Performing Test COMPILER_SUPPORTS_SVE
+  -- Performing Test COMPILER_SUPPORTS_SVE - Failed
+  -- Performing Test COMPILER_SUPPORTS_SVE2
+  -- Performing Test COMPILER_SUPPORTS_SVE2 - Failed
+  -- Performing Test COMPILER_SUPPORTS_FP16FML
+  -- Performing Test COMPILER_SUPPORTS_FP16FML - Failed
+  -- Performing Test HAVE_GNU_F2H_IEEE
+  -- Performing Test HAVE_GNU_F2H_IEEE - Failed
+  CMake Warning (dev) at /home/user/anaconda3/lib/python3.13/site-packages/cmake/data/share/cmake-4.2/Modules/FindPackageHandleStandardArgs.cmake:493 (message):
+    The package name passed to find_package_handle_standard_args() (OpenMP_C)
+    does not match the name of the calling package (OpenMP).  This can lead to
+    problems in calling code that expects find_package() result variables
+    (e.g., `_FOUND`) to follow a certain pattern.
+  Call Stack (most recent call first):
+    cmake/Modules/FindOpenMP.cmake:635 (find_package_handle_standard_args)
+    third_party/fbgemm/CMakeLists.txt:132 (find_package)
+  This warning is for project developers.  Use -Wno-dev to suppress it.
+
+  -- Found OpenMP_C: -fopenmp
+  CMake Warning (dev) at /home/user/anaconda3/lib/python3.13/site-packages/cmake/data/share/cmake-4.2/Modules/FindPackageHandleStandardArgs.cmake:493 (message):
+    The package name passed to find_package_handle_standard_args() (OpenMP_CXX)
+    does not match the name of the calling package (OpenMP).  This can lead to
+    problems in calling code that expects find_package() result variables
+    (e.g., `_FOUND`) to follow a certain pattern.
+  Call Stack (most recent call first):
+    cmake/Modules/FindOpenMP.cmake:635 (find_package_handle_standard_args)
+    third_party/fbgemm/CMakeLists.txt:132 (find_package)
+  This warning is for project developers.  Use -Wno-dev to suppress it.
+
+  -- Found OpenMP_CXX: -fopenmp
+  -- Found OpenMP: TRUE
+  -- OpenMP found: OpenMP_C_INCLUDE_DIRS =
+
+
+  ================================================================================
+  CPP Library Target: fbgemm_generic (OBJECT)
+
+  SRCS:
+  src/EmbeddingSpMDM.cc
+  src/EmbeddingSpMDMNBit.cc
+  src/ExecuteKernel.cc
+  src/ExecuteKernelU8S8.cc
+  src/Fbgemm.cc
+  src/FbgemmBfloat16Convert.cc
+  src/FbgemmConv.cc
+  src/FbgemmFPCommon.cc
+  src/FbgemmFP16.cc
+  src/FbgemmFloat16Convert.cc
+  src/FbgemmI64.cc
+  src/FbgemmSparseDense.cc
+  src/FbgemmI8Spmdm.cc
+  src/FbgemmPackMatrixB.cc
+  src/GenerateKernelDirectConvU8S8S32ACC32.cc
+  src/GenerateKernel.cc
+  src/GenerateKernelU8S8S32ACC16.cc
+  src/GenerateKernelU8S8S32ACC16Avx512.cc
+  src/GenerateKernelU8S8S32ACC16Avx512VNNI.cc
+  src/GenerateKernelU8S8S32ACC32.cc
+  src/GenerateKernelU8S8S32ACC32Avx512VNNI.cc
+  src/GroupwiseConv.cc
+  src/GroupwiseConvAcc32Avx2.cc
+  src/GroupwiseConvAcc32Avx512.cc
+  src/PackAMatrix.cc
+  src/PackAWithIm2Col.cc
+  src/PackAWithQuantRowOffset.cc
+  src/PackAWithRowOffset.cc
+  src/PackBMatrix.cc
+  src/PackMatrix.cc
+  src/PackWeightMatrixForGConv.cc
+  src/PackWeightsForConv.cc
+  src/PackWeightsForDirectConv.cc
+  src/QuantUtils.cc
+  src/RowWiseSparseAdagradFused.cc
+  src/SparseAdagrad.cc
+  src/spmmUtils.cc
+  src/TransposeUtils.cc
+  src/GenerateI8Depthwise.cc
+  src/RefImplementations.cc
+  src/Utils.cc
+  src/fp32/FbgemmFP32.cc
+
+  CC_FLAGS:
+
+
+  MSVC_FLAGS:
+  /wd4717
+  /bigobj
+
+  DEFINITIONS:
+  FBGEMM_STATIC
+
+  ENABLE_IPO:
+
+
+  INCLUDE_DIRS:
+  $<BUILD_INTERFACE:/home/user/pytorch/third_party/fbgemm>
+  $<BUILD_INTERFACE:/home/user/pytorch/third_party/fbgemm/include>
+  $<BUILD_INTERFACE:/home/user/pytorch/third_party/fbgemm/bench>
+
+  Library Dependencies:
+  $<BUILD_INTERFACE:cpuinfo>
+  $<BUILD_INTERFACE:asmjit>
+
+  Output Library:
+  fbgemm_generic
+
+  Install Destination:
+  lib
+  ================================================================================
+
+  -- Processor is x86_64; will build AVX2 target
+
+
+  ================================================================================
+  CPP Library Target: fbgemm_avx2 (OBJECT)
+
+  SRCS:
+  src/EmbeddingSpMDMAvx2.cc
+  src/FbgemmBfloat16ConvertAvx2.cc
+  src/FbgemmFloat16ConvertAvx2.cc
+  src/FbgemmI8Depthwise3DAvx2.cc
+  src/FbgemmI8DepthwiseAvx2.cc
+  src/FbgemmI8DepthwisePerChannelQuantAvx2.cc
+  src/FbgemmSparseDenseAvx2.cc
+  src/FbgemmSparseDenseInt8Avx2.cc
+  src/OptimizedKernelsAvx2.cc
+  src/PackDepthwiseConvMatrixAvx2.cc
+  src/QuantUtilsAvx2.cc
+  src/spmmUtilsAvx2.cc
+  src/UtilsAvx2.cc
+  src/fp32/FbgemmFP32UKernelsAvx2.cc
+  src/FbgemmFP16UKernelsAvx2.cc
+
+  CC_FLAGS:
+  -m64
+  -mf16c
+  -mfma
+  -mavx2
+  -mfma
+  -mf16c
+
+  MSVC_FLAGS:
+  -mavx2
+  -mfma
+  -mf16c
+
+  DEFINITIONS:
+
+
+  ENABLE_IPO:
+
+
+  INCLUDE_DIRS:
+
+
+  Library Dependencies:
+  $<BUILD_INTERFACE:cpuinfo>
+  $<BUILD_INTERFACE:asmjit>
+  fbgemm_generic
+
+  Output Library:
+  fbgemm_avx2
+
+  Install Destination:
+  lib
+  ================================================================================
+
+  -- Processor is x86_64; will build AVX512 target
+
+
+  ================================================================================
+  CPP Library Target: fbgemm_avx512 (OBJECT)
+
+  SRCS:
+  src/FbgemmBfloat16ConvertAvx512.cc
+  src/EmbeddingSpMDMAvx512.cc
+  src/FbgemmFloat16ConvertAvx512.cc
+  src/FbgemmSparseDenseAvx512.cc
+  src/FbgemmSparseDenseInt8Avx512.cc
+  src/FbgemmSparseDenseVectorInt8Avx512.cc
+  src/QuantUtilsAvx512.cc
+  src/UtilsAvx512.cc
+  src/FbgemmFP16UKernelsAvx512.cc
+  src/FbgemmFP16UKernelsAvx512_256.cc
+  src/fp32/FbgemmFP32UKernelsAvx512.cc
+  src/fp32/FbgemmFP32UKernelsAvx512_256.cc
+
+  CC_FLAGS:
+  -m64
+  -mfma
+  -mavx512f
+  -mavx512dq
+  -mavx512vl
+  -mavx512bw
+  -mfma
+  -mavx2
+  -mfma
+  -mf16c
+
+  MSVC_FLAGS:
+  -mavx512f
+  -mavx512dq
+  -mavx512vl
+  -mavx512bw
+  -mfma
+  -mavx2
+  -mfma
+  -mf16c
+
+  DEFINITIONS:
+
+
+  ENABLE_IPO:
+
+
+  INCLUDE_DIRS:
+
+
+  Library Dependencies:
+  $<BUILD_INTERFACE:cpuinfo>
+  $<BUILD_INTERFACE:asmjit>
+  fbgemm_generic
+
+  Output Library:
+  fbgemm_avx512
+
+  Install Destination:
+  lib
+  ================================================================================
+
+  -- Processor is x86_64; will NOT build Neon target
+  -- Processor is x86_64; will NOT build SVE target
+  -- Will build autovec target
+
+
+  ================================================================================
+  CPP Library Target: fbgemm_autovec (OBJECT)
+
+  SRCS:
+  src/EmbeddingSpMDMAutovec.cc
+  src/EmbeddingStatsTracker.cc
+
+  CC_FLAGS:
+
+
+  MSVC_FLAGS:
+
+
+  DEFINITIONS:
+
+
+  ENABLE_IPO:
+  OFF
+
+  INCLUDE_DIRS:
+
+
+  Library Dependencies:
+  $<BUILD_INTERFACE:cpuinfo>
+  $<BUILD_INTERFACE:asmjit>
+  fbgemm_generic
+
+  Output Library:
+  fbgemm_autovec
+
+  Install Destination:
+  lib
+  ================================================================================
+
+
+
+  ================================================================================
+  CPP Library Target: fbgemm (STATIC)
+
+  SRCS:
+
+
+  CC_FLAGS:
+
+
+  MSVC_FLAGS:
+
+
+  DEFINITIONS:
+
+
+  ENABLE_IPO:
+
+
+  INCLUDE_DIRS:
+
+
+  Library Dependencies:
+  fbgemm_generic
+  fbgemm_avx2
+  fbgemm_avx512
+  fbgemm_autovec
+
+  Output Library:
+  fbgemm
+
+  Install Destination:
+  lib
+  ================================================================================
+
+  -- Performing Test __CxxFlag__fno_threadsafe_statics
+  -- Performing Test __CxxFlag__fno_threadsafe_statics - Success
+  -- Performing Test __CxxFlag__fno_semantic_interposition
+  -- Performing Test __CxxFlag__fno_semantic_interposition - Success
+  -- Performing Test __CxxFlag__fmerge_all_constants
+  -- Performing Test __CxxFlag__fmerge_all_constants - Success
+  -- Performing Test __CxxFlag__fno_enforce_eh_specs
+  -- Performing Test __CxxFlag__fno_enforce_eh_specs - Success
+  -- Dependency: adding libc (Linux, BSD, or other UNIX/POSIX environment)
+  -- Performing Test ASMJIT_LIBC_HAS_LIBPTHREAD
+  -- Performing Test ASMJIT_LIBC_HAS_LIBPTHREAD - Success
+  -- Dependency: libpthread provided by libc (not linking to libpthread)
+  -- Performing Test ASMJIT_LIBC_HAS_LIBRT
+  -- Performing Test ASMJIT_LIBC_HAS_LIBRT - Success
+  -- Dependency: shm_open provided by libc (not linking to librt)
+  ** AsmJit Summary **
+     ASMJIT_DIR=/home/user/pytorch/third_party/fbgemm/external/asmjit
+     ASMJIT_TEST=FALSE
+     ASMJIT_TARGET_TYPE=STATIC
+     ASMJIT_DEPS=c
+     ASMJIT_LIBS=asmjit;c
+     ASMJIT_CFLAGS=-DASMJIT_STATIC
+     ASMJIT_PRIVATE_CFLAGS=-Wall;-Wextra;-Wconversion;-fno-math-errno;-fno-threadsafe-statics;-fno-semantic-interposition;-DASMJIT_STATIC
+     ASMJIT_PRIVATE_CFLAGS_DBG=
+     ASMJIT_PRIVATE_CFLAGS_REL=-O2;-fmerge-all-constants;-fno-enforce-eh-specs
+  -- Performing Test HAS_WNO_UNUSED_BUT_SET_VARIABLE
+  -- Performing Test HAS_WNO_UNUSED_BUT_SET_VARIABLE - Success
+  -- Performing Test HAS_WNO_UNUSED_VARIABLE
+  -- Performing Test HAS_WNO_UNUSED_VARIABLE - Success
+  -- Could NOT find Numa (missing: Numa_INCLUDE_DIR Numa_LIBRARIES)
+  CMake Warning at cmake/Dependencies.cmake:716 (message):
+    Not compiling with NUMA.  Suppress this warning with -DUSE_NUMA=OFF
+  Call Stack (most recent call first):
+    CMakeLists.txt:524 (include)
+
+
+  CMake Deprecation Warning at third_party/ittapi/CMakeLists.txt:7 (cmake_minimum_required):
+    Compatibility with CMake < 3.10 will be removed from a future version of
+    CMake.
+
+    Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+    to tell CMake that the project requires at least <min> but has been updated
+    to work with policies introduced by <max> or earlier.
+
+
+  -- Using third party subdirectory Eigen.
+  -- Found Python: /home/user/anaconda3/bin/python3.13 (found version "3.13.5") found components: Interpreter Development.Module NumPy
+  -- Using third_party/pybind11.
+  -- pybind11 include dirs: /home/user/pytorch/cmake/../third_party/pybind11/include
+  -- Could NOT find OpenTelemetryApi (missing: OpenTelemetryApi_INCLUDE_DIRS)
+  -- Using third_party/opentelemetry-cpp.
+  -- opentelemetry api include dirs: /home/user/pytorch/cmake/../third_party/opentelemetry-cpp/api/include
+  -- Checking for module 'mpi-c'
+  --   No package 'mpi-c' found
+  -- Could NOT find MPI_C (missing: MPI_C_LIB_NAMES MPI_C_HEADER_DIR MPI_C_WORKS)
+  -- Checking for module 'mpi-cxx'
+  --   No package 'mpi-cxx' found
+  -- Could NOT find MPI_CXX (missing: MPI_CXX_LIB_NAMES MPI_CXX_HEADER_DIR MPI_CXX_WORKS)
+  -- Could NOT find MPI (missing: MPI_C_FOUND MPI_CXX_FOUND)
+  CMake Warning at cmake/Dependencies.cmake:897 (message):
+    Not compiling with MPI.  Suppress this warning with -DUSE_MPI=OFF
+  Call Stack (most recent call first):
+    CMakeLists.txt:524 (include)
+
+
+  -- Adding OpenMP CXX_FLAGS: -fopenmp
+  -- Will link against OpenMP libraries: /home/user/anaconda3/envs/torch-dev/lib/libgomp.so
+  -- Found nvtx3: /home/user/pytorch/third_party/NVTX/c/include
+  -- ROCM_PATH environment variable is not set and /opt/rocm does not exist.
+  Building without ROCm support.
+  CMake Warning at cmake/Dependencies.cmake:1089 (message):
+    Not using CUDA/ROCM, so disabling USE_NCCL.  Suppress this warning with
+    -DUSE_NCCL=OFF.
+  Call Stack (most recent call first):
+    CMakeLists.txt:524 (include)
+
+
+  CMake Warning at cmake/Dependencies.cmake:1108 (message):
+    Not using XPU, so disabling USE_XCCL.  Suppress this warning with
+    -DUSE_XCCL=OFF.
+  Call Stack (most recent call first):
+    CMakeLists.txt:524 (include)
+
+
+  -- Performing Test UV_LINT_W4
+  -- Performing Test UV_LINT_W4 - Failed
+  -- Performing Test UV_LINT_NO_UNUSED_PARAMETER_MSVC
+  -- Performing Test UV_LINT_NO_UNUSED_PARAMETER_MSVC - Failed
+  -- Performing Test UV_LINT_NO_CONDITIONAL_CONSTANT_MSVC
+  -- Performing Test UV_LINT_NO_CONDITIONAL_CONSTANT_MSVC - Failed
+  -- Performing Test UV_LINT_NO_NONSTANDARD_MSVC
+  -- Performing Test UV_LINT_NO_NONSTANDARD_MSVC - Failed
+  -- Performing Test UV_LINT_NO_NONSTANDARD_EMPTY_TU_MSVC
+  -- Performing Test UV_LINT_NO_NONSTANDARD_EMPTY_TU_MSVC - Failed
+  -- Performing Test UV_LINT_NO_NONSTANDARD_FILE_SCOPE_MSVC
+  -- Performing Test UV_LINT_NO_NONSTANDARD_FILE_SCOPE_MSVC - Failed
+  -- Performing Test UV_LINT_NO_NONSTANDARD_NONSTATIC_DLIMPORT_MSVC
+  -- Performing Test UV_LINT_NO_NONSTANDARD_NONSTATIC_DLIMPORT_MSVC - Failed
+  -- Performing Test UV_LINT_NO_HIDES_LOCAL
+  -- Performing Test UV_LINT_NO_HIDES_LOCAL - Failed
+  -- Performing Test UV_LINT_NO_HIDES_PARAM
+  -- Performing Test UV_LINT_NO_HIDES_PARAM - Failed
+  -- Performing Test UV_LINT_NO_HIDES_GLOBAL
+  -- Performing Test UV_LINT_NO_HIDES_GLOBAL - Failed
+  -- Performing Test UV_LINT_NO_CONDITIONAL_ASSIGNMENT_MSVC
+  -- Performing Test UV_LINT_NO_CONDITIONAL_ASSIGNMENT_MSVC - Failed
+  -- Performing Test UV_LINT_NO_UNSAFE_MSVC
+  -- Performing Test UV_LINT_NO_UNSAFE_MSVC - Failed
+  -- Performing Test UV_LINT_WALL
+  -- Performing Test UV_LINT_WALL - Success
+  -- Performing Test UV_LINT_NO_UNUSED_PARAMETER
+  -- Performing Test UV_LINT_NO_UNUSED_PARAMETER - Success
+  -- Performing Test UV_LINT_STRICT_PROTOTYPES
+  -- Performing Test UV_LINT_STRICT_PROTOTYPES - Success
+  -- Performing Test UV_LINT_EXTRA
+  -- Performing Test UV_LINT_EXTRA - Success
+  -- Performing Test UV_LINT_UTF8_MSVC
+  -- Performing Test UV_LINT_UTF8_MSVC - Failed
+  -- Performing Test UV_F_STRICT_ALIASING
+  -- Performing Test UV_F_STRICT_ALIASING - Success
+  -- summary of build options:
+      Install prefix:  /home/user/pytorch/torch
+      Target system:   Linux
+      Compiler:
+        C compiler:    /usr/bin/cc (GNU)
+        CFLAGS:
+
+  -- Found uv: 1.51.0 (found version "1.51.0")
+  -- Performing Test HAS_WNO_MISSING_TEMPLATE_ARG_LIST_AFTER_TEMPLATE_KW
+  -- Performing Test HAS_WNO_MISSING_TEMPLATE_ARG_LIST_AFTER_TEMPLATE_KW - Failed
+  -- Gloo build as SHARED library
+  -- Found Python3: /home/user/anaconda3/bin/python3.13 (found version "3.13.5") found components: Interpreter
+  -- ONNX_PROTOC_EXECUTABLE: $<TARGET_FILE:protobuf::protoc>
+  -- Protobuf_VERSION: Protobuf_VERSION_NOTFOUND
+  Generated: /home/user/pytorch/build/third_party/onnx/onnx/onnx_onnx_torch-ml.proto
+  Generated: /home/user/pytorch/build/third_party/onnx/onnx/onnx-operators_onnx_torch-ml.proto
+  Generated: /home/user/pytorch/build/third_party/onnx/onnx/onnx-data_onnx_torch.proto
+  --
+  -- ******** Summary ********
+  --   CMake version                     : 4.2.0
+  --   CMake command                     : /home/user/anaconda3/lib/python3.13/site-packages/cmake/data/bin/cmake
+  --   System                            : Linux
+  --   C++ compiler                      : /usr/bin/c++
+  --   C++ compiler version              : 11.4.0
+  --   CXX flags                         :  -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -Wnon-virtual-dtor
+  --   Build type                        : Release
+  --   Compile definitions               : ONNX_ML=1;ONNXIFI_ENABLE_EXT=1
+  --   CMAKE_PREFIX_PATH                 : /home/user/anaconda3/lib/python3.13/site-packages;/home/user/anaconda3/envs/torch-dev:/home/user/anaconda3:
+  --   CMAKE_INSTALL_PREFIX              : /home/user/pytorch/torch
+  --   CMAKE_MODULE_PATH                 : /home/user/pytorch/cmake/Modules
+  --
+  --   ONNX version                      : 1.18.0
+  --   ONNX NAMESPACE                    : onnx_torch
+  --   ONNX_USE_LITE_PROTO               : OFF
+  --   USE_PROTOBUF_SHARED_LIBS          : OFF
+  --   ONNX_DISABLE_EXCEPTIONS           : OFF
+  --   ONNX_DISABLE_STATIC_REGISTRATION  : OFF
+  --   ONNX_WERROR                       : OFF
+  --   ONNX_BUILD_TESTS                  : OFF
+  --   BUILD_SHARED_LIBS                 : OFF
+  --
+  --   Protobuf compiler                 : $<TARGET_FILE:protobuf::protoc>
+  --   Protobuf includes                 :
+  --   Protobuf libraries                :
+  --   ONNX_BUILD_PYTHON                 : OFF
+  -- Found CUDA with FP16 support, compiling with torch.cuda.HalfTensor
+  -- Adding -DNDEBUG to compile flags
+  CMake Warning at cmake/Dependencies.cmake:1421 (message):
+    Not compiling with MAGMA.  Suppress this warning with -DUSE_MAGMA=OFF.
+  Call Stack (most recent call first):
+    CMakeLists.txt:524 (include)
+
+
+  -- Could not find hardware support for NEON on this machine.
+  -- No OMAP3 processor on this machine.
+  -- No OMAP4 processor on this machine.
+  -- No SVE processor on this machine.
+  -- Looking for sbgemm_
+  -- Looking for sbgemm_ - not found
+  -- Found a library with LAPACK API (mkl).
+  disabling CUDA because NOT USE_CUDA is set
+  disabling ROCM because NOT USE_ROCM is set
+  -- MIOpen not found. Compiling without MIOpen support
+  -- Will build oneDNN Graph
+  -- Will build oneDNN UKERNEL
+  -- MKLDNN_CPU_RUNTIME = OMP
+  -- DNNL_TARGET_ARCH: X64
+  -- DNNL_LIBRARY_NAME: dnnl
+  CMake Warning (dev) at /home/user/anaconda3/lib/python3.13/site-packages/cmake/data/share/cmake-4.2/Modules/FindPackageHandleStandardArgs.cmake:493 (message):
+    The package name passed to find_package_handle_standard_args() (OpenMP_C)
+    does not match the name of the calling package (OpenMP).  This can lead to
+    problems in calling code that expects find_package() result variables
+    (e.g., `_FOUND`) to follow a certain pattern.
+  Call Stack (most recent call first):
+    cmake/Modules/FindOpenMP.cmake:635 (find_package_handle_standard_args)
+    third_party/ideep/mkl-dnn/cmake/OpenMP.cmake:41 (find_package)
+    third_party/ideep/mkl-dnn/CMakeLists.txt:89 (include)
+  This warning is for project developers.  Use -Wno-dev to suppress it.
+
+  -- Found OpenMP_C: -fopenmp
+  CMake Warning (dev) at /home/user/anaconda3/lib/python3.13/site-packages/cmake/data/share/cmake-4.2/Modules/FindPackageHandleStandardArgs.cmake:493 (message):
+    The package name passed to find_package_handle_standard_args() (OpenMP_CXX)
+    does not match the name of the calling package (OpenMP).  This can lead to
+    problems in calling code that expects find_package() result variables
+    (e.g., `_FOUND`) to follow a certain pattern.
+  Call Stack (most recent call first):
+    cmake/Modules/FindOpenMP.cmake:635 (find_package_handle_standard_args)
+    third_party/ideep/mkl-dnn/cmake/OpenMP.cmake:41 (find_package)
+    third_party/ideep/mkl-dnn/CMakeLists.txt:89 (include)
+  This warning is for project developers.  Use -Wno-dev to suppress it.
+
+  -- Found OpenMP_CXX: -fopenmp
+  -- Enabled testing coverage: CI
+  -- Enabled workload: TRAINING
+  -- Enabled primitives: ALL
+  -- Enabled primitive CPU ISA: ALL
+  -- Enabled primitive GPU ISA: ALL
+  -- Enabled GeMM kernels ISA: ALL
+  -- Primitive cache is enabled
+  -- Experimental functionality for ukernels is enabled
+  -- Graph component is enabled
+  -- Graph compiler backend is disabled.
+  -- Found MKL-DNN: TRUE
+  -- Looking for clock_gettime in rt
+  -- Looking for clock_gettime in rt - found
+  -- Looking for mmap
+  -- Looking for mmap - found
+  -- Looking for shm_open
+  -- Looking for shm_open - found
+  -- Looking for shm_unlink
+  -- Looking for shm_unlink - found
+  -- Looking for malloc_usable_size
+  -- Looking for malloc_usable_size - found
+  -- <FindZVECTOR>
+  -- Performing Test COMPILE_OUT_ZVECTOR
+  -- Performing Test COMPILE_OUT_ZVECTOR - Failed
+  -- ZVECTOR flags were NOT set.
+  -- </FindZVECTOR>
+  -- {fmt} version: 11.2.0
+  -- Build type: Release
+  -- Using CPU-only version of Kineto
+  -- Configuring Kineto dependency:
+  --   KINETO_SOURCE_DIR = /home/user/pytorch/third_party/kineto/libkineto
+  --   KINETO_BUILD_TESTS = OFF
+  --   KINETO_LIBRARY_TYPE = static
+  CMake Deprecation Warning at third_party/kineto/libkineto/CMakeLists.txt:7 (cmake_minimum_required):
+    Compatibility with CMake < 3.10 will be removed from a future version of
+    CMake.
+
+    Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+    to tell CMake that the project requires at least <min> but has been updated
+    to work with policies introduced by <max> or earlier.
+
+
+  CMake Warning (dev) at third_party/kineto/libkineto/CMakeLists.txt:15 (find_package):
+    Policy CMP0148 is not set: The FindPythonInterp and FindPythonLibs modules
+    are removed.  Run "cmake --help-policy CMP0148" for policy details.  Use
+    the cmake_policy command to set the policy and suppress this warning.
+
+  This warning is for project developers.  Use -Wno-dev to suppress it.
+
+  --  CUDA_SOURCE_DIR =
+  --  ROCM_SOURCE_DIR =
+  --  CUPTI unavailable or disabled - not building GPU profilers
+  -- Kineto: FMT_SOURCE_DIR = /home/user/pytorch/third_party/fmt
+  -- Kineto: FMT_INCLUDE_DIR = /home/user/pytorch/third_party/fmt/include
+  --  CUPTI_INCLUDE_DIR = /extras/CUPTI/include
+  --  ROCTRACER_INCLUDE_DIR = /include/roctracer
+  --  DYNOLOG_INCLUDE_DIR = /home/user/pytorch/third_party/kineto/libkineto/third_party/dynolog/
+--  IPCFABRIC_INCLUDE_DIR = /home/user/pytorch/third_party/kineto/libkineto/third_party/dynolog//dynolog/src/ipcfabric/
+-- Configured Kineto (CPU)
