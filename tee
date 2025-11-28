@@ -1,0 +1,5 @@
+Using pip 25.1 from /home/user/anaconda3/lib/python3.13/site-packages/pip (python 3.13)
+ERROR: Invalid requirement: '/tmp/build.txt': Expected package name at the start of dependency specifier
+    /tmp/build.txt
+    ^
+Hint: It looks like a path. The path does exist. 

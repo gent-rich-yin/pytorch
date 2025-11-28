@@ -1,6 +1,6 @@
 export USE_CUDA=0
 export USE_NINJA=0
-pip install --no-build-isolation -v -e . > /tmp/build.txt 2>&1
+pip install --no-build-isolation -v -e . > /tmp/build.txt 2>&1 &
 tail -f /tmp/build.txt
 
 mkdir build
