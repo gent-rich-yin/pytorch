@@ -117,7 +117,6 @@ def _get_package_path(package_name: str) -> Path:
 # Parameters parsed from environment
 ################################################################################
 
-VERBOSE_SCRIPT = str2bool(os.getenv("VERBOSE", "1"))
 RUN_BUILD_DEPS = True
 # see if the user passed a quiet flag to setup.py arguments and respect
 # that in our parts of the build
@@ -175,29 +174,15 @@ for i, arg in enumerate(sys.argv):
     if arg == "--":
         filtered_args += sys.argv[i:]
         break
-    if arg == "-q" or arg == "--quiet":
-        VERBOSE_SCRIPT = False
     if arg in ["clean", "dist_info", "egg_info", "sdist"]:
         RUN_BUILD_DEPS = False
     filtered_args.append(arg)
 sys.argv = filtered_args
 
-if VERBOSE_SCRIPT:
-
-    def report(
-        *args: Any, file: IO[str] = sys.stderr, flush: bool = True, **kwargs: Any
-    ) -> None:
-        print(*args, file=file, flush=flush, **kwargs)
-
-else:
-
-    def report(
-        *args: Any, file: IO[str] = sys.stderr, flush: bool = True, **kwargs: Any
-    ) -> None:
-        pass
-
-    # Make distutils respect --quiet too
-    setuptools.distutils.log.warn = report  # type: ignore[attr-defined]
+def report(
+    *args: Any, file: IO[str] = sys.stderr, flush: bool = True, **kwargs: Any
+) -> None:
+    print(*args, file=file, flush=flush, **kwargs)
 
 # Constant known variables used throughout this file
 TORCH_DIR = CWD / "torch"
