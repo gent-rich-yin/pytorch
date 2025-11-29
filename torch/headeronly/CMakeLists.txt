@@ -8,16 +8,17 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # Main build file for torch/headeronly, except there's no build cuz this lib is header-only!
 
 # ---[ Configure macro file.
-set(C10_USE_GFLAGS ${USE_GFLAGS}) # used in cmake_macros.h.in
-set(C10_USE_GLOG ${USE_GLOG}) # used in cmake_macros.h.in
-set(C10_BUILD_SHARED_LIBS ${BUILD_SHARED_LIBS}) # used in cmake_macros.h.in
-set(C10_USE_NUMA ${USE_NUMA}) # used in cmake_macros.h.in
-set(C10_USE_MSVC_STATIC_RUNTIME ${CAFFE2_USE_MSVC_STATIC_RUNTIME}) # used in cmake_macros.h.in
-set(C10_USE_ROCM_KERNEL_ASSERT ${USE_ROCM_KERNEL_ASSERT}) # used in cmake_macros.h.in
+set(C10_USE_GFLAGS ${USE_GFLAGS}) # used in cmake_macros.h.in  # OFF
+set(C10_USE_GLOG ${USE_GLOG}) # used in cmake_macros.h.in  # OFF
+set(C10_BUILD_SHARED_LIBS ${BUILD_SHARED_LIBS}) # used in cmake_macros.h.in  # ON
+set(C10_USE_NUMA ${USE_NUMA}) # used in cmake_macros.h.in  # ON
+set(C10_USE_MSVC_STATIC_RUNTIME ${CAFFE2_USE_MSVC_STATIC_RUNTIME}) # used in cmake_macros.h.in  # OFF
+set(C10_USE_ROCM_KERNEL_ASSERT ${USE_ROCM_KERNEL_ASSERT}) # used in cmake_macros.h.in  # OFF
 configure_file(
     ${CMAKE_CURRENT_LIST_DIR}/macros/cmake_macros.h.in
     ${CMAKE_BINARY_DIR}/torch/headeronly/macros/cmake_macros.h)
 
+# HEADERONLY_HEADERS contains ABSOLUTE path to matched files    
 file(GLOB HEADERONLY_HEADERS
     *.h
     core/**/*.h

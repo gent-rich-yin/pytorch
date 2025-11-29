@@ -16,14 +16,8 @@ project(Torch CXX C)
 set(LINUX TRUE)
 set(CMAKE_INSTALL_MESSAGE NEVER)
 
-set(CMAKE_CXX_STANDARD
-    17
-    CACHE STRING
-          "The C++ standard whose features are requested to build this target.")
-set(CMAKE_C_STANDARD
-    11
-    CACHE STRING
-          "The C standard whose features are requested to build this target.")
+set(CMAKE_CXX_STANDARD 17 CACHE STRING "The C++ standard whose features are requested to build this target.")
+set(CMAKE_C_STANDARD 11 CACHE STRING "The C standard whose features are requested to build this target.")
 
 include(cmake/public/utils.cmake)
 
@@ -54,7 +48,7 @@ option(BUILD_BINARY "Build C++ binaries" OFF)  # OFF
 option(BUILD_CUSTOM_PROTOBUF "Build and use Caffe2's own protobuf under third_party" ON)  # ON
 option(BUILD_PYTHON "Build Python binaries" ON)  # ON
 option(BUILD_LITE_INTERPRETER "Master flag to build Lite Interpreter" OFF)  # OFF
-option(BUILD_SHARED_LIBS "Build libcaffe2.so" ON)  # OFF
+option(BUILD_SHARED_LIBS "Build libcaffe2.so" ON)  # ON
 option(CAFFE2_LINK_LOCAL_PROTOBUF "If set, build protobuf inside libcaffe2.so." ON)  # ON
 option(CAFFE2_USE_MSVC_STATIC_RUNTIME "Using MSVC static runtime libraries" OFF)  # OFF
 option(BUILD_TEST "Build C++ test binaries (need gtest and gbenchmark)" OFF)  # ON
@@ -86,8 +80,8 @@ option(USE_CUFILE "Use cuFile" OFF)
 option(USE_FBGEMM "Use FBGEMM (quantized 8-bit server operators)" ON)
 option(USE_KINETO "Use Kineto profiling library" ON)
 option(USE_CUPTI_SO "Use CUPTI as a shared library" ON)
-option(USE_GFLAGS "Use GFLAGS" OFF)
-option(USE_GLOG "Use GLOG" OFF)
+option(USE_GFLAGS "Use GFLAGS" OFF)  # OFF
+option(USE_GLOG "Use GLOG" OFF)  # OFF
 option(USE_LITE_PROTO "Use lite protobuf instead of full." OFF)
 option(USE_MAGMA "Use MAGMA" ON)
 option(USE_PYTORCH_METAL "Use Metal for PyTorch iOS build" OFF)
@@ -103,7 +97,7 @@ option(USE_SYSTEM_NCCL "Use system-wide NCCL" OFF)
 option(USE_NVSHMEM "Use NVSHMEM" ON)
 option(USE_NNAPI "Use NNAPI" OFF)
 option(USE_NNPACK "Use NNPACK" ON)
-option(USE_NUMA "Use NUMA. Only available on Linux." ON)
+option(USE_NUMA "Use NUMA. Only available on Linux." ON)  # ON, Changed to OFF after Dependencies.cmake (find_package(Numa) returns not found)
 option(USE_NVRTC "Use NVRTC. Only available if USE_CUDA is on." OFF)
 option(USE_NUMPY "Use NumPy" ON)
 option(USE_OBSERVERS "Use observers module." OFF)
@@ -124,7 +118,7 @@ option(USE_VULKAN_FP16_INFERENCE "Vulkan - Use fp16 inference" OFF)
 option(USE_VULKAN_RELAXED_PRECISION "Vulkan - Use relaxed precision math in the kernels (mediump)" OFF)
 # option USE_XNNPACK: try to enable xnnpack by default.
 option(USE_XNNPACK "Use XNNPACK" ON)
-option(USE_ROCM_KERNEL_ASSERT "Use Kernel Assert for ROCm" OFF)
+option(USE_ROCM_KERNEL_ASSERT "Use Kernel Assert for ROCm" OFF)  # OFF
 # Ensure that an ITT build is the default for x86 CPUs
 option(USE_ITT "Use Intel(R) VTune Profiler ITT functionality" ON)
 # Ensure that an MKLDNN build is the default for x86 CPUs but optional for
