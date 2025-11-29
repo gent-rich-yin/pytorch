@@ -49,24 +49,24 @@ set(CPU_POWER OFF)
 # ---[ Options. Note to developers: if you add an option below, make sure you
 # also add it to cmake/Summary.cmake so that the summary prints out the option
 # values.
-option(ATEN_NO_TEST "Do not build ATen test binaries" OFF)
-option(BUILD_BINARY "Build C++ binaries" OFF)
-option(BUILD_CUSTOM_PROTOBUF "Build and use Caffe2's own protobuf under third_party" ON)
-option(BUILD_PYTHON "Build Python binaries" ON)
-option(BUILD_LITE_INTERPRETER "Master flag to build Lite Interpreter" OFF)
-option(BUILD_SHARED_LIBS "Build libcaffe2.so" ON)
-option(CAFFE2_LINK_LOCAL_PROTOBUF "If set, build protobuf inside libcaffe2.so." ON)
-option(CAFFE2_USE_MSVC_STATIC_RUNTIME "Using MSVC static runtime libraries" OFF)
-option(BUILD_TEST "Build C++ test binaries (need gtest and gbenchmark)" OFF)
-option(BUILD_AOT_INDUCTOR_TEST "Build C++ test binaries for aot-inductor" OFF)
-option(BUILD_STATIC_RUNTIME_BENCHMARK "Build C++ binaries for static runtime benchmarks (need gbenchmark)" OFF)
-option(BUILD_MOBILE_BENCHMARK "Build C++ test binaries for mobile (ARM) targets(need gtest and gbenchmark)" OFF)
-option(BUILD_MOBILE_TEST "Build C++ test binaries for mobile (ARM) targets(need gtest and gbenchmark)" OFF)
-option(BUILD_JNI "Build JNI bindings" OFF)
-option(BUILD_MOBILE_AUTOGRAD "Build autograd function in mobile build (in development)" OFF)
-option(INSTALL_TEST "Install test binaries if BUILD_TEST is on" ON)
-option(USE_CPP_CODE_COVERAGE "Compile C/C++ with code coverage flags" OFF)
-option(USE_COLORIZE_OUTPUT "Colorize output during compilation" ON)
+option(ATEN_NO_TEST "Do not build ATen test binaries" OFF)  # OFF
+option(BUILD_BINARY "Build C++ binaries" OFF)  # OFF
+option(BUILD_CUSTOM_PROTOBUF "Build and use Caffe2's own protobuf under third_party" ON)  # ON
+option(BUILD_PYTHON "Build Python binaries" ON)  # ON
+option(BUILD_LITE_INTERPRETER "Master flag to build Lite Interpreter" OFF)  # OFF
+option(BUILD_SHARED_LIBS "Build libcaffe2.so" ON)  # OFF
+option(CAFFE2_LINK_LOCAL_PROTOBUF "If set, build protobuf inside libcaffe2.so." ON)  # ON
+option(CAFFE2_USE_MSVC_STATIC_RUNTIME "Using MSVC static runtime libraries" OFF)  # OFF
+option(BUILD_TEST "Build C++ test binaries (need gtest and gbenchmark)" OFF)  # ON
+option(BUILD_AOT_INDUCTOR_TEST "Build C++ test binaries for aot-inductor" OFF)  # OFF
+option(BUILD_STATIC_RUNTIME_BENCHMARK "Build C++ binaries for static runtime benchmarks (need gbenchmark)" OFF)  # OFF
+option(BUILD_MOBILE_BENCHMARK "Build C++ test binaries for mobile (ARM) targets(need gtest and gbenchmark)" OFF)  # OFF
+option(BUILD_MOBILE_TEST "Build C++ test binaries for mobile (ARM) targets(need gtest and gbenchmark)" OFF)  # OFF
+option(BUILD_JNI "Build JNI bindings" OFF)  # OFF
+option(BUILD_MOBILE_AUTOGRAD "Build autograd function in mobile build (in development)" OFF)  # OFF
+option(INSTALL_TEST "Install test binaries if BUILD_TEST is on" ON)  # ON
+option(USE_CPP_CODE_COVERAGE "Compile C/C++ with code coverage flags" OFF)  # OFF
+option(USE_COLORIZE_OUTPUT "Colorize output during compilation" ON)  # OFF
 option(USE_ASAN "Use Address+Undefined Sanitizers" OFF)
 option(USE_LSAN "Use Leak Sanitizer" OFF)
 option(USE_TSAN "Use Thread Sanitizer" OFF)
