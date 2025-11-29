@@ -5,15 +5,11 @@ import sys
 
 import filecmp
 import glob
-import importlib
 import itertools
 import json
 import shutil
 import subprocess
 import sysconfig
-import tempfile
-import time
-import zipfile
 from collections import defaultdict
 from pathlib import Path
 from typing import Any, ClassVar, IO
@@ -42,18 +38,9 @@ os.environ["PYTHONPATH"] = os.pathsep.join(
     ]
 ).rstrip(os.pathsep)
 
-from tools.build_pytorch_libs import build_pytorch
-from tools.generate_torch_version import get_torch_version
 from tools.setup_helpers.cmake import CMake, CMakeValue
-from tools.setup_helpers.env import (
-    BUILD_DIR,
-    build_type,
-    IS_DARWIN,
-    IS_LINUX,
-    IS_WINDOWS,
-)
 
-
+BUILD_DIR = "build"
 RUN_BUILD_DEPS = True
 RERUN_CMAKE = False
 CMAKE_ONLY = False
@@ -167,11 +154,10 @@ def build_deps() -> None:
     report(f"-- Building version {TORCH_VERSION}")
 
     checkout_nccl()
-    my_env = os.environ.copy()
-    cmake.generate(TORCH_VERSION, CMAKE_PYTHON_LIBRARY.as_posix(), True, True, my_env, RERUN_CMAKE)
+    cmake.generate(TORCH_VERSION, True, True, RERUN_CMAKE)
     if CMAKE_ONLY:
         return
-    cmake.build(my_env)
+    cmake.build()
 
     if CMAKE_ONLY:
         report(
@@ -352,13 +338,10 @@ class build_ext(setuptools.command.build_ext.build_ext):
         else:
             report("-- Not using NCCL")
         if cmake_cache_vars["USE_DISTRIBUTED"]:
-            if IS_WINDOWS:
-                report("-- Building without distributed package")
-            else:
-                report("-- Building with distributed package: ")
-                report(f"  -- USE_TENSORPIPE={cmake_cache_vars['USE_TENSORPIPE']}")
-                report(f"  -- USE_GLOO={cmake_cache_vars['USE_GLOO']}")
-                report(f"  -- USE_MPI={cmake_cache_vars['USE_OPENMPI']}")
+            report("-- Building with distributed package: ")
+            report(f"  -- USE_TENSORPIPE={cmake_cache_vars['USE_TENSORPIPE']}")
+            report(f"  -- USE_GLOO={cmake_cache_vars['USE_GLOO']}")
+            report(f"  -- USE_MPI={cmake_cache_vars['USE_OPENMPI']}")
         else:
             report("-- Building without distributed package")
         if cmake_cache_vars["STATIC_DISPATCH_BACKEND"]:
@@ -546,28 +529,19 @@ def configure_extension_build() -> tuple[
     library_dirs: list[str] = [str(TORCH_LIB_DIR)]
     extra_install_requires: list[str] = []
 
-    if IS_WINDOWS:
-        # /NODEFAULTLIB makes sure we only link to DLL runtime
-        # and matches the flags set for protobuf and ONNX
-        extra_link_args: list[str] = ["/NODEFAULTLIB:LIBCMT.LIB"]
-        # /MD links against DLL runtime
-        # and matches the flags set for protobuf and ONNX
-        # /EHsc is about standard C++ exception handling
-        extra_compile_args: list[str] = ["/MD", "/FS", "/EHsc"]
-    else:
-        extra_link_args = []
-        extra_compile_args = [
-            "-Wall",
-            "-Wextra",
-            "-Wno-strict-overflow",
-            "-Wno-unused-parameter",
-            "-Wno-missing-field-initializers",
-            "-Wno-unknown-pragmas",
-            # Python 2.6 requires -fno-strict-aliasing, see
-            # http://legacy.python.org/dev/peps/pep-3123/
-            # We also depend on it in our code (even Python 3).
-            "-fno-strict-aliasing",
-        ]
+    extra_link_args = []
+    extra_compile_args = [
+        "-Wall",
+        "-Wextra",
+        "-Wno-strict-overflow",
+        "-Wno-unused-parameter",
+        "-Wno-missing-field-initializers",
+        "-Wno-unknown-pragmas",
+        # Python 2.6 requires -fno-strict-aliasing, see
+        # http://legacy.python.org/dev/peps/pep-3123/
+        # We also depend on it in our code (even Python 3).
+        "-fno-strict-aliasing",
+    ]
 
     main_compile_args: list[str] = []
     main_libraries: list[str] = ["torch_python"]
