@@ -336,80 +336,51 @@ endmacro()
 # Add standard compile options.
 # Usage:
 #   torch_compile_options(lib_name)
+# Effectively set compile options for ${libname} to (GNU compiler, USE_CUDA=0, WERROR=0):
+    # -Wall
+    # -Wextra
+    # -Wdeprecated
+    # -Wunused
+    # -Wno-unused-parameter
+    # -Wno-missing-field-initializers
+    # -Wno-array-bounds
+    # -Wno-unknown-pragmas
+    # -Wno-strict-overflow
+    # -Wno-strict-aliasing
+    # -Wredundant-move
+    # -fvisibility=hidden>
+    # -O2
 function(torch_compile_options libname)
   set_property(TARGET ${libname} PROPERTY CXX_STANDARD 17)
 
-  # until they can be unified, keep these lists synced with setup.py
-  if(MSVC)
+  set(private_compile_options
+    -Wall
+    -Wextra
+    -Wdeprecated
+    -Wunused
+    -Wno-unused-parameter
+    -Wno-missing-field-initializers
+    -Wno-array-bounds
+    -Wno-unknown-pragmas
+    -Wno-strict-overflow
+    -Wno-strict-aliasing
+    -Wredundant-move
+    )
 
-    if(MSVC_Z7_OVERRIDE)
-      set(MSVC_DEBINFO_OPTION "/Z7")
-    else()
-      set(MSVC_DEBINFO_OPTION "/Zi")
-    endif()
-
-    if(${MSVC_TOOLSET_VERSION} GREATER_EQUAL 142)
-      # Add /permissive- flag for conformance mode to the compiler.
-      # This will force more strict check to the code standard.
-      # 1. From MS official doc: https://learn.microsoft.com/en-us/cpp/build/reference/permissive-standards-conformance?view=msvc-170#remarks
-      #    By default, the /permissive- option is set in new projects created by Visual Studio 2017 version 15.5 and later versions.
-      #    We set the /permissive- flag from VS 2019 (MSVC_TOOLSET_VERSION 142) to avoid compiling issues for old toolkit.
-      # 2. For MSVC VERSION: https://cmake.org/cmake/help/latest/variable/MSVC_TOOLSET_VERSION.html
-      target_compile_options(${libname} PUBLIC $<$<COMPILE_LANGUAGE:CXX>:/permissive->)
-    endif()
-    # This option enables a token-based preprocessor that conforms to C99 and C++11 and later standards.
-    # This option is available since VS 2017.
-    # For MS official doc: https://learn.microsoft.com/en-us/cpp/build/reference/zc-preprocessor
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Zc:preprocessor" PARENT_SCOPE)
-
-    target_compile_options(${libname} PUBLIC
-      $<$<COMPILE_LANGUAGE:CXX>:
-        ${MSVC_RUNTIME_LIBRARY_OPTION}
-        $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:${MSVC_DEBINFO_OPTION}>
-        /EHsc
-        /bigobj>
-      )
-  else()
-    set(private_compile_options
-      -Wall
-      -Wextra
-      -Wdeprecated
-      -Wunused
-      -Wno-unused-parameter
-      -Wno-missing-field-initializers
-      -Wno-array-bounds
-      -Wno-unknown-pragmas
-      -Wno-strict-overflow
-      -Wno-strict-aliasing
-      )
+  if(WERROR)
+    list(APPEND private_compile_options
+      -Werror
+      -Werror=ignored-attributes
+      -Werror=inconsistent-missing-override
+      -Werror=inconsistent-missing-destructor-override
+      -Werror=pedantic
+      -Werror=unused
+      -Wno-error=unused-parameter
+    )
     if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-      list(APPEND private_compile_options -Wredundant-move)
-    endif()
-    if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-      list(APPEND private_compile_options -Wextra-semi -Wmove)
-    else()
-      list(APPEND private_compile_options
-        # Considered to be flaky.  See the discussion at
-        # https://github.com/pytorch/pytorch/pull/9608
-        -Wno-maybe-uninitialized)
-    endif()
-
-    if(WERROR)
-      list(APPEND private_compile_options
-        -Werror
-        -Werror=ignored-attributes
-        -Werror=inconsistent-missing-override
-        -Werror=inconsistent-missing-destructor-override
-        -Werror=pedantic
-        -Werror=unused
-        -Wno-error=unused-parameter
-      )
-      if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-        list(APPEND private_compile_options -Werror=unused-but-set-variable)
-      endif()
+      list(APPEND private_compile_options -Werror=unused-but-set-variable)
     endif()
   endif()
-
 
   target_compile_options(${libname} PRIVATE
       $<$<COMPILE_LANGUAGE:CXX>:${private_compile_options}>)

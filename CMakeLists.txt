@@ -65,9 +65,9 @@ option(USE_ASAN "Use Address+Undefined Sanitizers" OFF)
 option(USE_LSAN "Use Leak Sanitizer" OFF)
 option(USE_TSAN "Use Thread Sanitizer" OFF)
 option(USE_CUDA "Use CUDA" ON)
-option(USE_XPU "Use XPU" ON)
+option(USE_XPU "Use XPU" ON)    # ON, set to OFF after Depenedencies.cmake
 option(BUILD_LAZY_CUDA_LINALG "Build cuda linalg ops as separate library" OFF)
-option(USE_ROCM "Use ROCm" ON)
+option(USE_ROCM "Use ROCm" ON)  # ON, set to OFF after Depenedencies.cmake
 option(USE_ROCM_CK_GEMM "Use ROCm Composable Kernel for GEMMs" ON)
 option(USE_ROCM_CK_SDPA "Use ROCm Composable Kernel for SDPA" OFF)
 option(CAFFE2_STATIC_LINK_CUDA "Statically link CUDA libraries" OFF)
@@ -141,11 +141,11 @@ option(USE_C10D_XCCL "USE C10D XCCL" ON)
 option(USE_C10D_MPI "USE C10D MPI" ON)
 option(USE_TENSORPIPE "Use TensorPipe. Only available if USE_DISTRIBUTED is on." ON)
 option(ONNX_ML "Enable traditional ONNX ML API." ON)
-option(HAVE_SOVERSION "Whether to add SOVERSION to the shared objects" OFF)
+option(HAVE_SOVERSION "Whether to add SOVERSION to the shared objects" OFF)   # OFF, used in c10 CMakeLists.txt
 option(BUILD_LIBTORCH_CPU_WITH_DEBUG
        "Enable RelWithDebInfo for libtorch_cpu target only" OFF)
 option(USE_CCACHE "Attempt using CCache to wrap the compilation" ON)
-option(WERROR "Build with -Werror supported by the compiler" OFF)
+option(WERROR "Build with -Werror supported by the compiler" OFF)   # OFF
 option(DEBUG_CUDA "When compiling DEBUG, also attempt to compile CUDA with debug flags (may cause nvcc to OOM)" OFF)
 option(USE_COREML_DELEGATE "Use the CoreML backend through delegate APIs" OFF)
 option(USE_PER_OPERATOR_HEADERS "Whether ATen should generate separate headers for each operator" ON)

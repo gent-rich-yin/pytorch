@@ -12,22 +12,24 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # protobuf header files, because protobuf header files will transitively force
 # one to link against a specific protobuf version.
 
-if(BUILD_LIBTORCHLESS)
+if(BUILD_LIBTORCHLESS)  # OFF
   find_library(C10_LIB c10 PATHS $ENV{LIBTORCH_LIB_PATH} NO_DEFAULT_PATH)
 else()
   set(C10_LIB c10)
 endif()
 
-set(C10_USE_GFLAGS ${USE_GFLAGS})  # also used in torch/headeronly
-set(C10_USE_GLOG ${USE_GLOG})  # also used in torch/headeronly
-set(C10_BUILD_SHARED_LIBS ${BUILD_SHARED_LIBS})  # also used in torch/headeronly
-set(C10_USE_NUMA ${USE_NUMA})  # also used in torch/headeronly
-set(C10_USE_MSVC_STATIC_RUNTIME ${CAFFE2_USE_MSVC_STATIC_RUNTIME})  # also used in torch/headeronly
-set(C10_USE_ROCM_KERNEL_ASSERT ${USE_ROCM_KERNEL_ASSERT})  # also used in torch/headeronly
+set(C10_USE_GFLAGS ${USE_GFLAGS})  # also used in torch/headeronly  # OFF
+set(C10_USE_GLOG ${USE_GLOG})  # also used in torch/headeronly  # OFF
+set(C10_BUILD_SHARED_LIBS ${BUILD_SHARED_LIBS})  # also used in torch/headeronly  # ON
+set(C10_USE_NUMA ${USE_NUMA})  # also used in torch/headeronly  # OFF
+set(C10_USE_MSVC_STATIC_RUNTIME ${CAFFE2_USE_MSVC_STATIC_RUNTIME})  # also used in torch/headeronly  # OFF
+set(C10_USE_ROCM_KERNEL_ASSERT ${USE_ROCM_KERNEL_ASSERT})  # also used in torch/headeronly  # OFF
 
   # Note: if you want to add ANY dependency to the c10 library, make sure you
   # check with the core PyTorch developers as the dependency will be
   # transitively passed on to all libraries dependent on PyTorch.
+  # Note by Richard: these folders are not included:
+  # benchmark, cuda, hip, metal, test, xpu
   file(GLOB C10_SRCS
           *.cpp
           core/*.cpp
@@ -44,22 +46,22 @@ set(C10_USE_ROCM_KERNEL_ASSERT ${USE_ROCM_KERNEL_ASSERT})  # also used in torch/
           macros/*.h
           util/*.h
         )
-if(NOT BUILD_LIBTORCHLESS)
+if(NOT BUILD_LIBTORCHLESS)  # NOT OFF => ON
   add_library(c10 ${C10_SRCS} ${C10_HEADERS})
-  torch_compile_options(c10)
-  if(HAVE_SOVERSION)
+  torch_compile_options(c10)  # torch_compile_options is defined in <CMake_SOURCE_DIR>/cmake/public/utils.cmake
+  if(HAVE_SOVERSION)  # OFF
     set_target_properties(c10 PROPERTIES
         VERSION ${TORCH_VERSION} SOVERSION ${TORCH_SOVERSION})
   endif()
   # If building shared library, set dllimport/dllexport proper.
   target_compile_options(c10 PRIVATE "-DC10_BUILD_MAIN_LIB")
   # Enable hidden visibility if compiler supports it.
-  if(${COMPILER_SUPPORTS_HIDDEN_VISIBILITY})
-    target_compile_options(c10 PRIVATE "-fvisibility=hidden")
+  if(${COMPILER_SUPPORTS_HIDDEN_VISIBILITY})  # ON, from cmake
+    target_compile_options(c10 PRIVATE "-fvisibility=hidden")  # already set in torch_compile_options(c10) above
   endif()
 
-  option(C10_USE_IWYU "Use include-what-you-use to clean up header inclusion" OFF)
-  if(C10_USE_IWYU)
+  option(C10_USE_IWYU "Use include-what-you-use to clean up header inclusion" OFF)  # OFF
+  if(C10_USE_IWYU)  # OFF
     find_program(iwyu NAMES include-what-you-use)
     if(iwyu)
       set(iwyu_cmd
@@ -77,17 +79,17 @@ if(NOT BUILD_LIBTORCHLESS)
     endif()
   endif()
 
-  if(WERROR)
+  if(WERROR)  # OFF
     target_compile_options_if_supported(c10 PRIVATE "-Werror=sign-compare")
     target_compile_options_if_supported(c10 PRIVATE "-Werror=shadow")
   endif()
 
   # ---[ Dependency of c10
-  if(C10_USE_GFLAGS)
+  if(C10_USE_GFLAGS)  # OFF
     target_link_libraries(c10 PUBLIC gflags)
   endif()
 
-  if(C10_USE_GLOG)
+  if(C10_USE_GLOG)  # OFF
     target_link_libraries(c10 PUBLIC glog::glog)
   endif()
 
@@ -96,7 +98,7 @@ if(NOT BUILD_LIBTORCHLESS)
   target_link_libraries(c10 PRIVATE nlohmann)
   target_link_libraries(c10 PRIVATE moodycamel)
 
-  if(C10_USE_NUMA)
+  if(C10_USE_NUMA)  # OFF
     message(STATUS "NUMA paths:")
     message(STATUS ${Numa_INCLUDE_DIR})
     message(STATUS ${Numa_LIBRARIES})
@@ -106,12 +108,12 @@ if(NOT BUILD_LIBTORCHLESS)
     message(STATUS "don't use NUMA")
   endif()
 
-  if(NOT CMAKE_SYSTEM_PROCESSOR MATCHES "s390x" AND NOT CMAKE_SYSTEM_PROCESSOR MATCHES "ppc64le")
+  if(NOT CMAKE_SYSTEM_PROCESSOR MATCHES "s390x" AND NOT CMAKE_SYSTEM_PROCESSOR MATCHES "ppc64le")  # NOT OFF AND NOT OFF => ON
     target_link_libraries(c10 PRIVATE cpuinfo)
   endif()
 
-  find_package(Backtrace)
-  if(Backtrace_FOUND)
+  find_package(Backtrace)  # Backtrace_FOUND: ON
+  if(Backtrace_FOUND)      # ON
     target_include_directories(c10 PRIVATE ${Backtrace_INCLUDE_DIRS})
     target_link_libraries(c10 PRIVATE ${Backtrace_LIBRARIES})
     target_compile_definitions(c10 PRIVATE SUPPORTS_BACKTRACE=1)
@@ -119,17 +121,17 @@ if(NOT BUILD_LIBTORCHLESS)
     target_compile_definitions(c10 PRIVATE SUPPORTS_BACKTRACE=0)
   endif()
 
-  if(USE_MIMALLOC)
+  if(USE_MIMALLOC)  # OFF
     target_link_libraries(c10 PRIVATE "mimalloc-static")
     add_dependencies(c10 mimalloc-static)
   endif()
 
-  if(LINUX)
+  if(LINUX)  # ON
     target_link_libraries(c10 PRIVATE Threads::Threads)
     target_link_libraries(c10 PRIVATE dl)
   endif()
 
-  if(ANDROID)
+  if(ANDROID)  # OFF
     target_link_libraries(c10 PRIVATE log)
   endif()
 
@@ -143,21 +145,21 @@ endif()
 add_subdirectory(test)
 add_subdirectory(benchmark)
 
-if(USE_CUDA)
+if(USE_CUDA)  # OFF
   add_subdirectory(cuda)
 endif()
 
-if(USE_ROCM)
+if(USE_ROCM)  # OFF
   # NB: This directory is generated by the HIPIFY script; it's
   # not checked in
   add_subdirectory(hip)
 endif()
 
-if(USE_XPU)
+if(USE_XPU)   # OFF
   add_subdirectory(xpu)
 endif()
 
-if(NOT BUILD_LIBTORCHLESS)
+if(NOT BUILD_LIBTORCHLESS)  # NOT OFF => ON
   # ---[ Installation
   # Note: for now, we will put all export path into one single Caffe2Targets group
   # to deal with the cmake deployment need. Inside the Caffe2Targets set, the
@@ -168,7 +170,3 @@ endif()
 install(DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
         DESTINATION include
         FILES_MATCHING PATTERN "*.h")
-
-if(MSVC AND C10_BUILD_SHARED_LIBS)
-  install(FILES $<TARGET_PDB_FILE:c10> DESTINATION lib OPTIONAL)
-endif()
