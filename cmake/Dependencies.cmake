@@ -46,25 +46,34 @@ set(AT_USE_EIGEN_SPARSE 0)
 # setting default preferred BLAS options if not already present.
 set(BLAS "MKL" CACHE STRING "Selected BLAS library")
 set_property(CACHE BLAS PROPERTY STRINGS "ATLAS;BLIS;Eigen;FLAME;Generic;MKL;OpenBLAS;vecLib;APL")
+message(STATUS "Trying to find preferred BLAS backend of choice: " ${BLAS})
 
-find_package(MKL QUIET)  ## RY: Assume MKL found
+find_package(MKL QUIET)  ## RY: Assume MKL not found
 include(${CMAKE_CURRENT_LIST_DIR}/public/mkl.cmake)
-message(STATUS "MKL libraries: ${MKL_LIBRARIES}")
-message(STATUS "MKL include directory: ${MKL_INCLUDE_DIR}")
-message(STATUS "MKL OpenMP type: ${MKL_OPENMP_TYPE}")
-message(STATUS "MKL OpenMP library: ${MKL_OPENMP_LIBRARY}")
-include_directories(AFTER SYSTEM ${MKL_INCLUDE_DIR})
-list(APPEND Caffe2_PUBLIC_DEPENDENCY_LIBS caffe2::mkl)
-set(CAFFE2_USE_MKL ON)
-set(BLAS_INFO "mkl")
-set(BLAS_FOUND 1)
-set(BLAS_LIBRARIES ${MKL_LIBRARIES})
+# message(STATUS "MKL libraries: ${MKL_LIBRARIES}")
+# message(STATUS "MKL include directory: ${MKL_INCLUDE_DIR}")
+# message(STATUS "MKL OpenMP type: ${MKL_OPENMP_TYPE}")
+# message(STATUS "MKL OpenMP library: ${MKL_OPENMP_LIBRARY}")
+# include_directories(AFTER SYSTEM ${MKL_INCLUDE_DIR})
+# list(APPEND Caffe2_PUBLIC_DEPENDENCY_LIBS caffe2::mkl)
+# set(CAFFE2_USE_MKL ON)
+# set(BLAS_INFO "mkl")
+# set(BLAS_FOUND 1)
+# set(BLAS_LIBRARIES ${MKL_LIBRARIES})
+message(WARNING "MKL could not be found. Defaulting to Eigen")
+set(CAFFE2_USE_EIGEN_FOR_BLAS ON)
+set(CAFFE2_USE_MKL OFF)
 
-set(USE_BLAS 1)
-set(AT_MKL_ENABLED 1)
+set(AT_MKL_SEQUENTIAL 0)
+message(WARNING "Preferred BLAS (" ${BLAS} ") cannot be found, now searching for a general BLAS library")
+find_package(BLAS) # Assume BLAS_FOUND is OFF
+set(USE_BLAS 0)
 
 # --- [ PocketFFT
-set(AT_POCKETFFT_ENABLED 0)
+# Assume MKL_FOUND is OFF, leading to AT_MKL_ENABLED=0
+set(POCKETFFT_INCLUDE_DIR "${Torch_SOURCE_DIR}/third_party/pocketfft/")
+set(AT_POCKETFFT_ENABLED 1)
+message(STATUS "Using pocketfft in directory: ${POCKETFFT_INCLUDE_DIR}")
 
 # ---[ Dependencies
 # NNPACK and family (QNNPACK, PYTORCH_QNNPACK, and XNNPACK) can download and

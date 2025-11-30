@@ -6,7 +6,7 @@ include(${CMAKE_CURRENT_LIST_DIR}/public/mkldnn.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/FlatBuffers.cmake)
 
 include_directories:
-include_directories(AFTER SYSTEM ${MKL_INCLUDE_DIR})
+include_directories(AFTER SYSTEM ${MKLDNN_INCLUDE_DIR})
 include_directories(SYSTEM ${XNNPACK_INCLUDE_DIR})
 include_directories(BEFORE SYSTEM ${CMAKE_CURRENT_LIST_DIR}/../third_party/googletest/googletest/include)
 include_directories(BEFORE SYSTEM ${CMAKE_CURRENT_LIST_DIR}/../third_party/googletest/googlemock/include)
