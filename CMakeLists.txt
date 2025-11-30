@@ -331,399 +331,399 @@ set(BUILD_ONEDNN_GRAPH OFF)
 
 include(cmake/Dependencies.cmake)
 
-option(USE_FLASH_ATTENTION
-  "Whether to build the flash_attention kernel for scaled dot product attention.\
-  Will be disabled if not supported by the platform"
-  ON)
+# option(USE_FLASH_ATTENTION
+#   "Whether to build the flash_attention kernel for scaled dot product attention.\
+#   Will be disabled if not supported by the platform"
+#   ON)
 
-option(USE_FBGEMM_GENAI
-  "Whether to build FBGEMM GenAI quantized GEMM kernels.\
-  Will be disabled if not supported by the platform"
-  ON)
+# option(USE_FBGEMM_GENAI
+#   "Whether to build FBGEMM GenAI quantized GEMM kernels.\
+#   Will be disabled if not supported by the platform"
+#   ON)
 
-IF(USE_FBGEMM_GENAI AND USE_ROCM AND NOT "gfx942" IN_LIST PYTORCH_ROCM_ARCH)
-  message(WARNING "Unsupported ROCM arch for FBGEMM GenAI, will set USE_FBGEMM_GENAI to OFF")
-  set(USE_FBGEMM_GENAI off)
-endif()
+# IF(USE_FBGEMM_GENAI AND USE_ROCM AND NOT "gfx942" IN_LIST PYTORCH_ROCM_ARCH)
+#   message(WARNING "Unsupported ROCM arch for FBGEMM GenAI, will set USE_FBGEMM_GENAI to OFF")
+#   set(USE_FBGEMM_GENAI off)
+# endif()
 
-# Set USE_FBGEMM_GENAI to ON for CUDA build on SM100.
-if(USE_CUDA AND "$ENV{TORCH_CUDA_ARCH_LIST}" MATCHES "10.0" AND CMAKE_CUDA_COMPILER_VERSION VERSION_GREATER_EQUAL 12.8)
-  message(STATUS "Setting USE_FBGEMM_GENAI to ON, doing CUDA build for SM100a")
-  set(USE_FBGEMM_GENAI ON)
-endif()
+# # Set USE_FBGEMM_GENAI to ON for CUDA build on SM100.
+# if(USE_CUDA AND "$ENV{TORCH_CUDA_ARCH_LIST}" MATCHES "10.0" AND CMAKE_CUDA_COMPILER_VERSION VERSION_GREATER_EQUAL 12.8)
+#   message(STATUS "Setting USE_FBGEMM_GENAI to ON, doing CUDA build for SM100a")
+#   set(USE_FBGEMM_GENAI ON)
+# endif()
 
-# CAVEAT: Again, Flash Attention2 will error while building for sm52 while Mem
-# Eff Attention won't
-option(USE_MEM_EFF_ATTENTION
-  "Enable memory-efficient attention for scaled dot product attention.\
-  Will be disabled if not supported by the platform"
-  ON)
+# # CAVEAT: Again, Flash Attention2 will error while building for sm52 while Mem
+# # Eff Attention won't
+# option(USE_MEM_EFF_ATTENTION
+#   "Enable memory-efficient attention for scaled dot product attention.\
+#   Will be disabled if not supported by the platform"
+#   ON)
 
-#
-# Cannot be put into Dependencies.cmake due circular dependency:
-# USE_FLASH_ATTENTION -> USE_ROCM -> Dependencies.cmake -> aotriton.cmake
-#
-if(USE_ROCM)
-  if(USE_FLASH_ATTENTION OR USE_MEM_EFF_ATTENTION)
-    include(cmake/External/aotriton.cmake)
-  endif()
-endif()
+# #
+# # Cannot be put into Dependencies.cmake due circular dependency:
+# # USE_FLASH_ATTENTION -> USE_ROCM -> Dependencies.cmake -> aotriton.cmake
+# #
+# if(USE_ROCM)
+#   if(USE_FLASH_ATTENTION OR USE_MEM_EFF_ATTENTION)
+#     include(cmake/External/aotriton.cmake)
+#   endif()
+# endif()
 
-if(USE_FBGEMM)
-  string(APPEND CMAKE_CXX_FLAGS " -DUSE_FBGEMM")
-endif()
+# if(USE_FBGEMM)
+#   string(APPEND CMAKE_CXX_FLAGS " -DUSE_FBGEMM")
+# endif()
 
-if(USE_FBGEMM_GENAI)
-  string(APPEND CMAKE_CXX_FLAGS " -DUSE_FBGEMM_GENAI")
-endif()
+# if(USE_FBGEMM_GENAI)
+#   string(APPEND CMAKE_CXX_FLAGS " -DUSE_FBGEMM_GENAI")
+# endif()
 
-if(USE_PYTORCH_QNNPACK)
-  string(APPEND CMAKE_CXX_FLAGS " -DUSE_PYTORCH_QNNPACK")
-endif()
+# if(USE_PYTORCH_QNNPACK)
+#   string(APPEND CMAKE_CXX_FLAGS " -DUSE_PYTORCH_QNNPACK")
+# endif()
 
-# Enable sleef on macOS with Apple silicon by default
-if((${CMAKE_SYSTEM_NAME} STREQUAL "Darwin") AND ("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "arm64"))
-  message(STATUS "Running on macOS with Apple silicon")
-  string(APPEND CMAKE_CXX_FLAGS " -DAT_BUILD_ARM_VEC256_WITH_SLEEF")
-  add_definitions(-DAT_BUILD_ARM_VEC256_WITH_SLEEF)
-endif()
+# # Enable sleef on macOS with Apple silicon by default
+# if((${CMAKE_SYSTEM_NAME} STREQUAL "Darwin") AND ("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "arm64"))
+#   message(STATUS "Running on macOS with Apple silicon")
+#   string(APPEND CMAKE_CXX_FLAGS " -DAT_BUILD_ARM_VEC256_WITH_SLEEF")
+#   add_definitions(-DAT_BUILD_ARM_VEC256_WITH_SLEEF)
+# endif()
 
-# Enable sleef on Arm(R) architecture by default (except Android)
-if((NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Android")
-  AND("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "aarch64"))
-  string(APPEND CMAKE_CXX_FLAGS " -DAT_BUILD_ARM_VEC256_WITH_SLEEF")
-  add_definitions(-DAT_BUILD_ARM_VEC256_WITH_SLEEF)
-endif()
+# # Enable sleef on Arm(R) architecture by default (except Android)
+# if((NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Android")
+#   AND("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "aarch64"))
+#   string(APPEND CMAKE_CXX_FLAGS " -DAT_BUILD_ARM_VEC256_WITH_SLEEF")
+#   add_definitions(-DAT_BUILD_ARM_VEC256_WITH_SLEEF)
+# endif()
 
 
-if(USE_XNNPACK)
-  string(APPEND CMAKE_CXX_FLAGS " -DUSE_XNNPACK")
-endif()
+# if(USE_XNNPACK)
+#   string(APPEND CMAKE_CXX_FLAGS " -DUSE_XNNPACK")
+# endif()
 
-if(USE_VULKAN)
-  string(APPEND CMAKE_CXX_FLAGS " -DUSE_VULKAN")
-  string(APPEND CMAKE_CXX_FLAGS " -DUSE_VULKAN_API")
+# if(USE_VULKAN)
+#   string(APPEND CMAKE_CXX_FLAGS " -DUSE_VULKAN")
+#   string(APPEND CMAKE_CXX_FLAGS " -DUSE_VULKAN_API")
 
-  if(USE_VULKAN_FP16_INFERENCE)
-    string(APPEND CMAKE_CXX_FLAGS " -DUSE_VULKAN_FP16_INFERENCE")
-  endif()
+#   if(USE_VULKAN_FP16_INFERENCE)
+#     string(APPEND CMAKE_CXX_FLAGS " -DUSE_VULKAN_FP16_INFERENCE")
+#   endif()
 
-  if(USE_VULKAN_RELAXED_PRECISION)
-    string(APPEND CMAKE_CXX_FLAGS " -DUSE_VULKAN_RELAXED_PRECISION")
-  endif()
+#   if(USE_VULKAN_RELAXED_PRECISION)
+#     string(APPEND CMAKE_CXX_FLAGS " -DUSE_VULKAN_RELAXED_PRECISION")
+#   endif()
 
-endif()
+# endif()
 
-if(BUILD_LITE_INTERPRETER)
-  string(APPEND CMAKE_CXX_FLAGS " -DBUILD_LITE_INTERPRETER")
-endif()
+# if(BUILD_LITE_INTERPRETER)
+#   string(APPEND CMAKE_CXX_FLAGS " -DBUILD_LITE_INTERPRETER")
+# endif()
 
-if(TRACING_BASED)
-  string(APPEND CMAKE_CXX_FLAGS " -DTRACING_BASED")
-endif()
+# if(TRACING_BASED)
+#   string(APPEND CMAKE_CXX_FLAGS " -DTRACING_BASED")
+# endif()
 
-if(USE_PYTORCH_METAL)
-  string(APPEND CMAKE_CXX_FLAGS " -DUSE_PYTORCH_METAL")
-endif()
+# if(USE_PYTORCH_METAL)
+#   string(APPEND CMAKE_CXX_FLAGS " -DUSE_PYTORCH_METAL")
+# endif()
 
-if(USE_PYTORCH_METAL_EXPORT)
-  string(APPEND CMAKE_CXX_FLAGS " -DUSE_PYTORCH_METAL_EXPORT")
-endif()
+# if(USE_PYTORCH_METAL_EXPORT)
+#   string(APPEND CMAKE_CXX_FLAGS " -DUSE_PYTORCH_METAL_EXPORT")
+# endif()
 
-if(USE_SOURCE_DEBUG_ON_MOBILE)
-  string(APPEND CMAKE_CXX_FLAGS " -DSYMBOLICATE_MOBILE_DEBUG_HANDLE")
-endif()
+# if(USE_SOURCE_DEBUG_ON_MOBILE)
+#   string(APPEND CMAKE_CXX_FLAGS " -DSYMBOLICATE_MOBILE_DEBUG_HANDLE")
+# endif()
 
-if(BUILD_LITE_INTERPRETER AND USE_LITE_INTERPRETER_PROFILER)
-  string(APPEND CMAKE_CXX_FLAGS " -DEDGE_PROFILER_USE_KINETO")
-endif()
+# if(BUILD_LITE_INTERPRETER AND USE_LITE_INTERPRETER_PROFILER)
+#   string(APPEND CMAKE_CXX_FLAGS " -DEDGE_PROFILER_USE_KINETO")
+# endif()
 
-if(USE_COREML_DELEGATE)
-  string(APPEND CMAKE_CXX_FLAGS " -DUSE_COREML_DELEGATE")
-endif()
+# if(USE_COREML_DELEGATE)
+#   string(APPEND CMAKE_CXX_FLAGS " -DUSE_COREML_DELEGATE")
+# endif()
 
-# ---[ Allowlist file if allowlist is specified
-include(cmake/Allowlist.cmake)
+# # ---[ Allowlist file if allowlist is specified
+# include(cmake/Allowlist.cmake)
 
-# ---[ Set link flag, handle additional deps for gcc 4.8 and above
-if(CMAKE_COMPILER_IS_GNUCXX AND NOT ANDROID)
-  message(
-    STATUS
-      "GCC ${CMAKE_CXX_COMPILER_VERSION}: Adding gcc and gcc_s libs to link line"
-  )
-  list(APPEND Caffe2_DEPENDENCY_LIBS gcc_s gcc)
-endif()
+# # ---[ Set link flag, handle additional deps for gcc 4.8 and above
+# if(CMAKE_COMPILER_IS_GNUCXX AND NOT ANDROID)
+#   message(
+#     STATUS
+#       "GCC ${CMAKE_CXX_COMPILER_VERSION}: Adding gcc and gcc_s libs to link line"
+#   )
+#   list(APPEND Caffe2_DEPENDENCY_LIBS gcc_s gcc)
+# endif()
 
-# ---[ Build flags Re-include to override append_cxx_flag_if_supported from
-# third_party/FBGEMM
-include(cmake/public/utils.cmake)
-if(USE_COLORIZE_OUTPUT)
-  set(CMAKE_COLOR_DIAGNOSTICS ON)
-endif()
-if(NOT MSVC)
-  string(APPEND CMAKE_CXX_FLAGS " -O2 -fPIC")
+# # ---[ Build flags Re-include to override append_cxx_flag_if_supported from
+# # third_party/FBGEMM
+# include(cmake/public/utils.cmake)
+# if(USE_COLORIZE_OUTPUT)
+#   set(CMAKE_COLOR_DIAGNOSTICS ON)
+# endif()
+# if(NOT MSVC)
+#   string(APPEND CMAKE_CXX_FLAGS " -O2 -fPIC")
 
-  # This prevents use of `c10::optional`, `c10::nullopt` etc within the codebase
-  string(APPEND CMAKE_CXX_FLAGS " -DC10_NODEPRECATED")
-  string(APPEND CMAKE_CUDA_FLAGS " -DC10_NODEPRECATED")
-  string(APPEND CMAKE_OBJCXX_FLAGS " -DC10_NODEPRECATED")
+#   # This prevents use of `c10::optional`, `c10::nullopt` etc within the codebase
+#   string(APPEND CMAKE_CXX_FLAGS " -DC10_NODEPRECATED")
+#   string(APPEND CMAKE_CUDA_FLAGS " -DC10_NODEPRECATED")
+#   string(APPEND CMAKE_OBJCXX_FLAGS " -DC10_NODEPRECATED")
 
-  # Eigen fails to build with some versions, so convert this to a warning
-  # Details at http://eigen.tuxfamily.org/bz/show_bug.cgi?id=1459
-  string(APPEND CMAKE_CXX_FLAGS " -Wall")
-  string(APPEND CMAKE_CXX_FLAGS " -Wextra")
-  append_cxx_flag_if_supported("-Werror=return-type" CMAKE_CXX_FLAGS)
-  append_cxx_flag_if_supported("-Werror=non-virtual-dtor" CMAKE_CXX_FLAGS)
-  append_cxx_flag_if_supported("-Werror=braced-scalar-init" CMAKE_CXX_FLAGS)
-  append_cxx_flag_if_supported("-Werror=range-loop-construct" CMAKE_CXX_FLAGS)
-  append_cxx_flag_if_supported("-Werror=bool-operation" CMAKE_CXX_FLAGS)
-  append_cxx_flag_if_supported("-Wnarrowing" CMAKE_CXX_FLAGS)
-  append_cxx_flag_if_supported("-Wno-missing-field-initializers"
-                               CMAKE_CXX_FLAGS)
-  append_cxx_flag_if_supported("-Wno-unknown-pragmas" CMAKE_CXX_FLAGS)
-  append_cxx_flag_if_supported("-Wno-unused-parameter" CMAKE_CXX_FLAGS)
-  append_cxx_flag_if_supported("-Wno-strict-overflow" CMAKE_CXX_FLAGS)
-  append_cxx_flag_if_supported("-Wno-strict-aliasing" CMAKE_CXX_FLAGS)
-  append_cxx_flag_if_supported("-Wno-stringop-overflow" CMAKE_CXX_FLAGS)
-  append_cxx_flag_if_supported("-Wvla-extension" CMAKE_CXX_FLAGS)
-  append_cxx_flag_if_supported("-Wsuggest-override" CMAKE_CXX_FLAGS)
-  append_cxx_flag_if_supported("-Wnewline-eof" CMAKE_CXX_FLAGS)
-  append_cxx_flag_if_supported("-Winconsistent-missing-override"
-                               CMAKE_CXX_FLAGS)
-  append_cxx_flag_if_supported("-Winconsistent-missing-destructor-override"
-                               CMAKE_CXX_FLAGS)
-  if("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
-    string(APPEND CMAKE_CXX_FLAGS " -Wno-pass-failed")
-  endif()
-  if(CMAKE_COMPILER_IS_GNUCXX)
-    # Suppress "The ABI for passing parameters with 64-byte alignment has
-    # changed in GCC 4.6"
-    string(APPEND CMAKE_CXX_FLAGS " -Wno-psabi")
-  endif()
+#   # Eigen fails to build with some versions, so convert this to a warning
+#   # Details at http://eigen.tuxfamily.org/bz/show_bug.cgi?id=1459
+#   string(APPEND CMAKE_CXX_FLAGS " -Wall")
+#   string(APPEND CMAKE_CXX_FLAGS " -Wextra")
+#   append_cxx_flag_if_supported("-Werror=return-type" CMAKE_CXX_FLAGS)
+#   append_cxx_flag_if_supported("-Werror=non-virtual-dtor" CMAKE_CXX_FLAGS)
+#   append_cxx_flag_if_supported("-Werror=braced-scalar-init" CMAKE_CXX_FLAGS)
+#   append_cxx_flag_if_supported("-Werror=range-loop-construct" CMAKE_CXX_FLAGS)
+#   append_cxx_flag_if_supported("-Werror=bool-operation" CMAKE_CXX_FLAGS)
+#   append_cxx_flag_if_supported("-Wnarrowing" CMAKE_CXX_FLAGS)
+#   append_cxx_flag_if_supported("-Wno-missing-field-initializers"
+#                                CMAKE_CXX_FLAGS)
+#   append_cxx_flag_if_supported("-Wno-unknown-pragmas" CMAKE_CXX_FLAGS)
+#   append_cxx_flag_if_supported("-Wno-unused-parameter" CMAKE_CXX_FLAGS)
+#   append_cxx_flag_if_supported("-Wno-strict-overflow" CMAKE_CXX_FLAGS)
+#   append_cxx_flag_if_supported("-Wno-strict-aliasing" CMAKE_CXX_FLAGS)
+#   append_cxx_flag_if_supported("-Wno-stringop-overflow" CMAKE_CXX_FLAGS)
+#   append_cxx_flag_if_supported("-Wvla-extension" CMAKE_CXX_FLAGS)
+#   append_cxx_flag_if_supported("-Wsuggest-override" CMAKE_CXX_FLAGS)
+#   append_cxx_flag_if_supported("-Wnewline-eof" CMAKE_CXX_FLAGS)
+#   append_cxx_flag_if_supported("-Winconsistent-missing-override"
+#                                CMAKE_CXX_FLAGS)
+#   append_cxx_flag_if_supported("-Winconsistent-missing-destructor-override"
+#                                CMAKE_CXX_FLAGS)
+#   if("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
+#     string(APPEND CMAKE_CXX_FLAGS " -Wno-pass-failed")
+#   endif()
+#   if(CMAKE_COMPILER_IS_GNUCXX)
+#     # Suppress "The ABI for passing parameters with 64-byte alignment has
+#     # changed in GCC 4.6"
+#     string(APPEND CMAKE_CXX_FLAGS " -Wno-psabi")
+#   endif()
 
-  # Use ld.gold if available, fall back to ld.bfd (the default ld) if not
-  if(USE_GOLD_LINKER)
-    if(USE_DISTRIBUTED AND USE_MPI)
-      # Same issue as here with default MPI on Ubuntu
-      # https://bugs.launchpad.net/ubuntu/+source/deal.ii/+bug/1841577
-      message(WARNING "Refusing to use gold when USE_MPI=1")
-    else()
-      execute_process(
-        COMMAND "${CMAKE_C_COMPILER}" -fuse-ld=gold -Wl,--version
-        ERROR_QUIET
-        OUTPUT_VARIABLE LD_VERSION)
-      if(NOT "${LD_VERSION}" MATCHES "GNU gold")
-        message(
-          WARNING
-            "USE_GOLD_LINKER was set but ld.gold isn't available, turning it off"
-        )
-        set(USE_GOLD_LINKER OFF)
-      else()
-        message(STATUS "ld.gold is available, using it to link")
-        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fuse-ld=gold")
-        set(CMAKE_SHARED_LINKER_FLAGS
-            "${CMAKE_SHARED_LINKER_FLAGS} -fuse-ld=gold")
-        set(CMAKE_MODULE_LINKER_FLAGS
-            "${CMAKE_MODULE_LINKER_FLAGS} -fuse-ld=gold")
-      endif()
-    endif()
-  endif()
+#   # Use ld.gold if available, fall back to ld.bfd (the default ld) if not
+#   if(USE_GOLD_LINKER)
+#     if(USE_DISTRIBUTED AND USE_MPI)
+#       # Same issue as here with default MPI on Ubuntu
+#       # https://bugs.launchpad.net/ubuntu/+source/deal.ii/+bug/1841577
+#       message(WARNING "Refusing to use gold when USE_MPI=1")
+#     else()
+#       execute_process(
+#         COMMAND "${CMAKE_C_COMPILER}" -fuse-ld=gold -Wl,--version
+#         ERROR_QUIET
+#         OUTPUT_VARIABLE LD_VERSION)
+#       if(NOT "${LD_VERSION}" MATCHES "GNU gold")
+#         message(
+#           WARNING
+#             "USE_GOLD_LINKER was set but ld.gold isn't available, turning it off"
+#         )
+#         set(USE_GOLD_LINKER OFF)
+#       else()
+#         message(STATUS "ld.gold is available, using it to link")
+#         set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fuse-ld=gold")
+#         set(CMAKE_SHARED_LINKER_FLAGS
+#             "${CMAKE_SHARED_LINKER_FLAGS} -fuse-ld=gold")
+#         set(CMAKE_MODULE_LINKER_FLAGS
+#             "${CMAKE_MODULE_LINKER_FLAGS} -fuse-ld=gold")
+#       endif()
+#     endif()
+#   endif()
 
-  append_cxx_flag_if_supported("-Wno-error=old-style-cast" CMAKE_CXX_FLAGS)
-  append_cxx_flag_if_supported("-Wconstant-conversion" CMAKE_CXX_FLAGS)
-  append_cxx_flag_if_supported("-Wno-aligned-allocation-unavailable"
-                               CMAKE_CXX_FLAGS)
-  append_cxx_flag_if_supported("-Qunused-arguments" CMAKE_CXX_FLAGS)
+#   append_cxx_flag_if_supported("-Wno-error=old-style-cast" CMAKE_CXX_FLAGS)
+#   append_cxx_flag_if_supported("-Wconstant-conversion" CMAKE_CXX_FLAGS)
+#   append_cxx_flag_if_supported("-Wno-aligned-allocation-unavailable"
+#                                CMAKE_CXX_FLAGS)
+#   append_cxx_flag_if_supported("-Qunused-arguments" CMAKE_CXX_FLAGS)
 
-  append_cxx_flag_if_supported("-faligned-new" CMAKE_CXX_FLAGS)
+#   append_cxx_flag_if_supported("-faligned-new" CMAKE_CXX_FLAGS)
 
-  if(WERROR)
-    append_cxx_flag_if_supported("-Werror" CMAKE_CXX_FLAGS)
-    if(NOT COMPILER_SUPPORT_WERROR)
-      set(WERROR FALSE)
-    endif()
-  endif()
-  append_cxx_flag_if_supported("-Wno-maybe-uninitialized" CMAKE_CXX_FLAGS)
-  append_cxx_flag_if_supported("-fstandalone-debug" CMAKE_CXX_FLAGS_DEBUG)
-  if(CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64" AND CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-    if(CMAKE_BUILD_TYPE MATCHES Debug)
-      message(Warning "Applying -Og optimization for aarch64 GCC debug build to workaround ICE")
-    endif()
-    string(APPEND CMAKE_CXX_FLAGS_DEBUG " -fno-omit-frame-pointer -Og")
-    string(APPEND CMAKE_LINKER_FLAGS_DEBUG " -fno-omit-frame-pointer -Og")
-  else()
-    string(APPEND CMAKE_CXX_FLAGS_DEBUG " -fno-omit-frame-pointer -O0")
-    string(APPEND CMAKE_LINKER_FLAGS_DEBUG " -fno-omit-frame-pointer -O0")
-  endif()
-  append_cxx_flag_if_supported("-fno-math-errno" CMAKE_CXX_FLAGS)
-  append_cxx_flag_if_supported("-fno-trapping-math" CMAKE_CXX_FLAGS)
-  append_cxx_flag_if_supported("-Werror=format" CMAKE_CXX_FLAGS)
-  if(CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 13)
-    append_cxx_flag_if_supported("-Wno-dangling-reference" CMAKE_CXX_FLAGS)
-    append_cxx_flag_if_supported("-Wno-error=dangling-reference" CMAKE_CXX_FLAGS)
-  endif()
-else()
-  # Define export functions for AOTI.
-  add_compile_definitions(EXPORT_AOTI_FUNCTIONS)
+#   if(WERROR)
+#     append_cxx_flag_if_supported("-Werror" CMAKE_CXX_FLAGS)
+#     if(NOT COMPILER_SUPPORT_WERROR)
+#       set(WERROR FALSE)
+#     endif()
+#   endif()
+#   append_cxx_flag_if_supported("-Wno-maybe-uninitialized" CMAKE_CXX_FLAGS)
+#   append_cxx_flag_if_supported("-fstandalone-debug" CMAKE_CXX_FLAGS_DEBUG)
+#   if(CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64" AND CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+#     if(CMAKE_BUILD_TYPE MATCHES Debug)
+#       message(Warning "Applying -Og optimization for aarch64 GCC debug build to workaround ICE")
+#     endif()
+#     string(APPEND CMAKE_CXX_FLAGS_DEBUG " -fno-omit-frame-pointer -Og")
+#     string(APPEND CMAKE_LINKER_FLAGS_DEBUG " -fno-omit-frame-pointer -Og")
+#   else()
+#     string(APPEND CMAKE_CXX_FLAGS_DEBUG " -fno-omit-frame-pointer -O0")
+#     string(APPEND CMAKE_LINKER_FLAGS_DEBUG " -fno-omit-frame-pointer -O0")
+#   endif()
+#   append_cxx_flag_if_supported("-fno-math-errno" CMAKE_CXX_FLAGS)
+#   append_cxx_flag_if_supported("-fno-trapping-math" CMAKE_CXX_FLAGS)
+#   append_cxx_flag_if_supported("-Werror=format" CMAKE_CXX_FLAGS)
+#   if(CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 13)
+#     append_cxx_flag_if_supported("-Wno-dangling-reference" CMAKE_CXX_FLAGS)
+#     append_cxx_flag_if_supported("-Wno-error=dangling-reference" CMAKE_CXX_FLAGS)
+#   endif()
+# else()
+#   # Define export functions for AOTI.
+#   add_compile_definitions(EXPORT_AOTI_FUNCTIONS)
 
-  # skip unwanted includes from windows.h
-  add_compile_definitions(WIN32_LEAN_AND_MEAN)
-  # Windows SDK broke compatibility since version 25131, but introduced this
-  # define for backward compatibility.
-  add_compile_definitions(_UCRT_LEGACY_INFINITY)
-  # disable min/max macros
-  add_compile_definitions(NOMINMAX)
-  # Turn off these warnings on Windows. destructor was implicitly defined as
-  # delete
-  append_cxx_flag_if_supported("/wd4624" CMAKE_CXX_FLAGS)
-  # unknown pragma
-  append_cxx_flag_if_supported("/wd4068" CMAKE_CXX_FLAGS)
-  # unexpected tokens following preprocessor directive - expected a newline
-  append_cxx_flag_if_supported("/wd4067" CMAKE_CXX_FLAGS)
-  # conversion from 'size_t' to 'unsigned int', possible loss of data
-  append_cxx_flag_if_supported("/wd4267" CMAKE_CXX_FLAGS)
-  # no suitable definition provided for explicit template instantiation request
-  append_cxx_flag_if_supported("/wd4661" CMAKE_CXX_FLAGS)
-  # recursive on all control paths, function will cause runtime stack overflow
-  append_cxx_flag_if_supported("/wd4717" CMAKE_CXX_FLAGS)
-  # conversion from '_Ty' to '_Ty', possible loss of data
-  append_cxx_flag_if_supported("/wd4244" CMAKE_CXX_FLAGS)
-  # unsafe use of type 'bool' in operation
-  append_cxx_flag_if_supported("/wd4804" CMAKE_CXX_FLAGS)
-  # inconsistent dll linkage
-  append_cxx_flag_if_supported("/wd4273" CMAKE_CXX_FLAGS)
-endif()
+#   # skip unwanted includes from windows.h
+#   add_compile_definitions(WIN32_LEAN_AND_MEAN)
+#   # Windows SDK broke compatibility since version 25131, but introduced this
+#   # define for backward compatibility.
+#   add_compile_definitions(_UCRT_LEGACY_INFINITY)
+#   # disable min/max macros
+#   add_compile_definitions(NOMINMAX)
+#   # Turn off these warnings on Windows. destructor was implicitly defined as
+#   # delete
+#   append_cxx_flag_if_supported("/wd4624" CMAKE_CXX_FLAGS)
+#   # unknown pragma
+#   append_cxx_flag_if_supported("/wd4068" CMAKE_CXX_FLAGS)
+#   # unexpected tokens following preprocessor directive - expected a newline
+#   append_cxx_flag_if_supported("/wd4067" CMAKE_CXX_FLAGS)
+#   # conversion from 'size_t' to 'unsigned int', possible loss of data
+#   append_cxx_flag_if_supported("/wd4267" CMAKE_CXX_FLAGS)
+#   # no suitable definition provided for explicit template instantiation request
+#   append_cxx_flag_if_supported("/wd4661" CMAKE_CXX_FLAGS)
+#   # recursive on all control paths, function will cause runtime stack overflow
+#   append_cxx_flag_if_supported("/wd4717" CMAKE_CXX_FLAGS)
+#   # conversion from '_Ty' to '_Ty', possible loss of data
+#   append_cxx_flag_if_supported("/wd4244" CMAKE_CXX_FLAGS)
+#   # unsafe use of type 'bool' in operation
+#   append_cxx_flag_if_supported("/wd4804" CMAKE_CXX_FLAGS)
+#   # inconsistent dll linkage
+#   append_cxx_flag_if_supported("/wd4273" CMAKE_CXX_FLAGS)
+# endif()
 
-# Add code coverage flags to supported compilers
-if(USE_CPP_CODE_COVERAGE)
-  if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
-    string(APPEND CMAKE_C_FLAGS " --coverage -fprofile-abs-path")
-    string(APPEND CMAKE_CXX_FLAGS " --coverage -fprofile-abs-path")
-  elseif("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
-    string(APPEND CMAKE_C_FLAGS " -fprofile-instr-generate -fcoverage-mapping")
-    string(APPEND CMAKE_CXX_FLAGS
-           " -fprofile-instr-generate -fcoverage-mapping")
-  else()
-    message(
-      ERROR
-      "Code coverage for compiler ${CMAKE_CXX_COMPILER_ID} is unsupported")
-  endif()
+# # Add code coverage flags to supported compilers
+# if(USE_CPP_CODE_COVERAGE)
+#   if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+#     string(APPEND CMAKE_C_FLAGS " --coverage -fprofile-abs-path")
+#     string(APPEND CMAKE_CXX_FLAGS " --coverage -fprofile-abs-path")
+#   elseif("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
+#     string(APPEND CMAKE_C_FLAGS " -fprofile-instr-generate -fcoverage-mapping")
+#     string(APPEND CMAKE_CXX_FLAGS
+#            " -fprofile-instr-generate -fcoverage-mapping")
+#   else()
+#     message(
+#       ERROR
+#       "Code coverage for compiler ${CMAKE_CXX_COMPILER_ID} is unsupported")
+#   endif()
 
-endif()
+# endif()
 
-append_cxx_flag_if_supported("-Wno-stringop-overflow" CMAKE_CXX_FLAGS)
+# append_cxx_flag_if_supported("-Wno-stringop-overflow" CMAKE_CXX_FLAGS)
 
-if(NOT APPLE AND UNIX)
-  list(APPEND Caffe2_DEPENDENCY_LIBS dl)
-endif()
+# if(NOT APPLE AND UNIX)
+#   list(APPEND Caffe2_DEPENDENCY_LIBS dl)
+# endif()
 
-# Prefix path to Caffe2 headers. If a directory containing installed Caffe2
-# headers was inadvertently added to the list of include directories, prefixing
-# PROJECT_SOURCE_DIR means this source tree always takes precedence.
-include_directories(BEFORE ${PROJECT_SOURCE_DIR})
+# # Prefix path to Caffe2 headers. If a directory containing installed Caffe2
+# # headers was inadvertently added to the list of include directories, prefixing
+# # PROJECT_SOURCE_DIR means this source tree always takes precedence.
+# include_directories(BEFORE ${PROJECT_SOURCE_DIR})
 
-# Prefix path to generated Caffe2 headers. These need to take precedence over
-# their empty counterparts located in PROJECT_SOURCE_DIR.
-include_directories(BEFORE ${PROJECT_BINARY_DIR})
+# # Prefix path to generated Caffe2 headers. These need to take precedence over
+# # their empty counterparts located in PROJECT_SOURCE_DIR.
+# include_directories(BEFORE ${PROJECT_BINARY_DIR})
 
-include_directories(BEFORE ${PROJECT_SOURCE_DIR}/aten/src/)
-include_directories(BEFORE ${CMAKE_BINARY_DIR}/aten/src/)
+# include_directories(BEFORE ${PROJECT_SOURCE_DIR}/aten/src/)
+# include_directories(BEFORE ${CMAKE_BINARY_DIR}/aten/src/)
 
-# ---[ Main build
-add_subdirectory(torch/headeronly)  # headeronly headers
-add_subdirectory(c10)
-add_subdirectory(caffe2)
+# # ---[ Main build
+# add_subdirectory(torch/headeronly)  # headeronly headers
+# add_subdirectory(c10)
+# add_subdirectory(caffe2)
 
-# ---[ CMake related files Uninstall option.
-if(NOT TARGET caffe2_uninstall)
-  configure_file(
-    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/cmake_uninstall.cmake.in
-    ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake IMMEDIATE @ONLY)
+# # ---[ CMake related files Uninstall option.
+# if(NOT TARGET caffe2_uninstall)
+#   configure_file(
+#     ${CMAKE_CURRENT_SOURCE_DIR}/cmake/cmake_uninstall.cmake.in
+#     ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake IMMEDIATE @ONLY)
 
-  add_custom_target(
-    caffe2_uninstall COMMAND ${CMAKE_COMMAND} -P
-                             ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
-endif()
+#   add_custom_target(
+#     caffe2_uninstall COMMAND ${CMAKE_COMMAND} -P
+#                              ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
+# endif()
 
-# ---[ Make configuration files for cmake to allow dependent libraries easier
-# access to Caffe2.
+# # ---[ Make configuration files for cmake to allow dependent libraries easier
+# # access to Caffe2.
 
-if((NOT USE_GLOG)
-   OR(NOT USE_GFLAGS)
-   OR BUILD_CUSTOM_PROTOBUF)
-  message(WARNING "Generated cmake files are only fully tested if one builds "
-                  "with system glog, gflags, and protobuf. Other settings may "
-                  "generate files that are not well tested.")
-endif()
+# if((NOT USE_GLOG)
+#    OR(NOT USE_GFLAGS)
+#    OR BUILD_CUSTOM_PROTOBUF)
+#   message(WARNING "Generated cmake files are only fully tested if one builds "
+#                   "with system glog, gflags, and protobuf. Other settings may "
+#                   "generate files that are not well tested.")
+# endif()
 
-# Note(jiayq): when building static libraries, all PRIVATE dependencies will
-# also become interface libraries, and as a result if there are any dependency
-# libraries that are not exported, the following install export script will
-# fail. As a result, we will only provide the targets cmake files for shared lib
-# installation. For more info, read:
-# https://cmake.org/pipermail/cmake/2016-May/063400.html
-if(BUILD_SHARED_LIBS)
-  configure_file(${PROJECT_SOURCE_DIR}/cmake/Caffe2Config.cmake.in
-                 ${PROJECT_BINARY_DIR}/Caffe2Config.cmake @ONLY)
-  install(
-    FILES ${PROJECT_BINARY_DIR}/Caffe2Config.cmake
-    DESTINATION share/cmake/Caffe2
-    COMPONENT dev)
-  install(
-    FILES ${PROJECT_SOURCE_DIR}/cmake/public/cuda.cmake
-          ${PROJECT_SOURCE_DIR}/cmake/public/xpu.cmake
-          ${PROJECT_SOURCE_DIR}/cmake/public/glog.cmake
-          ${PROJECT_SOURCE_DIR}/cmake/public/gflags.cmake
-          ${PROJECT_SOURCE_DIR}/cmake/public/mkl.cmake
-          ${PROJECT_SOURCE_DIR}/cmake/public/mkldnn.cmake
-          ${PROJECT_SOURCE_DIR}/cmake/public/protobuf.cmake
-          ${PROJECT_SOURCE_DIR}/cmake/public/utils.cmake
-          ${PROJECT_SOURCE_DIR}/cmake/public/LoadHIP.cmake
-    DESTINATION share/cmake/Caffe2/public
-    COMPONENT dev)
-  install(
-    DIRECTORY ${PROJECT_SOURCE_DIR}/cmake/Modules_CUDA_fix
-    DESTINATION share/cmake/Caffe2/
-    COMPONENT dev)
-  install(
-    FILES ${PROJECT_SOURCE_DIR}/cmake/Modules/FindCUDAToolkit.cmake
-    DESTINATION share/cmake/Caffe2/
-    COMPONENT dev)
-  install(
-    FILES ${PROJECT_SOURCE_DIR}/cmake/Modules/FindCUSPARSELT.cmake
-    DESTINATION share/cmake/Caffe2/
-    COMPONENT dev)
-  install(
-    FILES ${PROJECT_SOURCE_DIR}/cmake/Modules/FindCUDSS.cmake
-    DESTINATION share/cmake/Caffe2/
-    COMPONENT dev)
-  install(
-    FILES ${PROJECT_SOURCE_DIR}/cmake/Modules/FindSYCLToolkit.cmake
-    DESTINATION share/cmake/Caffe2/
-    COMPONENT dev)
-  if(NOT BUILD_LIBTORCHLESS)
-    install(
-      EXPORT Caffe2Targets
-      DESTINATION share/cmake/Caffe2
-      FILE Caffe2Targets.cmake
-      COMPONENT dev)
-  endif()
-else()
-  message(WARNING "Generated cmake files are only available when building "
-                  "shared libs.")
-endif()
+# # Note(jiayq): when building static libraries, all PRIVATE dependencies will
+# # also become interface libraries, and as a result if there are any dependency
+# # libraries that are not exported, the following install export script will
+# # fail. As a result, we will only provide the targets cmake files for shared lib
+# # installation. For more info, read:
+# # https://cmake.org/pipermail/cmake/2016-May/063400.html
+# if(BUILD_SHARED_LIBS)
+#   configure_file(${PROJECT_SOURCE_DIR}/cmake/Caffe2Config.cmake.in
+#                  ${PROJECT_BINARY_DIR}/Caffe2Config.cmake @ONLY)
+#   install(
+#     FILES ${PROJECT_BINARY_DIR}/Caffe2Config.cmake
+#     DESTINATION share/cmake/Caffe2
+#     COMPONENT dev)
+#   install(
+#     FILES ${PROJECT_SOURCE_DIR}/cmake/public/cuda.cmake
+#           ${PROJECT_SOURCE_DIR}/cmake/public/xpu.cmake
+#           ${PROJECT_SOURCE_DIR}/cmake/public/glog.cmake
+#           ${PROJECT_SOURCE_DIR}/cmake/public/gflags.cmake
+#           ${PROJECT_SOURCE_DIR}/cmake/public/mkl.cmake
+#           ${PROJECT_SOURCE_DIR}/cmake/public/mkldnn.cmake
+#           ${PROJECT_SOURCE_DIR}/cmake/public/protobuf.cmake
+#           ${PROJECT_SOURCE_DIR}/cmake/public/utils.cmake
+#           ${PROJECT_SOURCE_DIR}/cmake/public/LoadHIP.cmake
+#     DESTINATION share/cmake/Caffe2/public
+#     COMPONENT dev)
+#   install(
+#     DIRECTORY ${PROJECT_SOURCE_DIR}/cmake/Modules_CUDA_fix
+#     DESTINATION share/cmake/Caffe2/
+#     COMPONENT dev)
+#   install(
+#     FILES ${PROJECT_SOURCE_DIR}/cmake/Modules/FindCUDAToolkit.cmake
+#     DESTINATION share/cmake/Caffe2/
+#     COMPONENT dev)
+#   install(
+#     FILES ${PROJECT_SOURCE_DIR}/cmake/Modules/FindCUSPARSELT.cmake
+#     DESTINATION share/cmake/Caffe2/
+#     COMPONENT dev)
+#   install(
+#     FILES ${PROJECT_SOURCE_DIR}/cmake/Modules/FindCUDSS.cmake
+#     DESTINATION share/cmake/Caffe2/
+#     COMPONENT dev)
+#   install(
+#     FILES ${PROJECT_SOURCE_DIR}/cmake/Modules/FindSYCLToolkit.cmake
+#     DESTINATION share/cmake/Caffe2/
+#     COMPONENT dev)
+#   if(NOT BUILD_LIBTORCHLESS)
+#     install(
+#       EXPORT Caffe2Targets
+#       DESTINATION share/cmake/Caffe2
+#       FILE Caffe2Targets.cmake
+#       COMPONENT dev)
+#   endif()
+# else()
+#   message(WARNING "Generated cmake files are only available when building "
+#                   "shared libs.")
+# endif()
 
-# ---[ Binaries Binaries will be built after the Caffe2 main libraries and the
-# modules are built. For the binaries, they will be linked to the Caffe2 main
-# libraries, as well as all the modules that are built with Caffe2 (the ones
-# built in the previous Modules section above).
-if(BUILD_BINARY)
-  add_subdirectory(binaries)
-endif()
+# # ---[ Binaries Binaries will be built after the Caffe2 main libraries and the
+# # modules are built. For the binaries, they will be linked to the Caffe2 main
+# # libraries, as well as all the modules that are built with Caffe2 (the ones
+# # built in the previous Modules section above).
+# if(BUILD_BINARY)
+#   add_subdirectory(binaries)
+# endif()
 
-include(cmake/Summary.cmake)
-caffe2_print_configuration_summary()
+# include(cmake/Summary.cmake)
+# caffe2_print_configuration_summary()
 
-if(BUILD_FUNCTORCH)
-  add_subdirectory(functorch)
-endif()
+# if(BUILD_FUNCTORCH)
+#   add_subdirectory(functorch)
+# endif()
