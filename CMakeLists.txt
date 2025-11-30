@@ -60,7 +60,7 @@ option(BUILD_JNI "Build JNI bindings" OFF)  # OFF
 option(BUILD_MOBILE_AUTOGRAD "Build autograd function in mobile build (in development)" OFF)  # OFF
 option(INSTALL_TEST "Install test binaries if BUILD_TEST is on" ON)  # ON
 option(USE_CPP_CODE_COVERAGE "Compile C/C++ with code coverage flags" OFF)  # OFF
-option(USE_COLORIZE_OUTPUT "Colorize output during compilation" ON)  # OFF
+option(USE_COLORIZE_OUTPUT "Colorize output during compilation" OFF)  # OFF
 option(USE_ASAN "Use Address+Undefined Sanitizers" OFF)
 option(USE_LSAN "Use Leak Sanitizer" OFF)
 option(USE_TSAN "Use Thread Sanitizer" OFF)
